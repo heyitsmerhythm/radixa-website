@@ -1,0 +1,36 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  body?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+const {
+  eyebrow,
+  title,
+  body,
+  primaryLabel = 'Talk to Radixa',
+  primaryHref = '/contact/',
+  secondaryLabel,
+  secondaryHref,
+} = Astro.props;
+---
+
+<section class="bg-navy on-navy">
+  <div class="wrap">
+    <div class="narrow">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h2>{title}</h2>
+      {body && <p class="lede mt-s">{body}</p>}
+      <div class="btn-group mt-m">
+        <a class="btn btn-primary" href={primaryHref}>{primaryLabel}</a>
+        {secondaryLabel && secondaryHref && (
+          <a class="btn btn-secondary" href={secondaryHref}>{secondaryLabel}</a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

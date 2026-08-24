@@ -1,0 +1,138 @@
+---
+import Logo from './Logo.astro';
+import { nav } from '../config';
+
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => path === href || (href !== '/' && path.startsWith(href));
+---
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="brand" aria-label="Radixa Technologies — home">
+      <Logo height={36} eager />
+    </a>
+
+    <nav class="nav-desktop" aria-label="Main">
+      {
+        nav.map((item) =>
+          item.children ? (
+            <div class="nav-item" data-dropdown>
+              <button
+                type="button"
+                class="nav-link"
+                aria-expanded="false"
+                aria-haspopup="true"
+                data-dropdown-trigger
+                aria-current={isCurrent(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+                <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+              </button>
+              <div class="dropdown" data-dropdown-panel>
+                {item.children.map((child) => (
+                  <a href={child.href}>
+                    {child.label}
+                    {child.blurb && <small>{child.blurb}</small>}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a class="nav-link" href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+              {item.label}
+            </a>
+          )
+        )
+      }
+      <a class="btn btn-primary nav-cta" href="/contact/">Talk to Radixa</a>
+    </nav>
+
+    <button
+      type="button"
+      class="burger"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      aria-label="Open menu"
+      data-burger
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-burger-icon="open"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-burger-icon="close" style="display:none"><path d="M18 6L6 18M6 6l12 12" /></svg>
+    </button>
+  </div>
+
+  <nav class="nav-mobile" id="mobile-nav" aria-label="Main (mobile)">
+    {
+      nav.map((item) =>
+        item.children ? (
+          <>
+            <a href={item.href}>{item.label}</a>
+            {item.children.map((child) => (
+              <a class="sub" href={child.href}>{child.label}</a>
+            ))}
+          </>
+        ) : (
+          <a href={item.href}>{item.label}</a>
+        )
+      )
+    }
+    <a class="btn btn-primary" href="/contact/">Talk to Radixa</a>
+  </nav>
+</header>
+
+<script>
+  // --- Desktop dropdown -----------------------------------------------------
+  const dropdowns = document.querySelectorAll<HTMLElement>('[data-dropdown]');
+
+  const closeAll = (except?: HTMLElement) => {
+    dropdowns.forEach((d) => {
+      if (d === except) return;
+      d.querySelector('[data-dropdown-trigger]')?.setAttribute('aria-expanded', 'false');
+      d.querySelector('[data-dropdown-panel]')?.setAttribute('data-open', 'false');
+    });
+  };
+
+  dropdowns.forEach((d) => {
+    const trigger = d.querySelector<HTMLButtonElement>('[data-dropdown-trigger]');
+    const panel = d.querySelector<HTMLElement>('[data-dropdown-panel]');
+    if (!trigger || !panel) return;
+
+    const setOpen = (open: boolean) => {
+      trigger.setAttribute('aria-expanded', String(open));
+      panel.setAttribute('data-open', String(open));
+    };
+
+    trigger.addEventListener('click', () => {
+      const open = trigger.getAttribute('aria-expanded') === 'true';
+      closeAll(d);
+      setOpen(!open);
+    });
+
+    d.addEventListener('mouseenter', () => { closeAll(d); setOpen(true); });
+    d.addEventListener('mouseleave', () => setOpen(false));
+    d.addEventListener('focusout', (e) => {
+      if (!d.contains(e.relatedTarget as Node)) setOpen(false);
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!(e.target as Element)?.closest('[data-dropdown]')) closeAll();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAll();
+  });
+
+  // --- Mobile drawer --------------------------------------------------------
+  const burger = document.querySelector<HTMLButtonElement>('[data-burger]');
+  const drawer = document.getElementById('mobile-nav');
+  const iconOpen = document.querySelector<HTMLElement>('[data-burger-icon="open"]');
+  const iconClose = document.querySelector<HTMLElement>('[data-burger-icon="close"]');
+
+  burger?.addEventListener('click', () => {
+    const open = burger.getAttribute('aria-expanded') !== 'true';
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    drawer?.setAttribute('data-open', String(open));
+    if (iconOpen) iconOpen.style.display = open ? 'none' : '';
+    if (iconClose) iconClose.style.display = open ? '' : 'none';
+  });
+</script>

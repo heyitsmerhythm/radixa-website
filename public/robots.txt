@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /privacy/
+Disallow: /cookies/
+Disallow: /terms/
+
+Sitemap: https://radixa.co.uk/sitemap-index.xml

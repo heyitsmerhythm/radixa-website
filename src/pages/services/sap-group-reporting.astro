@@ -1,0 +1,235 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const modules = [
+  {
+    name: 'Strategy & architecture',
+    scope:
+      'Roadmap, target operating model, consolidation architecture, deployment approach and integration landscape.',
+  },
+  {
+    name: 'Solution design',
+    scope:
+      'Consolidation structures, FS items, methods, currency translation, eliminations, ownership and NCI, investment consolidation, cash flow, tax and segment reporting.',
+  },
+  {
+    name: 'Implementation support',
+    scope:
+      'Configuration, functional specifications, integration, test design, reconciliation and cutover support.',
+  },
+  {
+    name: 'Migration',
+    scope:
+      'BPC and legacy consolidation migration, data mapping, historical data strategy, parallel run and reconciliation.',
+  },
+  {
+    name: 'Connected Group Reporting',
+    scope:
+      'ICMR, Group Reporting Data Collection, SAP Analytics Cloud, Datasphere/BW, disclosure tooling and the surrounding reporting and data architecture.',
+  },
+  {
+    name: 'Optimisation & assurance',
+    scope:
+      'Design reviews, performance, close-process improvement, controls, reporting and operating model refinement.',
+  },
+];
+
+const complexity = [
+  'Ownership changes, step acquisitions and disposals part-way through a reporting period',
+  'Non-controlling interests, including indirect and multi-level ownership structures',
+  'Joint ventures and equity-method investments, and the point at which method changes',
+  'Investment consolidation and the elimination of investment against equity',
+  'Consolidated cash flow, and reconciling it back to a movement-based consolidation',
+  'Other comprehensive income, retained earnings and equity roll-forward integrity',
+  'Intercompany matching, elimination and the reconciliation differences that follow',
+  'Currency translation, including CTA, average versus closing rates and historical rates',
+  'Tax reporting and the segment reporting view of a consolidated result',
+];
+
+const phases = [
+  {
+    title: 'Establish the accounting answer',
+    body: 'Group accounting policy, reporting requirements and the consolidation methods that follow from them — documented before configuration begins.',
+  },
+  {
+    title: 'Design the solution',
+    body: 'Consolidation structures, master data, methods, currency, elimination and reporting design, with the integration and data model made explicit.',
+  },
+  {
+    title: 'Build, test and reconcile',
+    body: 'Functional specification, configuration support, test design covering consolidation and reporting, and structured reconciliation against the legacy result.',
+  },
+  {
+    title: 'Cut over and stabilise',
+    body: 'Parallel run, opening balance strategy, historical data approach, cutover sequencing, defect triage and finance readiness.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'SAP S/4HANA Group Reporting consulting',
+  provider: { '@type': 'Organization', name: 'Radixa Technologies' },
+  description:
+    'Finance-first SAP Group Reporting strategy, design, implementation, migration, assurance and optimisation.',
+  areaServed: ['GB', 'EU', 'Middle East'],
+};
+---
+
+<Base
+  title="SAP S/4HANA Group Reporting Consulting | Radixa"
+  description="Finance-first Group Reporting strategy, design, implementation, migration, assurance and optimisation."
+  schema={[serviceSchema]}
+>
+  <Hero
+    eyebrow="Flagship service"
+    title="SAP Group Reporting, Designed Around Finance."
+    lede="Group Reporting succeeds when accounting policy, process design, master data, consolidation logic, reporting and system architecture work together. Radixa supports organisations from early design decisions through implementation, migration, assurance and optimisation."
+  >
+    <div class="btn-group">
+      <a class="btn btn-primary" href="/contact/">Discuss your Group Reporting programme</a>
+    </div>
+  </Hero>
+
+  <!-- Problem / context -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">When this matters</p>
+        <h2>Most Group Reporting difficulty is a design problem, not a product problem.</h2>
+        <div class="prose mt-m">
+          <p>
+            SAP S/4HANA Group Reporting is capable of handling genuinely complex group structures.
+            Where implementations struggle, the cause is usually upstream of the system: consolidation
+            methods that were never agreed in accounting terms, master data that cannot support the
+            required reporting view, a data model that assumes a simpler ownership structure than the
+            group actually has, or a reconciliation approach that was designed after the build rather
+            than before it.
+          </p>
+          <p>
+            These are the points at which a specialist perspective changes the outcome — early enough
+            to be cheap, and late enough to be concrete. We are typically brought in when an
+            organisation is deciding whether to adopt Group Reporting, designing it for the first
+            time, migrating to it from BPC or a legacy consolidation platform, or trying to stabilise
+            and improve an implementation that is already live.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service modules -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Capabilities</p>
+      <h2>Support across the full lifecycle.</h2>
+      <div class="rows mt-l">
+        {
+          modules.map((m) => (
+            <div class="row-item">
+              <h3>{m.name}</h3>
+              <p>{m.scope}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Delivery approach -->
+  <section class="bg-navy on-navy">
+    <div class="wrap">
+      <p class="eyebrow">How we approach the work</p>
+      <h2>Accounting first, then architecture, then configuration.</h2>
+      <div class="grid grid-4 steps mt-l">
+        {
+          phases.map((p) => (
+            <div class="step">
+              <h3>{p.title}</h3>
+              <p>{p.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Depth of scope as proof (§7.4) -->
+  <section>
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Depth of scope</p>
+        <h2>The consolidation topics that decide whether a design holds up.</h2>
+        <p class="lede mt-s">
+          A Group Reporting design is tested by the edge cases, not the base case. These are the
+          areas we expect to work through with you.
+        </p>
+        <ul class="checklist mt-m">
+          {complexity.map((c) => <li>{c}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Connected architecture -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <p class="eyebrow">Connected architecture</p>
+      <h2>Group Reporting rarely sits on its own.</h2>
+      <div class="grid grid-3 mt-l">
+        <article class="card">
+          <h3>Intercompany</h3>
+          <p>
+            ICMR for intercompany matching and reconciliation, and how it connects to the elimination
+            logic and the close calendar rather than running alongside it.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Data collection</h3>
+          <p>
+            Group Reporting Data Collection for non-S/4 entities, and the validation, ownership and
+            submission workflow around it.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Analytics &amp; disclosure</h3>
+          <p>
+            How consolidated results are exposed to SAP Analytics Cloud, management reporting and
+            disclosure tooling without duplicating finance logic in each layer.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Outcomes -->
+  <section>
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">What you get</p>
+        <h2>Deliverables, not just attendance.</h2>
+        <ul class="checklist mt-m">
+          <li>Target consolidation architecture and design decision record</li>
+          <li>Accounting and method design documentation traceable to group policy</li>
+          <li>Functional specifications for configuration and integration</li>
+          <li>Test strategy and test cases covering consolidation and reporting</li>
+          <li>Reconciliation framework and parallel run comparison approach</li>
+          <li>Migration and historical data strategy where legacy platforms are in scope</li>
+          <li>Issue and risk log with recommended resolutions for design authority sign-off</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    eyebrow="Next step"
+    title="Discuss your Group Reporting programme."
+    body="Whether you are at design, mid-build, migrating from BPC or trying to stabilise a live implementation, start with a conversation about where the design is under strain."
+    primaryLabel="Talk to Radixa"
+    primaryHref="/contact/"
+    secondaryLabel="Replacing BPC?"
+    secondaryHref="/services/bpc-modernisation-assessment/"
+  />
+</Base>

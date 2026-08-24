@@ -1,0 +1,85 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+  /** Renders the abstract brand visual alongside the copy. */
+  visual?: boolean;
+  navy?: boolean;
+}
+const { eyebrow, title, lede, visual = false, navy = false } = Astro.props;
+---
+
+<section class={`hero ${navy ? 'bg-navy on-navy' : ''}`}>
+  <div class="wrap">
+    <div class={`hero-grid ${visual ? 'has-visual' : ''}`}>
+      <div>
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        <h1>{title}</h1>
+        {lede && <p class="lede">{lede}</p>}
+        <slot />
+      </div>
+
+      {
+        visual && (
+          <div aria-hidden="true">
+            <svg viewBox="0 0 420 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+              <defs>
+                <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#00C6FF" stop-opacity="0.16" />
+                  <stop offset="100%" stop-color="#00C6FF" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+
+              {/* Source layer — three entity blocks */}
+              <rect x="18" y="24" width="104" height="52" rx="8" fill="#F5F7FA" stroke="#D0D5DD" stroke-width="1.5" />
+              <rect x="158" y="24" width="104" height="52" rx="8" fill="#F5F7FA" stroke="#D0D5DD" stroke-width="1.5" />
+              <rect x="298" y="24" width="104" height="52" rx="8" fill="#F5F7FA" stroke="#D0D5DD" stroke-width="1.5" />
+              <rect x="34" y="42" width="56" height="5" rx="2.5" fill="#D0D5DD" />
+              <rect x="34" y="55" width="34" height="5" rx="2.5" fill="#D0D5DD" />
+              <rect x="174" y="42" width="56" height="5" rx="2.5" fill="#D0D5DD" />
+              <rect x="174" y="55" width="34" height="5" rx="2.5" fill="#D0D5DD" />
+              <rect x="314" y="42" width="56" height="5" rx="2.5" fill="#D0D5DD" />
+              <rect x="314" y="55" width="34" height="5" rx="2.5" fill="#D0D5DD" />
+
+              {/* Flows into the consolidation layer */}
+              <g stroke="#00C6FF" stroke-width="1.8" stroke-linecap="round" opacity="0.75">
+                <path d="M70 76v28a14 14 0 0 0 14 14h112" />
+                <path d="M210 76v42" />
+                <path d="M350 76v28a14 14 0 0 1-14 14H224" />
+              </g>
+              <circle cx="210" cy="122" r="4" fill="#00C6FF" />
+
+              {/* Consolidation engine */}
+              <rect x="88" y="140" width="244" height="76" rx="12" fill="#0A2540" />
+              <rect x="112" y="164" width="92" height="7" rx="3.5" fill="#00C6FF" />
+              <rect x="112" y="182" width="150" height="6" rx="3" fill="#FFFFFF" opacity="0.28" />
+              <rect x="112" y="196" width="112" height="6" rx="3" fill="#FFFFFF" opacity="0.18" />
+              <circle cx="304" cy="178" r="12" stroke="#8AE234" stroke-width="2" fill="none" />
+              <path d="M299 178l4 4 7-8" stroke="#8AE234" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+
+              {/* Reporting layer */}
+              <path d="M210 216v20" stroke="#00C6FF" stroke-width="1.8" stroke-linecap="round" />
+              <rect x="60" y="248" width="300" height="90" rx="12" fill="url(#hg)" stroke="#D0D5DD" stroke-width="1.5" />
+
+              {/* Bar chart */}
+              <g fill="#0A2540">
+                <rect x="92" y="298" width="18" height="24" rx="3" />
+                <rect x="122" y="286" width="18" height="36" rx="3" />
+                <rect x="152" y="272" width="18" height="50" rx="3" />
+              </g>
+              <rect x="182" y="292" width="18" height="30" rx="3" fill="#00C6FF" />
+              <rect x="212" y="278" width="18" height="44" rx="3" fill="#00C6FF" />
+
+              {/* Trend line */}
+              <path d="M256 306l22-16 20 10 30-26" stroke="#8AE234" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+              <circle cx="328" cy="274" r="3.6" fill="#8AE234" />
+
+              <rect x="84" y="266" width="44" height="5" rx="2.5" fill="#D0D5DD" />
+            </svg>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

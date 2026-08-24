@@ -1,0 +1,139 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../config';
+
+const updated = '24 August 2026';
+---
+
+<Base
+  title="Privacy notice | Radixa Technologies"
+  description="How Radixa Technologies collects and uses personal data submitted through radixa.co.uk."
+  noindex
+>
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p class="eyebrow">Legal</p>
+        <h1>Privacy notice</h1>
+        <p class="lede">Last updated: {updated}</p>
+
+        <p>
+          This notice explains how {site.legalName} ("Radixa", "we", "us") collects and uses personal
+          data when you visit radixa.co.uk or submit an enquiry through this website. Radixa is the
+          data controller for that information.
+        </p>
+
+        <h2>What we collect</h2>
+        <p>
+          <strong>Enquiry form data.</strong> When you submit the contact form or the BPC assessment
+          form, we collect the information you enter: your name, work email address, company, and
+          optionally your role, phone number, and details about your systems landscape and what you
+          are trying to decide. We also record which form you used and which page you submitted it
+          from.
+        </p>
+        <p>
+          <strong>Analytics data.</strong> If — and only if — you accept analytics cookies, we
+          collect standard website usage data such as pages viewed, approximate location derived from
+          a truncated IP address, device type and referring source. This data does not identify you
+          by name.
+        </p>
+        <p>
+          <strong>Technical data.</strong> Our hosting and form providers process your IP address as
+          part of delivering the site and preventing abuse. This is a necessary part of how the
+          internet works and happens whether or not you accept cookies.
+        </p>
+        <p>
+          We do not knowingly collect special category data. Please do not include confidential
+          client information, personal data about third parties, or commercially sensitive material
+          in a website enquiry form.
+        </p>
+
+        <h2>Why we use it, and our legal basis</h2>
+        <ul>
+          <li>
+            <strong>To respond to your enquiry</strong> — legal basis: your consent, which you give
+            by ticking the consent box, and our legitimate interest in responding to business
+            enquiries directed to us.
+          </li>
+          <li>
+            <strong>To keep a record of business enquiries</strong> — legal basis: our legitimate
+            interest in managing and evidencing our commercial relationships.
+          </li>
+          <li>
+            <strong>To understand how the site is used and improve it</strong> — legal basis: your
+            consent, given through the cookie banner. You can withdraw it at any time.
+          </li>
+          <li>
+            <strong>To protect the site from spam and abuse</strong> — legal basis: our legitimate
+            interest in operating a secure website.
+          </li>
+        </ul>
+
+        <h2>Who processes it</h2>
+        <p>
+          We use a small number of service providers to run this website. Each acts as a processor on
+          our behalf, under contract:
+        </p>
+        <ul>
+          <li><strong>GitHub Pages</strong> — hosting and delivery of the website.</li>
+          <li><strong>Web3Forms</strong> — delivery of enquiry form submissions to our inbox.</li>
+          <li><strong>Google Analytics</strong> — website analytics, loaded only after you consent.</li>
+          <li><strong>Our email provider</strong> — receipt and storage of enquiry correspondence.</li>
+        </ul>
+        <p>
+          Some of these providers are based outside the UK and EEA. Where personal data is
+          transferred internationally, it is protected by UK/EU adequacy decisions or by standard
+          contractual clauses.
+        </p>
+        <p>We do not sell your personal data, and we do not share it with third parties for their own marketing.</p>
+
+        <h2>How long we keep it</h2>
+        <p>
+          Enquiry correspondence is retained for up to 24 months from our last contact with you,
+          unless it forms part of a client engagement record, in which case it is retained for the
+          period required by our contractual and professional obligations. Analytics data is retained
+          for up to 14 months. You can ask us to delete your enquiry sooner.
+        </p>
+
+        <h2>Your rights</h2>
+        <p>Under UK GDPR you have the right to:</p>
+        <ul>
+          <li>ask for a copy of the personal data we hold about you;</li>
+          <li>ask us to correct data that is inaccurate or incomplete;</li>
+          <li>ask us to delete your data, where we have no overriding reason to keep it;</li>
+          <li>object to, or ask us to restrict, our processing;</li>
+          <li>withdraw consent at any time, without affecting processing already carried out;</li>
+          <li>ask us to transfer your data to you or another controller in a portable format.</li>
+        </ul>
+        <p>
+          To exercise any of these, email <a href={`mailto:${site.email}`}>{site.email}</a>. We will
+          respond within one month.
+        </p>
+        <p>
+          If you are not satisfied with our response, you can complain to the Information
+          Commissioner's Office at <a href="https://ico.org.uk" rel="noopener">ico.org.uk</a> or on
+          0303 123 1113.
+        </p>
+
+        <h2>Cookies</h2>
+        <p>
+          See our <a href="/cookies/">cookie policy</a> for what is set, why, and how to change your
+          choice.
+        </p>
+
+        <h2>Changes to this notice</h2>
+        <p>
+          We will update this notice when our processing changes, and will change the date at the top
+          of the page.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          {site.legalName}<br />
+          Email: <a href={`mailto:${site.email}`}>{site.email}</a>
+          {site.registeredAddress && <><br />{site.registeredAddress}</>}
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>

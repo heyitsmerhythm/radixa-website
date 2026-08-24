@@ -1,0 +1,69 @@
+---
+import { site } from '../config';
+---
+
+<div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-desc">
+  <h2 id="cookie-title">Cookies on radixa.co.uk</h2>
+  <p id="cookie-desc">
+    We use essential cookies to make this site work. With your consent we also use analytics
+    cookies to understand how the site is used so we can improve it. You can change your mind
+    at any time — see our <a href="/cookies/">cookie policy</a>.
+  </p>
+  <div class="cookie-actions">
+    <button type="button" class="btn btn-primary" data-cookie-accept>Accept analytics</button>
+    <button type="button" class="btn btn-secondary" data-cookie-reject>Reject non-essential</button>
+    <a class="btn btn-secondary" href="/cookies/">Manage preferences</a>
+  </div>
+</div>
+
+<script is:inline define:vars={{ gaId: site.gaMeasurementId }}>
+  (function () {
+    var KEY = 'radixa-consent';
+    var banner = document.querySelector('[data-cookie-banner]');
+
+    function loadAnalytics() {
+      if (!gaId || window.__radixaGaLoaded) return;
+      window.__radixaGaLoaded = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', gaId, { anonymize_ip: true });
+    }
+
+    function set(value) {
+      try { localStorage.setItem(KEY, value); } catch (e) {}
+      if (banner) banner.setAttribute('data-show', 'false');
+      if (value === 'granted') loadAnalytics();
+    }
+
+    var stored = null;
+    try { stored = localStorage.getItem(KEY); } catch (e) {}
+
+    if (stored === 'granted') {
+      loadAnalytics();
+    } else if (stored !== 'denied' && banner) {
+      banner.setAttribute('data-show', 'true');
+    }
+
+    document.querySelector('[data-cookie-accept]')?.addEventListener('click', function () { set('granted'); });
+    document.querySelector('[data-cookie-reject]')?.addEventListener('click', function () { set('denied'); });
+
+    // Exposed so the /cookies/ page can offer a "change your choice" control.
+    window.radixaConsent = { set: set, get: function () { try { return localStorage.getItem(KEY); } catch (e) { return null; } } };
+
+    // Lightweight, consent-aware CTA tracking (§13). No-ops without consent.
+    document.addEventListener('click', function (e) {
+      var el = e.target && e.target.closest ? e.target.closest('.btn, .link-arrow') : null;
+      if (!el || !window.gtag) return;
+      window.gtag('event', 'cta_click', {
+        page: location.pathname,
+        label: (el.textContent || '').trim().slice(0, 80),
+        destination: el.getAttribute('href') || '',
+      });
+    });
+  })();
+</script>

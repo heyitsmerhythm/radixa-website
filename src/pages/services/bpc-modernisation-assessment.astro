@@ -1,0 +1,240 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
+
+const workstreams = [
+  {
+    n: 'Current-state BPC',
+    body: 'BPC edition and architecture, consolidation, planning, reporting, business rules, workflows, custom logic, BW dependencies, interfaces, performance and accumulated technical debt.',
+  },
+  {
+    n: 'Future finance requirements',
+    body: 'Legal and management consolidation, planning, forecasting, scenario modelling, reporting, intercompany, controls, data collection, workflow, scalability and ownership.',
+  },
+  {
+    n: 'SAP target fit',
+    body: 'Potential use of S/4HANA Group Reporting, SAC Planning and Reporting, ICMR, Group Reporting Data Collection, Datasphere/BW and adjacent capabilities.',
+  },
+  {
+    n: 'Non-SAP target fit',
+    body: 'Requirement-led evaluation of suitable specialist EPM, consolidation and planning platforms — assessed on fit, not on partnership.',
+  },
+  {
+    n: 'Options & decision framework',
+    body: 'Functional fit, finance-process fit, integration, data, migration complexity, user experience, scalability, controls, skills, cost and total cost of ownership, roadmap and future flexibility.',
+  },
+  {
+    n: 'Recommendation & roadmap',
+    body: 'A clear target architecture recommendation, transition approach, sequencing, risks and an executive decision pack.',
+  },
+];
+
+const options = [
+  { id: 'A', arch: 'SAP S/4HANA Group Reporting + SAP Analytics Cloud' },
+  { id: 'B', arch: 'SAP Group Reporting + a specialist planning platform' },
+  { id: 'C', arch: 'A single specialist EPM platform spanning consolidation and planning' },
+  { id: 'D', arch: 'Separate best-of-breed consolidation and FP&A platforms' },
+];
+
+const deliverables = [
+  'Current-state BPC architecture and capability assessment',
+  'Pain-point and technical-debt analysis',
+  'Future-state finance requirements and capability map',
+  'BPC capability decomposition and target mapping',
+  'SAP Group Reporting and SAC fit assessment',
+  'Non-SAP platform fit assessment',
+  'Target architecture options and scoring framework',
+  'Indicative migration complexity and implementation considerations',
+  'High-level cost and total-cost-of-ownership view where data is available',
+  'Risk assessment, recommended platform strategy and migration roadmap',
+  'Executive decision pack',
+];
+
+const packages = [
+  {
+    name: 'BPC Rapid Assessment',
+    scope: 'Current state, key pain points, high-level successor options and recommendation direction.',
+    duration: '1–2 weeks',
+  },
+  {
+    name: 'BPC Modernisation Assessment',
+    scope: 'Full functional, architecture, platform and option assessment.',
+    duration: '3–6 weeks',
+  },
+  {
+    name: 'BPC Transformation Blueprint',
+    scope: 'Full assessment plus target architecture, migration roadmap, work packages and mobilisation plan.',
+    duration: '4–8 weeks',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'SAP BPC modernisation and platform assessment',
+  provider: { '@type': 'Organization', name: 'Radixa Technologies' },
+  description:
+    'Independent assessment of SAP BPC replacement options across Group Reporting, SAC and non-SAP EPM platforms.',
+  areaServed: ['GB', 'EU', 'Middle East'],
+};
+---
+
+<Base
+  title="SAP BPC Modernisation & Migration Assessment | Radixa"
+  description="Independent assessment of SAP BPC replacement options across Group Reporting, SAC and non-SAP EPM platforms."
+  schema={[serviceSchema]}
+>
+  <Hero
+    eyebrow="Independent assessment"
+    title="Move Beyond BPC With Confidence."
+    lede="An independent assessment of your current SAP BPC landscape, future finance requirements and target platform options across SAP and non-SAP solutions."
+  >
+    <div class="btn-group">
+      <a class="btn btn-primary" href="#enquiry">Request a BPC Modernisation Assessment</a>
+      <a class="btn btn-secondary" href="#coverage">See what the assessment covers</a>
+    </div>
+  </Hero>
+
+  <!-- Positioning rule (§7.5) -->
+  <section class="bg-navy on-navy tight">
+    <div class="wrap">
+      <p class="pullquote narrow">
+        The purpose of the assessment is not to prove that SAP is the answer. It is to determine
+        the right successor architecture for your organisation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Context -->
+  <section>
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">The decision</p>
+        <h2>Replacing BPC is a finance architecture decision, not a licence decision.</h2>
+        <div class="prose mt-m">
+          <p>
+            Most organisations approaching the end of their BPC roadmap ask the question in the wrong
+            order. They start with which product to buy, and work backwards to what finance needs.
+            That produces a shortlist shaped by whoever was in the room, and a business case built on
+            product features rather than on the group's actual consolidation, planning and reporting
+            requirements.
+          </p>
+          <p>
+            A BPC estate that has run for a decade contains a great deal that should not be carried
+            forward: script logic written around limitations that no longer exist, reporting built to
+            work around a data model, planning processes shaped by what the tool made easy. It also
+            contains genuine, hard-won requirements that any successor platform must meet. Separating
+            the two is the substance of the assessment.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workstreams -->
+  <section class="bg-alt" id="coverage">
+    <div class="wrap">
+      <p class="eyebrow">What the assessment covers</p>
+      <h2>Six workstreams, run in sequence.</h2>
+      <div class="grid grid-3 steps mt-l">
+        {
+          workstreams.map((w) => (
+            <div class="step">
+              <h3>{w.n}</h3>
+              <p>{w.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Option set -->
+  <section>
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Illustrative options</p>
+        <h2>The target architectures typically on the table.</h2>
+        <p class="lede mt-s">
+          These are starting points, not a menu. The scoring framework is built from your
+          requirements, and the recommendation follows from it.
+        </p>
+      </div>
+      <div class="table-scroll mt-l">
+        <table>
+          <caption class="visually-hidden">Illustrative target architecture options</caption>
+          <thead>
+            <tr><th scope="col">Option</th><th scope="col">Example architecture</th></tr>
+          </thead>
+          <tbody>
+            {options.map((o) => (
+              <tr><td>Option {o.id}</td><td>{o.arch}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-m" style="font-size:0.875rem;color:var(--grey-500);max-width:70ch">
+        Non-SAP platforms are assessed as candidates within an independent evaluation. Radixa does
+        not claim to be an implementation partner for every platform it assesses, and says so
+        explicitly in the recommendation where relevant.
+      </p>
+    </div>
+  </section>
+
+  <!-- Deliverables -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Deliverables</p>
+        <h2>What you have at the end.</h2>
+        <ul class="checklist mt-m">
+          {deliverables.map((d) => <li>{d}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packaging -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Engagement options</p>
+      <h2>Scoped to the decision you need to make.</h2>
+      <div class="grid grid-3 mt-l">
+        {
+          packages.map((p) => (
+            <article class="card">
+              <h3>{p.name}</h3>
+              <p>{p.scope}</p>
+              <p style="margin-top:auto;padding-top:12px;color:var(--navy);font-weight:600;font-size:0.9rem">
+                Typical duration: {p.duration}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+      <p class="mt-m" style="font-size:0.875rem;color:var(--grey-500);max-width:70ch">
+        Durations are indicative and depend on landscape complexity, the number of entities and
+        planning models in scope, and the availability of your finance and IT stakeholders.
+      </p>
+    </div>
+  </section>
+
+  <!-- Enquiry form -->
+  <section class="bg-navy on-navy" id="enquiry">
+    <div class="wrap">
+      <div style="max-width:820px">
+        <p class="eyebrow">Request an assessment</p>
+        <h2>Tell us where you are with BPC.</h2>
+        <p class="lede mt-s">
+          The more detail you give, the more useful our first response will be. We will come back to
+          you with an initial view and a proposed scope, not a generic brochure.
+        </p>
+      </div>
+
+      <div class="panel-light mt-l" style="max-width:900px">
+        <EnquiryForm variant="bpc" />
+      </div>
+    </div>
+  </section>
+</Base>

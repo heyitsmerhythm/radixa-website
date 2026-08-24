@@ -1,0 +1,156 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import CTABand from '../components/CTABand.astro';
+import { site } from '../config';
+
+const principles = [
+  {
+    title: 'Start with the accounting answer',
+    body: 'Consolidation and reporting problems are rarely solved by configuration alone. We work out what the group accounting and reporting requirement actually is, then design a system that meets it.',
+  },
+  {
+    title: 'Make trade-offs explicit',
+    body: 'Every architecture decision closes some doors and opens others. Our job is to make those consequences visible while there is still time to choose differently.',
+  },
+  {
+    title: 'Say when we are not the right fit',
+    body: 'We are a specialist business with a defined scope. Where a requirement sits outside it, we will tell you rather than stretch to cover it.',
+  },
+  {
+    title: 'Leave something behind',
+    body: 'Documented design decisions, a test and reconciliation approach, and a team that understands why the solution works the way it does.',
+  },
+];
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Rupank Pal',
+  jobTitle: 'Founder — Enterprise Finance Transformation & SAP EPM',
+  worksFor: { '@type': 'Organization', name: site.legalName },
+  knowsAbout: [
+    'Financial consolidation',
+    'SAP S/4HANA Group Reporting',
+    'SAP Analytics Cloud',
+    'SAP BPC',
+    'Enterprise performance management',
+    'Finance transformation',
+  ],
+};
+---
+
+<Base
+  title="About Radixa Technologies | Enterprise Finance Transformation"
+  description="Radixa is a specialist enterprise finance transformation consultancy focused on consolidation, planning, analytics and finance technology. Rooted in Better Decisions."
+  schema={[personSchema]}
+>
+  <Hero
+    eyebrow="About Radixa"
+    title="Rooted in Better Decisions."
+    lede="Radixa was created around a simple idea: better finance decisions depend on strong foundations — clear processes, trusted data, coherent architecture and technology that works for the organisation."
+  >
+    <div class="btn-group">
+      <a class="btn btn-primary" href="/contact/">Talk to Radixa</a>
+    </div>
+  </Hero>
+
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">The name</p>
+        <h2>Radix: root, or foundation.</h2>
+        <div class="prose mt-m">
+          <p>
+            The strongest finance solutions are the ones built on foundations that were thought
+            through: an accounting design that reflects how the group actually works, data that
+            people trust, an architecture where each platform has a clear job, and reporting that
+            answers the question being asked rather than the one that was easy to build.
+          </p>
+          <p>
+            Most of the difficulty in finance transformation traces back to one of those foundations
+            being weaker than it looked. That is where we choose to work.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">How we work</p>
+      <h2>Four things you can hold us to.</h2>
+      <div class="rows mt-l">
+        {
+          principles.map((p) => (
+            <div class="row-item">
+              <h3>{p.title}</h3>
+              <p>{p.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder (§7.14) -->
+  <section class="bg-navy on-navy">
+    <div class="wrap">
+      <div style="max-width:820px">
+        <p class="eyebrow">Founder</p>
+        <h2>Rupank Pal — Enterprise Finance Transformation &amp; SAP EPM</h2>
+        <div class="prose mt-m">
+          <p style="color:rgba(255,255,255,0.82)">
+            Rupank is a finance transformation and SAP EPM specialist with more than a decade of
+            experience across financial consolidation, planning, analytics and enterprise performance
+            management. His work focuses on translating complex finance and accounting requirements
+            into practical solution architecture and delivery outcomes, with particular depth in
+            SAP S/4HANA Group Reporting, SAP Analytics Cloud and SAP BPC.
+          </p>
+          <p style="color:rgba(255,255,255,0.82)">
+            That work spans functional solution architecture, finance process and accounting design,
+            requirements definition, design authority, integration leadership, test and reconciliation
+            strategy, and delivery leadership on complex group finance programmes.
+          </p>
+        </div>
+        <div class="btn-group mt-m">
+          <a class="btn btn-primary" href="/contact/">Connect with Radixa</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Structure</p>
+        <h2>Two divisions, one set of foundations.</h2>
+        <div class="grid grid-2 mt-l">
+          <article class="card">
+            <h3>Radixa Consulting</h3>
+            <p>
+              Enterprise finance transformation, EPM, consolidation, planning, analytics and advisory.
+              This is where our client work sits today.
+            </p>
+            <p style="color:var(--navy);font-weight:600">Better Thinking. Better Outcomes.</p>
+          </article>
+          <article class="card">
+            <h3>Radixa Labs</h3>
+            <p>
+              Reserved for product, SaaS and experimental technology activity. Not a current
+              commercial offering.
+            </p>
+            <p style="color:var(--navy);font-weight:600">Ideas into Intelligence.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    title="Tell us what you are trying to solve."
+    body="The most useful first conversations start with a problem, not a product."
+    primaryLabel="Talk to Radixa"
+    primaryHref="/contact/"
+  />
+</Base>

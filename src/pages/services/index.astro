@@ -1,0 +1,132 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const families = [
+  {
+    family: 'Financial Consolidation',
+    promise:
+      'Modernise legal and management consolidation with stronger architecture, controls and reporting.',
+    detail:
+      'Consolidation strategy and target architecture; legal and management consolidation design; currency translation, intercompany elimination, ownership and NCI, investment consolidation; joint ventures and equity method; cash flow, OCI and retained earnings; acquisitions and divestments; tax and segment reporting; close process, controls and reconciliation; legacy migration and post-go-live optimisation.',
+    links: [
+      { label: 'SAP S/4HANA Group Reporting', href: '/services/sap-group-reporting/' },
+      { label: 'BPC Modernisation & Platform Assessment', href: '/services/bpc-modernisation-assessment/' },
+    ],
+  },
+  {
+    family: 'Planning & Analytics',
+    promise: 'Improve budgeting, forecasting, planning and management reporting.',
+    detail:
+      'Enterprise planning including budgeting, forecasting, long-range and driver-based planning and scenario modelling; management reporting and variance analysis; planning model design covering dimensions, versions, allocations, data actions and workflow; reporting experience and performance; integration with S/4HANA, ACDOCP, Group Reporting and Datasphere/BW; and optimisation of models already in production.',
+    links: [],
+  },
+  {
+    family: 'Finance Data & Reporting Architecture',
+    promise: 'Create a coherent finance data and reporting architecture people can trust.',
+    detail:
+      'Which platform owns which financial data and at what level of detail; where reusable finance definitions, hierarchies and calculations should live; how consolidated results are exposed to SAC, disclosure tools and management reporting; how actuals, forecasts and plans connect without duplicated logic; how live, replicated and modelled approaches are balanced; and who owns finance data definitions and change control.',
+    links: [],
+  },
+  {
+    family: 'Finance Transformation & Assurance',
+    promise: 'Bridge requirements, design, programme delivery and assurance.',
+    detail:
+      'Finance process design; requirements and fit-to-standard analysis that separates essential requirements from legacy complexity; target architecture across consolidation, planning, reporting and data; delivery leadership through design, build, test, migration and cutover; independent solution architecture and design authority; and programme assurance covering design review, test strategy, reconciliation, parallel run, cutover readiness and post-go-live optimisation.',
+    links: [],
+  },
+];
+---
+
+<Base
+  title="Finance Transformation & SAP EPM Consulting Services | Radixa"
+  description="Specialist consulting across financial consolidation, SAP Group Reporting, planning and analytics, finance data architecture, solution architecture and programme assurance."
+>
+  <Hero
+    eyebrow="What we do"
+    title="Finance Transformation, Built Around the Decisions That Matter."
+    lede="Radixa provides specialist consulting across financial consolidation, planning, analytics, finance data and solution architecture. Our work starts with finance requirements and ends with solutions that are practical to operate."
+  >
+    <div class="btn-group">
+      <a class="btn btn-primary" href="/contact/">Discuss your priorities</a>
+    </div>
+  </Hero>
+
+  <section class="bg-alt tight">
+    <div class="wrap">
+      <div class="grid grid-2">
+        <article class="card card-feature">
+          <span class="tag">Flagship service</span>
+          <h3>SAP S/4HANA Group Reporting</h3>
+          <p>
+            Strategy and architecture, solution design, implementation support, migration from
+            legacy consolidation, connected reporting and ongoing optimisation.
+          </p>
+          <a class="link-arrow" href="/services/sap-group-reporting/">Explore Group Reporting</a>
+        </article>
+        <article class="card card-feature">
+          <span class="tag tag-lime">Independent assessment</span>
+          <h3>BPC Modernisation &amp; Platform Assessment</h3>
+          <p>
+            A structured, requirement-led assessment of what should replace SAP BPC — across both
+            SAP and non-SAP target platforms.
+          </p>
+          <a class="link-arrow" href="/services/bpc-modernisation-assessment/">Explore BPC Modernisation</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Service families</p>
+      <h2>Four areas of specialist capability.</h2>
+      <p class="lede mt-s">
+        Engagements are scoped around the decision in front of you. That might be a two-week
+        assessment, a design authority role across a programme, or end-to-end functional delivery.
+      </p>
+
+      <div class="mt-l" style="display:grid;gap:24px">
+        {
+          families.map((f) => (
+            <article class="card">
+              <h3>{f.family}</h3>
+              <p style="color:var(--navy);font-weight:500;font-size:1.05rem">{f.promise}</p>
+              <p>{f.detail}</p>
+              {f.links.length > 0 && (
+                <div class="btn-group" style="margin-top:8px;gap:20px">
+                  {f.links.map((l) => (
+                    <a class="link-arrow" href={l.href}>{l.label}</a>
+                  ))}
+                </div>
+              )}
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Engagement models</p>
+        <h2>Short, defined engagements as well as full delivery support.</h2>
+        <ul class="checklist mt-m">
+          <li><strong>Assessment and advisory</strong> — a defined-scope review with a written recommendation, typically one to six weeks.</li>
+          <li><strong>Design authority</strong> — a senior functional architecture and assurance role across an in-flight programme.</li>
+          <li><strong>Solution design and delivery support</strong> — functional design, specification, test design, reconciliation and cutover support.</li>
+          <li><strong>Optimisation</strong> — targeted improvement of a solution already in production.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    title="Not sure which of these you need?"
+    body="Describe the problem rather than the service. We will tell you honestly whether it is something we should be involved in."
+    primaryLabel="Talk to Radixa"
+    primaryHref="/contact/"
+  />
+</Base>

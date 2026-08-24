@@ -1,0 +1,124 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../config';
+
+const updated = '24 August 2026';
+---
+
+<Base
+  title="Cookie policy | Radixa Technologies"
+  description="What radixa.co.uk stores in your browser, why, and how to change your choice."
+  noindex
+>
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p class="eyebrow">Legal</p>
+        <h1>Cookie policy</h1>
+        <p class="lede">Last updated: {updated}</p>
+
+        <p>
+          This page describes exactly what radixa.co.uk stores in your browser. We have kept it
+          short because the site itself is deliberately light: it sets nothing at all until you
+          choose.
+        </p>
+
+        <h2>Strictly necessary</h2>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Purpose</th>
+                <th scope="col">Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>radixa-consent</td>
+                <td>Local storage</td>
+                <td>Remembers whether you accepted or rejected analytics, so we do not ask again on every page.</td>
+                <td>Until you clear your browser storage</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          This one is set only once you make a choice, and it is required for the site to respect
+          that choice. It cannot be switched off, because switching it off is what it records.
+        </p>
+
+        <h2>Analytics — optional, off by default</h2>
+        <p>
+          If you accept analytics, we load Google Analytics 4, which sets cookies in the
+          <code>_ga</code> family to distinguish one visitor from another and measure how the site is
+          used. IP addresses are truncated before storage. These cookies typically last up to two
+          years. Nothing analytics-related loads before you accept — no script, no cookie, no
+          network request.
+        </p>
+        <p>
+          We use this only to understand which pages are useful and where people give up. We do not
+          use it for advertising, and we do not run advertising or social media tracking pixels on
+          this site.
+        </p>
+
+        <h2>Enquiry forms</h2>
+        <p>
+          Submitting an enquiry sends your form data to our form delivery provider, which forwards it
+          to our inbox. This does not set cookies on your device. What we do with the data is
+          described in our <a href="/privacy/">privacy notice</a>.
+        </p>
+
+        <h2>Change your choice</h2>
+        <p>You can change your mind at any time, right here:</p>
+        <div class="btn-group" style="margin-top:20px">
+          <button type="button" class="btn btn-primary" data-consent-accept>Accept analytics</button>
+          <button type="button" class="btn btn-secondary" data-consent-reject>Reject non-essential</button>
+        </div>
+        <p class="form-status ok" data-consent-msg role="status" style="margin-top:20px"></p>
+        <p style="font-size:0.9rem;color:var(--grey-500)">
+          Current setting: <strong data-consent-current>checking…</strong>
+        </p>
+        <p>
+          You can also block or delete cookies through your browser settings. Doing so may mean the
+          banner reappears on your next visit.
+        </p>
+
+        <h2>Questions</h2>
+        <p>
+          Email <a href={`mailto:${site.email}`}>{site.email}</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var label = { granted: 'Analytics accepted', denied: 'Analytics rejected', null: 'Not set — analytics are off' };
+      var cur = document.querySelector('[data-consent-current]');
+      var msg = document.querySelector('[data-consent-msg]');
+
+      function render() {
+        var v = window.radixaConsent ? window.radixaConsent.get() : null;
+        if (cur) cur.textContent = label[v] || label.null;
+      }
+
+      function choose(v) {
+        if (window.radixaConsent) window.radixaConsent.set(v);
+        render();
+        if (msg) {
+          msg.textContent =
+            v === 'granted'
+              ? 'Thank you — analytics are now enabled for this browser.'
+              : 'Analytics are now switched off. Nothing further will be loaded.';
+          msg.setAttribute('data-show', 'true');
+        }
+      }
+
+      document.querySelector('[data-consent-accept]').addEventListener('click', function () { choose('granted'); });
+      document.querySelector('[data-consent-reject]').addEventListener('click', function () { choose('denied'); });
+      render();
+    })();
+  </script>
+</Base>

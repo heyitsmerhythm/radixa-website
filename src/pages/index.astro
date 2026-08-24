@@ -1,0 +1,253 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import CTABand from '../components/CTABand.astro';
+import { site } from '../config';
+
+const capabilities = [
+  {
+    title: 'Financial Consolidation',
+    body: 'Design and deliver group consolidation solutions that align accounting policy, process, controls, data and reporting.',
+  },
+  {
+    title: 'Planning & Analytics',
+    body: 'Build planning, forecasting and management reporting solutions that support better decisions across finance.',
+  },
+  {
+    title: 'Finance Data & Reporting',
+    body: 'Connect finance systems, data and reporting layers into a coherent architecture that users can trust.',
+  },
+  {
+    title: 'Finance Transformation',
+    body: 'Translate finance requirements into practical solution architecture, delivery roadmaps and controlled implementation.',
+  },
+];
+
+const whyRadixa = [
+  {
+    title: 'Finance-first thinking',
+    body: 'We start with accounting policy, process and reporting requirements — not with a product roadmap. Technology decisions follow the finance answer, not the other way around.',
+  },
+  {
+    title: 'Specialist expertise',
+    body: 'Deep, current capability in financial consolidation, SAP S/4HANA Group Reporting, SAP Analytics Cloud and BPC — rather than shallow coverage across every SAP module.',
+  },
+  {
+    title: 'Architecture to execution',
+    body: 'We work from target architecture through solution design, build support, testing, reconciliation and cutover, so decisions survive contact with delivery.',
+  },
+  {
+    title: 'Independent thinking',
+    body: 'Our platform assessments are requirement-led. Where a non-SAP solution is the better fit for your organisation, we will say so.',
+  },
+  {
+    title: 'Senior-led delivery',
+    body: 'The people who scope the work do the work. You get direct access to specialist capability rather than a layer of account management.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Assess',
+    body: 'Understand the current landscape, finance requirements, pain points and constraints — and establish what actually needs to change.',
+  },
+  {
+    title: 'Design',
+    body: 'Define the target process, accounting design, data flows, reporting architecture and technology fit, with the trade-offs made explicit.',
+  },
+  {
+    title: 'Deliver',
+    body: 'Support configuration, functional specification, integration, test design, reconciliation, migration and cutover from a finance-functional perspective.',
+  },
+  {
+    title: 'Assure & Optimise',
+    body: 'Review design quality, close performance, controls and reporting after go-live, and rationalise what has accumulated along the way.',
+  },
+];
+
+const ecosystem = [
+  'SAP S/4HANA',
+  'SAP S/4HANA Group Reporting',
+  'SAP Analytics Cloud',
+  'SAP BPC',
+  'ICMR',
+  'Group Reporting Data Collection',
+  'SAP Datasphere',
+  'SAP BW/4HANA',
+  'SAP BTP',
+];
+
+const industries = [
+  { name: 'Energy & Resources', body: 'Complex multinational structures, group reporting, tax and reporting requirements.' },
+  { name: 'Technology & Semiconductors', body: 'Fast-changing structures, reporting, intercompany and finance transformation.' },
+  { name: 'Life Sciences & Medical Devices', body: 'Controlled reporting, consolidation and enterprise finance processes.' },
+  { name: 'Consumer & Retail', body: 'Planning, management reporting and complex organisational structures.' },
+  { name: 'Transportation & Infrastructure', body: 'Long-range planning, financial consolidation and asset-intensive finance.' },
+  { name: 'Public Sector', body: 'Planning, budgeting, funds-related integration and management reporting.' },
+];
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: site.name,
+  url: site.url,
+  description:
+    'Specialist consulting for financial consolidation, SAP Group Reporting, SAC, BPC modernisation and finance reporting architecture.',
+};
+---
+
+<Base
+  title="Radixa Technologies | Enterprise Finance Transformation"
+  description="Specialist consulting for financial consolidation, SAP Group Reporting, SAC, BPC modernisation and finance reporting architecture."
+  schema={[websiteSchema]}
+>
+  <Hero
+    eyebrow="Enterprise Finance Transformation"
+    title="Better Finance Decisions Start With the Right Foundation."
+    lede="Radixa helps organisations modernise financial consolidation, planning, reporting and finance technology. We combine deep finance process knowledge with specialist SAP expertise to turn complex requirements into practical, scalable solutions."
+    visual
+  >
+    <div class="btn-group">
+      <a class="btn btn-primary" href="/services/">Explore our capabilities</a>
+      <a class="btn btn-secondary" href="/contact/">Talk to Radixa</a>
+    </div>
+  </Hero>
+
+  <!-- 2. Capability strip -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <p class="eyebrow">What we do</p>
+      <h2>Consolidation. Planning. Analytics. Finance Technology.</h2>
+      <div class="grid grid-4 mt-l">
+        {
+          capabilities.map((c) => (
+            <article class="card">
+              <h3>{c.title}</h3>
+              <p>{c.body}</p>
+            </article>
+          ))
+        }
+      </div>
+      <p class="mt-m"><a class="link-arrow" href="/services/">See all capabilities</a></p>
+    </div>
+  </section>
+
+  <!-- 3. Flagship specialist services -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Specialist focus</p>
+      <h2>Where organisations bring us in first.</h2>
+      <div class="grid grid-2 mt-l">
+        <article class="card card-feature">
+          <span class="tag">Flagship service</span>
+          <h3>SAP S/4HANA Group Reporting</h3>
+          <p>
+            Specialist support across strategy, architecture, solution design, implementation,
+            migration, testing, reconciliation and optimisation for complex group reporting
+            environments.
+          </p>
+          <a class="link-arrow" href="/services/sap-group-reporting/">Explore Group Reporting</a>
+        </article>
+
+        <article class="card card-feature">
+          <span class="tag tag-lime">Independent assessment</span>
+          <h3>BPC Modernisation &amp; Platform Assessment</h3>
+          <p>
+            Understand what should replace SAP BPC before committing to a technology. Radixa
+            assesses your current BPC landscape, future finance requirements and target options
+            across SAP and non-SAP platforms.
+          </p>
+          <a class="link-arrow" href="/services/bpc-modernisation-assessment/">Explore BPC Modernisation</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Why Radixa -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <p class="eyebrow">Why Radixa</p>
+      <h2>Specialist depth, applied to decisions that are hard to reverse.</h2>
+      <div class="rows mt-l">
+        {
+          whyRadixa.map((w) => (
+            <div class="row-item">
+              <h3>{w.title}</h3>
+              <p>{w.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. How we help -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">How we help</p>
+      <h2>Assess → Design → Deliver → Assure &amp; Optimise.</h2>
+      <p class="lede mt-s">
+        Engagements can start at any point in this sequence. Many begin with a short, focused
+        assessment before any implementation commitment is made.
+      </p>
+      <div class="grid grid-4 steps mt-l">
+        {
+          steps.map((s) => (
+            <div class="step">
+              <h3>{s.title}</h3>
+              <p>{s.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Technology ecosystem -->
+  <section class="bg-navy on-navy tight">
+    <div class="wrap">
+      <p class="eyebrow">Technology ecosystem</p>
+      <h2>The finance landscape we work across.</h2>
+      <p class="lede mt-s">
+        We design how these platforms fit together — which one owns which data, where finance
+        logic lives, and how results reach the people who need them.
+      </p>
+      <div class="chips mt-m" style="--chip-bg: transparent">
+        {ecosystem.map((t) => <span class="chip" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.22);color:#fff">{t}</span>)}
+      </div>
+      <p class="mt-m" style="font-size:0.875rem;opacity:0.65;max-width:70ch">
+        SAP and SAP product names are trademarks of SAP SE, used here descriptively to describe
+        the platforms we work with. Radixa Technologies is not an SAP partner or reseller.
+      </p>
+    </div>
+  </section>
+
+  <!-- 7. Industry experience -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Industry experience</p>
+      <h2>Experience across complex finance environments.</h2>
+      <div class="grid grid-3 mt-l">
+        {
+          industries.map((i) => (
+            <article class="card">
+              <h3>{i.name}</h3>
+              <p>{i.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Closing CTA -->
+  <CTABand
+    eyebrow="Get started"
+    title="Planning a finance technology change?"
+    body="Whether you are replacing BPC, designing Group Reporting, improving SAC or reviewing your reporting architecture, start with a focused conversation about the problem you need to solve."
+    primaryLabel="Talk to Radixa"
+    primaryHref="/contact/"
+    secondaryLabel="Request a BPC assessment"
+    secondaryHref="/services/bpc-modernisation-assessment/#enquiry"
+  />
+</Base>

@@ -1,0 +1,55 @@
+---
+/**
+ * Radixa logo.
+ *
+ * Files live in  public/brand/ :
+ *   logo-notagline.png           header / light backgrounds
+ *   logo-reversed.png            footer / navy backgrounds (includes tagline)
+ *   logo-reversed-notagline.png  navy backgrounds, tagline omitted
+ *   logo.png                     full light lockup with tagline
+ *   mark.png                     icon only
+ *
+ * These were extracted from the supplied brand sheet. If your designer provides
+ * vector (.svg) originals, drop them into public/brand/ with the same names and
+ * change the extension below — SVG will stay crisp at every size.
+ */
+interface Props {
+  reversed?: boolean;
+  /** Include the "Rooted in Better Decisions." tagline lock-up. */
+  tagline?: boolean;
+  height?: number;
+  class?: string;
+  /** Set true when the logo is the largest element above the fold. */
+  eager?: boolean;
+}
+const {
+  reversed = false,
+  tagline = false,
+  height = 34,
+  class: className = '',
+  eager = false,
+} = Astro.props;
+
+const file = reversed
+  ? tagline
+    ? '/brand/logo-reversed.png'
+    : '/brand/logo-reversed-notagline.png'
+  : tagline
+    ? '/brand/logo.png'
+    : '/brand/logo-notagline.png';
+
+// Intrinsic sizes, used to reserve space and avoid layout shift (CLS).
+const ratio = reversed ? 497 / 118 : 787 / 227;
+const width = Math.round(height * ratio);
+---
+
+<img
+  src={file}
+  alt="Radixa Technologies"
+  width={width}
+  height={height}
+  class={className}
+  style={`height:${height}px;width:auto`}
+  loading={eager ? 'eager' : 'lazy'}
+  decoding="async"
+/>

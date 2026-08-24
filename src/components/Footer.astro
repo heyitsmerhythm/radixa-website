@@ -1,0 +1,46 @@
+---
+import Logo from './Logo.astro';
+import { site, footerNav } from '../config';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <Logo reversed height={40} eager />
+        <p class="footer-tagline">{site.tagline}</p>
+        <p class="footer-contact">
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+        {site.linkedin && (
+          <p class="footer-contact">
+            <a href={site.linkedin} rel="noopener">LinkedIn</a>
+          </p>
+        )}
+      </div>
+
+      {
+        footerNav.map((col) => (
+          <div class="footer-col">
+            <h3>{col.title}</h3>
+            <ul>
+              {col.links.map((l) => (
+                <li><a href={l.href}>{l.label}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {year} {site.legalName}. All rights reserved.</p>
+      <p>
+        {site.companyNumber && <>Registered in England &amp; Wales, company no. {site.companyNumber}. </>}
+        SAP and SAP product names are trademarks of SAP SE, used here descriptively. Radixa Technologies is not affiliated with SAP SE.
+      </p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,311 @@
+---
+import { site, serviceInterests } from '../config';
+
+interface Props {
+  /** 'general' = contact page; 'bpc' = BPC assessment enquiry (§7.5). */
+  variant?: 'general' | 'bpc';
+  formName?: string;
+}
+const { variant = 'general', formName = variant === 'bpc' ? 'bpc_assessment' : 'general_enquiry' } =
+  Astro.props;
+
+const subject =
+  variant === 'bpc'
+    ? 'New BPC Modernisation Assessment enquiry — radixa.co.uk'
+    : 'New enquiry — radixa.co.uk';
+---
+
+<div class="form-success" data-form-success role="status" tabindex="-1">
+  <h2>Thank you — your enquiry has been sent.</h2>
+  <p class="mt-s">
+    We have received your message and will come back to you by email, usually within one
+    working day. If your question is time-critical, email us directly at
+    <a href={`mailto:${site.email}`}>{site.email}</a>.
+  </p>
+</div>
+
+<form class="form" data-enquiry-form data-form-name={formName} novalidate>
+  <div class="form-status err" data-form-summary role="alert" tabindex="-1"></div>
+
+  <input type="hidden" name="access_key" value={site.formAccessKey} />
+  <input type="hidden" name="subject" value={subject} />
+  <input type="hidden" name="from_name" value="Radixa website" />
+  <input type="hidden" name="form_name" value={formName} />
+  <input type="text" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+  <div class="form-row">
+    <div class="field">
+      <label for={`${formName}-name`}>Name <span class="req" aria-hidden="true">*</span></label>
+      <input type="text" id={`${formName}-name`} name="name" required autocomplete="name" />
+      <p class="field-error" data-error-for="name">Please enter your name.</p>
+    </div>
+
+    <div class="field">
+      <label for={`${formName}-email`}>Work email <span class="req" aria-hidden="true">*</span></label>
+      <input type="email" id={`${formName}-email`} name="email" required autocomplete="email" />
+      <p class="field-error" data-error-for="email">Please enter a valid work email address.</p>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="field">
+      <label for={`${formName}-company`}>Company <span class="req" aria-hidden="true">*</span></label>
+      <input type="text" id={`${formName}-company`} name="company" required autocomplete="organization" />
+      <p class="field-error" data-error-for="company">Please enter your company name.</p>
+    </div>
+
+    <div class="field">
+      <label for={`${formName}-role`}>Role</label>
+      <input type="text" id={`${formName}-role`} name="role" autocomplete="organization-title" />
+    </div>
+  </div>
+
+  {
+    variant === 'bpc' ? (
+      <>
+        <div class="form-row">
+          <div class="field">
+            <label for={`${formName}-bpcversion`}>Current BPC version / type</label>
+            <select id={`${formName}-bpcversion`} name="bpc_version">
+              <option value="">Select…</option>
+              <option>Standard</option>
+              <option>Embedded</option>
+              <option>Optimised for S/4HANA</option>
+              <option>Unsure</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for={`${formName}-s4`}>S/4HANA status</label>
+            <select id={`${formName}-s4`} name="s4_status">
+              <option value="">Select…</option>
+              <option>Live</option>
+              <option>Implementing</option>
+              <option>Planned</option>
+              <option>No current plan</option>
+              <option>Unsure</option>
+            </select>
+          </div>
+        </div>
+
+        <fieldset data-group="bpc_use">
+          <legend>Primary BPC use <span class="req" aria-hidden="true">*</span></legend>
+          <div class="checks">
+            {['Consolidation', 'Planning', 'Reporting', 'Other'].map((opt) => (
+              <label class="check">
+                <input type="checkbox" name="bpc_use" value={opt} />
+                <span>{opt}</span>
+              </label>
+            ))}
+          </div>
+          <p class="field-error mt-s" data-error-for="bpc_use">Please select at least one.</p>
+        </fieldset>
+
+        <div class="field">
+          <label for={`${formName}-timeline`}>Decision timeline</label>
+          <select id={`${formName}-timeline`} name="timeline">
+            <option value="">Select…</option>
+            <option>Less than 3 months</option>
+            <option>3–6 months</option>
+            <option>6–12 months</option>
+            <option>12+ months</option>
+            <option>Exploring options</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for={`${formName}-message`}>What are you trying to decide? <span class="req" aria-hidden="true">*</span></label>
+          <textarea id={`${formName}-message`} name="message" required></textarea>
+          <p class="hint">The more context you give on your landscape and constraints, the more specific our first response can be.</p>
+          <p class="field-error" data-error-for="message">Please tell us what you are trying to decide.</p>
+        </div>
+      </>
+    ) : (
+      <>
+        <div class="field">
+          <label for={`${formName}-interest`}>What do you need help with? <span class="req" aria-hidden="true">*</span></label>
+          <select id={`${formName}-interest`} name="service_interest" required>
+            <option value="">Select…</option>
+            {serviceInterests.map((s) => <option>{s}</option>)}
+          </select>
+          <p class="field-error" data-error-for="service_interest">Please choose the closest match.</p>
+        </div>
+
+        <div class="field">
+          <label for={`${formName}-message`}>Message <span class="req" aria-hidden="true">*</span></label>
+          <textarea id={`${formName}-message`} name="message" required></textarea>
+          <p class="hint">Tell us the problem you are trying to solve rather than the solution you think you need.</p>
+          <p class="field-error" data-error-for="message">Please tell us a little about what you need.</p>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for={`${formName}-contactpref`}>Preferred contact method</label>
+            <select id={`${formName}-contactpref`} name="contact_preference" data-contact-pref>
+              <option>Email</option>
+              <option>Phone</option>
+            </select>
+          </div>
+
+          <div class="field" data-phone-field hidden>
+            <label for={`${formName}-phone`}>Phone number</label>
+            <input type="tel" id={`${formName}-phone`} name="phone" autocomplete="tel" />
+          </div>
+        </div>
+      </>
+    )
+  }
+
+  <div class="field">
+    <label class="check">
+      <input type="checkbox" name="consent" value="yes" required />
+      <span>
+        I agree that Radixa Technologies may use the details above to respond to my enquiry,
+        as described in the <a href="/privacy/">privacy notice</a>. <span class="req" aria-hidden="true">*</span>
+      </span>
+    </label>
+    <p class="field-error" data-error-for="consent">Please confirm you agree before submitting.</p>
+  </div>
+
+  <div>
+    <button type="submit" class="btn btn-primary" data-submit>
+      {variant === 'bpc' ? 'Request an assessment' : 'Send enquiry'}
+    </button>
+  </div>
+</form>
+
+<script>
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  document.querySelectorAll<HTMLFormElement>('[data-enquiry-form]').forEach((form) => {
+    const summary = form.querySelector<HTMLElement>('[data-form-summary]');
+    const success = form.parentElement?.querySelector<HTMLElement>('[data-form-success]');
+    const submitBtn = form.querySelector<HTMLButtonElement>('[data-submit]');
+    const formName = form.dataset.formName || 'enquiry';
+
+    // --- Conditional phone field ------------------------------------------
+    const pref = form.querySelector<HTMLSelectElement>('[data-contact-pref]');
+    const phoneField = form.querySelector<HTMLElement>('[data-phone-field]');
+    pref?.addEventListener('change', () => {
+      if (phoneField) phoneField.hidden = pref.value !== 'Phone';
+    });
+
+    // --- form_start event --------------------------------------------------
+    let started = false;
+    form.addEventListener('input', () => {
+      if (started) return;
+      started = true;
+      (window as any).gtag?.('event', 'form_start', { form_name: formName, page: location.pathname });
+    }, { once: false });
+
+    const showError = (name: string, show: boolean) => {
+      const msg = form.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
+      msg?.setAttribute('data-show', String(show));
+      form.querySelectorAll<HTMLElement>(`[name="${name}"]`).forEach((el) => {
+        if (el.type === 'checkbox' || el.type === 'radio') return;
+        el.setAttribute('aria-invalid', String(show));
+      });
+    };
+
+    const validate = () => {
+      const errors: string[] = [];
+      const val = (n: string) =>
+        (form.querySelector<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(`[name="${n}"]`)?.value || '').trim();
+
+      const checkText = (n: string, ok = (v: string) => v.length > 0) => {
+        const el = form.querySelector(`[name="${n}"]`);
+        if (!el) return;
+        const bad = !ok(val(n));
+        showError(n, bad);
+        if (bad) errors.push(n);
+      };
+
+      checkText('name');
+      checkText('email', (v) => EMAIL_RE.test(v));
+      checkText('company');
+      checkText('message');
+      checkText('service_interest');
+
+      const uses = form.querySelectorAll<HTMLInputElement>('[name="bpc_use"]');
+      if (uses.length) {
+        const bad = ![...uses].some((c) => c.checked);
+        showError('bpc_use', bad);
+        if (bad) errors.push('bpc_use');
+      }
+
+      const consent = form.querySelector<HTMLInputElement>('[name="consent"]');
+      const consentBad = !consent?.checked;
+      showError('consent', consentBad);
+      if (consentBad) errors.push('consent');
+
+      return errors;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const errors = validate();
+      if (errors.length) {
+        if (summary) {
+          summary.textContent = `Please correct ${errors.length} ${errors.length === 1 ? 'field' : 'fields'} highlighted below before sending.`;
+          summary.setAttribute('data-show', 'true');
+          summary.focus();
+        }
+        (window as any).gtag?.('event', 'form_submit_error', { form_name: formName, error_type: 'validation' });
+        return;
+      }
+      summary?.setAttribute('data-show', 'false');
+
+      const data = new FormData(form);
+      const accessKey = String(data.get('access_key') || '');
+
+      if (!accessKey) {
+        if (summary) {
+          summary.innerHTML =
+            'This form is not connected to an inbox yet. Please email us directly and we will pick it up straight away.';
+          summary.setAttribute('data-show', 'true');
+          summary.focus();
+        }
+        return;
+      }
+
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: data,
+        });
+        const json = await res.json();
+
+        if (res.ok && json.success) {
+          form.hidden = true;
+          success?.setAttribute('data-show', 'true');
+          success?.focus();
+          success?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          (window as any).gtag?.('event', 'form_submit_success', {
+            form_name: formName,
+            service_interest: String(data.get('service_interest') || formName),
+            source_page: location.pathname,
+          });
+        } else {
+          throw new Error(json.message || 'Submission failed');
+        }
+      } catch (err) {
+        if (summary) {
+          summary.textContent =
+            'Sorry — we could not send your message just now. Please try again, or email us directly.';
+          summary.setAttribute('data-show', 'true');
+          summary.focus();
+        }
+        (window as any).gtag?.('event', 'form_submit_error', { form_name: formName, error_type: 'network' });
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = formName === 'bpc_assessment' ? 'Request an assessment' : 'Send enquiry';
+        }
+      }
+    });
+  });
+</script>

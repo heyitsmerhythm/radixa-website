@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../config';
+
+const updated = '24 August 2026';
+---
+
+<Base
+  title="Terms of use | Radixa Technologies"
+  description="Terms governing use of the radixa.co.uk website."
+  noindex
+>
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p class="eyebrow">Legal</p>
+        <h1>Terms of use</h1>
+        <p class="lede">Last updated: {updated}</p>
+
+        <p>
+          These terms govern your use of radixa.co.uk, operated by {site.legalName}. By using the
+          site you accept them. If you do not accept them, please do not use the site.
+        </p>
+
+        <h2>Informational content only</h2>
+        <p>
+          Everything on this website is published for general information about our services. It is
+          not accounting, audit, tax, legal, financial or professional advice, and it is not a
+          substitute for advice tailored to your organisation's circumstances. Nothing here creates
+          a professional relationship between you and Radixa.
+        </p>
+        <p>
+          Do not act, or refrain from acting, on the basis of content on this site without taking
+          appropriate professional advice. Descriptions of accounting treatments, system capabilities
+          and platform behaviour are general and may not reflect your specific version, configuration,
+          licensing or reporting requirements.
+        </p>
+
+        <h2>No warranty</h2>
+        <p>
+          We take reasonable care to keep this site accurate and available, but we make no warranty
+          that it is complete, current or uninterrupted. To the fullest extent permitted by law, we
+          exclude liability for any loss arising from reliance on this site. Nothing in these terms
+          limits liability for death or personal injury caused by negligence, for fraud, or for any
+          liability that cannot lawfully be limited.
+        </p>
+
+        <h2>Enquiries</h2>
+        <p>
+          Submitting an enquiry does not create a contract or oblige us to provide services. Any
+          engagement is governed by a separate written agreement. Please do not send confidential
+          information, personal data about other people, or material subject to a non-disclosure
+          obligation through the website forms.
+        </p>
+
+        <h2>Intellectual property</h2>
+        <p>
+          The content, design, text, graphics and logos on this site are owned by or licensed to
+          {' '}{site.legalName} and are protected by intellectual property law. You may view, download
+          and print pages for your own internal reference. You may not republish, reproduce
+          commercially or systematically extract content without our written permission.
+        </p>
+
+        <h2>Third-party names and links</h2>
+        <p>
+          SAP, S/4HANA, SAP Analytics Cloud, SAP BPC and other SAP product names are trademarks or
+          registered trademarks of SAP SE. Other product and company names are the trademarks of
+          their respective owners. We use them descriptively to identify the platforms we work with.
+          Their use does not imply partnership, endorsement, certification or affiliation, and Radixa
+          Technologies is not an SAP partner or reseller.
+        </p>
+        <p>
+          Where we link to external websites, we do so for convenience. We do not control them and
+          are not responsible for their content or their privacy practices.
+        </p>
+
+        <h2>Acceptable use</h2>
+        <p>
+          You must not misuse this site by knowingly introducing malicious code, attempting to gain
+          unauthorised access, submitting automated or fraudulent enquiries, or using it in any way
+          that is unlawful or that could damage or impair its availability.
+        </p>
+
+        <h2>Changes</h2>
+        <p>
+          We may update these terms from time to time. The version published on this page at the time
+          you use the site is the version that applies.
+        </p>
+
+        <h2>Governing law</h2>
+        <p>
+          These terms are governed by the laws of England and Wales, and the courts of England and
+          Wales have exclusive jurisdiction.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          {site.legalName} — <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
