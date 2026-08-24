@@ -30,7 +30,7 @@ export const site = {
    * they email you a key). Paste it here. Until then, forms show a friendly
    * "not yet configured" message rather than silently failing.
    */
-  formAccessKey: '',
+  formAccessKey: '4ddcd9d5-0981-4043-a869-298baf9adc9b',
 
   /**
    * Google Analytics 4 measurement ID, e.g. 'G-XXXXXXXXXX'.
