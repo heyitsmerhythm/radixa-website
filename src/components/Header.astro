@@ -101,14 +101,18 @@ const isCurrent = (href: string) => path === href || (href !== '/' && path.start
       panel.setAttribute('data-open', String(open));
     };
 
+    // Click to toggle. Deliberately no hover-to-open: hovering and clicking
+    // fight each other (hover opens, then the click reads it as "already open"
+    // and closes it again), and click alone works identically for mouse,
+    // touch and keyboard.
     trigger.addEventListener('click', () => {
       const open = trigger.getAttribute('aria-expanded') === 'true';
       closeAll(d);
       setOpen(!open);
     });
 
-    d.addEventListener('mouseenter', () => { closeAll(d); setOpen(true); });
-    d.addEventListener('mouseleave', () => setOpen(false));
+    // Close once focus leaves the whole dropdown, so keyboard users tabbing
+    // past it don't leave an orphaned panel open behind them.
     d.addEventListener('focusout', (e) => {
       if (!d.contains(e.relatedTarget as Node)) setOpen(false);
     });
@@ -118,7 +122,14 @@ const isCurrent = (href: string) => path === href || (href !== '/' && path.start
     if (!(e.target as Element)?.closest('[data-dropdown]')) closeAll();
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeAll();
+    if (e.key !== 'Escape') return;
+    // Return focus to the trigger we just closed, so keyboard users don't
+    // lose their place in the page.
+    const openTrigger = document.querySelector<HTMLButtonElement>(
+      '[data-dropdown-trigger][aria-expanded="true"]'
+    );
+    closeAll();
+    openTrigger?.focus();
   });
 
   // --- Mobile drawer --------------------------------------------------------

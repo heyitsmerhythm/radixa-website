@@ -31,7 +31,16 @@ const subject =
   <input type="hidden" name="subject" value={subject} />
   <input type="hidden" name="from_name" value="Radixa website" />
   <input type="hidden" name="form_name" value={formName} />
-  <input type="text" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  <!-- Honeypot: hidden from people and assistive tech; bots fill it in and are rejected. -->
+  <input
+    type="text"
+    name="botcheck"
+    class="hp"
+    tabindex="-1"
+    autocomplete="off"
+    aria-hidden="true"
+    aria-label="Leave this field empty"
+  />
 
   <div class="form-row">
     <div class="field">

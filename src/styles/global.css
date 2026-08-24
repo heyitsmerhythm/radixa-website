@@ -45,6 +45,9 @@
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 
+/* Must win over the display rules set on .field, .card etc. below. */
+[hidden] { display: none !important; }
+
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
@@ -302,8 +305,11 @@ section.tight { padding-block: calc(var(--section-y) * 0.7); }
 
 .bg-alt .card { background: var(--white); }
 
-/* Featured / flagship card */
-.card-feature {
+/* Featured / flagship card.
+   Selectors are doubled up so this always beats `.bg-alt .card` — otherwise the
+   card keeps a white background while its text stays white. */
+.card.card-feature,
+.bg-alt .card.card-feature {
   background: var(--navy);
   border-color: var(--navy);
   color: rgba(255, 255, 255, 0.84);
@@ -314,6 +320,14 @@ section.tight { padding-block: calc(var(--section-y) * 0.7); }
 .card-feature h3 { color: var(--white); font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.9rem); }
 .card-feature p { color: rgba(255, 255, 255, 0.78); font-size: 1.0125rem; }
 .card-feature:hover { border-color: var(--cyan); box-shadow: 0 4px 30px rgba(10, 37, 64, 0.18); }
+
+/* A feature card can sit in a light section, so it needs the on-navy link and
+   focus treatment regardless of what surrounds it. */
+.card-feature a { color: var(--cyan); }
+.card-feature .link-arrow { color: var(--cyan); }
+.card-feature a:hover,
+.card-feature .link-arrow:hover { color: var(--lime); }
+.card-feature :focus-visible { outline-color: var(--lime); }
 
 .tag {
   display: inline-block;
