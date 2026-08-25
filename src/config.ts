@@ -72,12 +72,18 @@ export const nav = [
         blurb: 'Planning and reporting design, integration and optimisation.',
       },
       {
+        label: 'Last Mile Reporting',
+        href: '/services/last-mile-reporting/',
+        blurb: 'Disclosure management, Workiva and Group Reporting integration.',
+      },
+      {
         label: 'All capabilities',
         href: '/services/',
         blurb: 'Consolidation, planning, analytics, data and advisory.',
       },
     ],
   },
+  { label: 'Training', href: '/training/' },
   { label: 'About', href: '/about/' },
   { label: 'Contact', href: '/contact/' },
 ];
@@ -91,11 +97,13 @@ export const footerNav = [
       { label: 'SAP Group Reporting', href: '/services/sap-group-reporting/' },
       { label: 'BPC Modernisation', href: '/services/bpc-modernisation-assessment/' },
       { label: 'SAP Analytics Cloud', href: '/services/sap-analytics-cloud/' },
+      { label: 'Last Mile Reporting', href: '/services/last-mile-reporting/' },
     ],
   },
   {
     title: 'Company',
     links: [
+      { label: 'Training', href: '/training/' },
       { label: 'About', href: '/about/' },
       { label: 'Contact', href: '/contact/' },
     ],
@@ -117,8 +125,10 @@ export const serviceInterests = [
   'SAP Analytics Cloud',
   'Planning & Analytics',
   'Financial Consolidation',
+  'Last Mile & Disclosure Reporting',
   'Finance Data & Reporting',
   'Solution Architecture',
   'Programme Assurance',
+  'Training',
   'Other',
 ];

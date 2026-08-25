@@ -23,6 +23,13 @@ const families = [
     links: [{ label: 'SAP Analytics Cloud', href: '/services/sap-analytics-cloud/' }],
   },
   {
+    family: 'Last Mile & Disclosure Reporting',
+    promise: 'Get from the consolidated result to a filed, tagged, auditable report.',
+    detail:
+      'Statutory and annual report production; disclosure and narrative management with controlled review and sign-off; XBRL and iXBRL tagging and regulatory filing; sustainability and non-financial reporting brought into the same controlled process; board and management packs built on the same trusted source; and the integration between S/4HANA Group Reporting and the disclosure platform — SAP Disclosure Management, Workiva or an alternative — that carries the result.',
+    links: [{ label: 'Last Mile Reporting', href: '/services/last-mile-reporting/' }],
+  },
+  {
     family: 'Finance Data & Reporting Architecture',
     promise: 'Create a coherent finance data and reporting architecture people can trust.',
     detail:
@@ -124,12 +131,59 @@ const families = [
       <div class="narrow">
         <p class="eyebrow">Engagement models</p>
         <h2>Short, defined engagements as well as full delivery support.</h2>
+        <p class="lede mt-s">
+          Most work starts with a defined piece and grows from there. Where an organisation wants
+          senior input available on a continuing basis, we do that too.
+        </p>
         <ul class="checklist mt-m">
           <li><strong>Assessment and advisory</strong> — a defined-scope review with a written recommendation, typically one to six weeks.</li>
           <li><strong>Design authority</strong> — a senior functional architecture and assurance role across an in-flight programme.</li>
           <li><strong>Solution design and delivery support</strong> — functional design, specification, test design, reconciliation and cutover support.</li>
           <li><strong>Optimisation</strong> — targeted improvement of a solution already in production.</li>
+          <li>
+            <strong>Retained advisory</strong> — an agreed number of senior days each month or
+            quarter for design questions, change impact assessment and reviewing what the team is
+            about to build. Deliberately not an incident or ticket service: this is for the decisions
+            in front of you, not first-line support when something breaks.
+          </li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Separate offering — deliberately outside the capability families above -->
+  <section>
+    <div class="wrap">
+      <div
+        style="border:1px solid var(--border);border-top:4px solid var(--cyan);border-radius:var(--radius);padding:clamp(28px,4vw,48px)"
+      >
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;align-items:start">
+          <div>
+            <p class="eyebrow">Also available</p>
+            <h2>Corporate training</h2>
+            <p class="lede mt-s">
+              Separate from our consulting work: in-house workshops on SAP S/4HANA Group Reporting
+              and SAP Analytics Cloud, built around your own configuration rather than a demo
+              system.
+            </p>
+            <div class="btn-group mt-m">
+              <a class="btn btn-primary" href="/training/">Explore training</a>
+            </div>
+          </div>
+
+          <div>
+            <p style="font-size:0.9375rem;color:var(--grey-500)">
+              Most often used by teams who have just gone live and were trained on a system that has
+              since been configured differently, or by a finance function taking ownership back from
+              an implementation partner.
+            </p>
+            <ul class="checklist mt-s">
+              <li>SAP S/4HANA Group Reporting — consolidation model, close cycle, currency, intercompany, ownership and NCI</li>
+              <li>SAP Analytics Cloud — planning models, data actions, allocations, planning cycle and reporting design</li>
+              <li>One to three days, on-site or remote, for a single team rather than a public course</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>

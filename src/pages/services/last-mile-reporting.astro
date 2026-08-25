@@ -1,0 +1,333 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+/* ---------------------------------------------------------------------------
+   What the last mile covers
+--------------------------------------------------------------------------- */
+const scope = [
+  {
+    name: 'Statutory & annual report production',
+    body: 'Group and entity financial statements, notes, primary statements and the supporting schedules — produced from the consolidated result rather than rekeyed from it.',
+  },
+  {
+    name: 'Disclosure & narrative management',
+    body: 'Controlled authoring, review and sign-off of narrative alongside the numbers, with version control and an audit trail that survives a question six months later.',
+  },
+  {
+    name: 'Tagging & regulatory filing',
+    body: 'XBRL and iXBRL tagging, taxonomy management and filing preparation, designed so tagging is a by-product of the reporting process rather than a separate project each year.',
+  },
+  {
+    name: 'Sustainability & non-financial reporting',
+    body: 'Bringing non-financial disclosure into the same controlled process as the financial statements, rather than running it as a parallel exercise in documents and spreadsheets.',
+  },
+  {
+    name: 'Board & management packs',
+    body: 'Recurring reporting built on the same trusted source as the statutory output, so the board pack and the accounts do not disagree.',
+  },
+  {
+    name: 'Close-to-report integration',
+    body: 'The handover itself: how consolidated results, hierarchies, comparatives and restatements move from Group Reporting into the reporting layer without manual reconciliation.',
+  },
+];
+
+/* ---------------------------------------------------------------------------
+   Integration detail — the specific expertise
+--------------------------------------------------------------------------- */
+const integration = [
+  {
+    q: 'How do results actually get there?',
+    a: 'Connecting S/4HANA Group Reporting to the disclosure layer — which figures flow, at what level, on what trigger, and what happens when the consolidation is rerun after the report has been drafted.',
+  },
+  {
+    q: 'What happens to comparatives and restatements?',
+    a: 'Prior-year comparatives, restatements and changes in group structure are where last-mile processes usually break. The design has to handle them deliberately, not by re-tagging under deadline.',
+  },
+  {
+    q: 'Where does the narrative live?',
+    a: 'Numbers and words are drafted by different people on different cycles. The architecture decides who owns which, and how a late number change propagates through the narrative that references it.',
+  },
+  {
+    q: 'Who signs off, and on what evidence?',
+    a: 'Review workflow, locking, and the audit trail that lets you demonstrate control over a figure that has moved between four systems.',
+  },
+];
+
+/* ---------------------------------------------------------------------------
+   Platform decision
+--------------------------------------------------------------------------- */
+const platformFactors = [
+  'Fit with the existing SAP finance landscape and the effort of integration',
+  'Statutory, regulatory and tagging requirements across every jurisdiction you file in',
+  'Sustainability and non-financial reporting requirements, now and in the next two years',
+  'How many reporting products the platform has to carry beyond the annual report',
+  'Collaboration and review model, and how many people touch a document',
+  'In-house skills, ownership and what finance can realistically maintain',
+  'Total cost of ownership including annual tagging and taxonomy effort',
+];
+
+/* ---------------------------------------------------------------------------
+   Assessment
+--------------------------------------------------------------------------- */
+const workstreams = [
+  {
+    n: 'Current-state reporting process',
+    body: 'How the annual report, statutory accounts and regulatory filings are produced today — systems, spreadsheets, documents, handovers, rekeying and the points where the process is held together by individuals.',
+  },
+  {
+    n: 'Requirements & obligations',
+    body: 'Statutory and regulatory reporting obligations by entity and jurisdiction, tagging requirements, sustainability reporting, and the internal reporting products that share the same source.',
+  },
+  {
+    n: 'Consolidation handover',
+    body: 'How results leave Group Reporting or the incumbent consolidation platform, and how much reconciliation happens after that point.',
+  },
+  {
+    n: 'Platform fit',
+    body: 'Assessment of SAP Disclosure Management, Workiva and other last-mile platforms against your actual requirements — not against a preferred destination.',
+  },
+  {
+    n: 'Options & recommendation',
+    body: 'Functional fit, integration effort, control and audit position, skills, cost, and a clear recommendation with the trade-offs made explicit.',
+  },
+];
+
+const deliverables = [
+  'Current-state last-mile process and system map',
+  'Reporting obligations and tagging requirement inventory',
+  'Pain-point and manual-effort analysis, quantified where the data allows',
+  'Consolidation-to-report integration assessment',
+  'Platform fit assessment across SAP Disclosure Management, Workiva and alternatives',
+  'Target architecture recommendation with scoring rationale',
+  'Transition approach, sequencing and risks',
+  'Executive decision pack',
+];
+
+const engagements = [
+  {
+    name: 'Last Mile Rapid Review',
+    scope: 'Current process, key pain points, integration position and recommendation direction.',
+    duration: '1–2 weeks',
+  },
+  {
+    name: 'Disclosure & Last Mile Platform Assessment',
+    scope: 'Full requirements, integration, platform and options assessment with an executive decision pack.',
+    duration: '3–5 weeks',
+  },
+  {
+    name: 'Design & implementation support',
+    scope: 'Solution design, Group Reporting integration, template and tagging design, testing and first-cycle support.',
+    duration: 'Engagement-dependent',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Last mile financial reporting and disclosure management consulting',
+  provider: { '@type': 'Organization', name: 'Radixa Technologies' },
+  description:
+    'Disclosure management, Workiva and SAP S/4HANA Group Reporting integration for the last mile of financial reporting.',
+  areaServed: ['GB', 'EU', 'Middle East'],
+};
+---
+
+<Base
+  title="Last Mile Reporting & Disclosure Management | Radixa"
+  description="Disclosure management, Workiva and S/4HANA Group Reporting integration — from consolidated result to filed, tagged, auditable report."
+  schema={[serviceSchema]}
+>
+  <Hero
+    eyebrow="Last mile reporting"
+    title="From Consolidated Result to Filed Report."
+    lede="Consolidation produces a number. The last mile turns it into a statutory report that is drafted, reviewed, tagged, signed off and filed. We design that stretch — including the integration between S/4HANA Group Reporting and the disclosure platform that carries it."
+  >
+    <div class="btn-group">
+      <a class="btn btn-primary" href="/contact/">Discuss your reporting process</a>
+      <a class="btn btn-secondary" href="#assessment">See the assessment</a>
+    </div>
+  </Hero>
+
+  <!-- Problem -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Why this stretch matters</p>
+        <h2>Most finance transformation stops at the consolidated number.</h2>
+        <div class="prose mt-m">
+          <p>
+            A great deal of effort goes into producing a trusted group result. Considerably less
+            goes into what happens next — and yet that is where the deadline pressure sits, where the
+            manual effort concentrates, and where the output actually leaves the building with a
+            director's name on it.
+          </p>
+          <p>
+            In most organisations the last mile is a document process bolted onto a system process.
+            Numbers are exported, pasted, reformatted and re-checked. A late adjustment means
+            re-tagging under time pressure. The narrative references figures that have moved. The
+            audit trail lives in filenames and email.
+          </p>
+          <p>
+            It is fixable, and it is largely a design problem rather than a tooling problem.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scope -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">What the last mile covers</p>
+      <h2>Where our work sits.</h2>
+      <div class="rows mt-l">
+        {
+          scope.map((s) => (
+            <div class="row-item">
+              <h3>{s.name}</h3>
+              <p>{s.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Integration — the differentiator -->
+  <section class="bg-navy on-navy">
+    <div class="wrap">
+      <div style="max-width:900px">
+        <p class="eyebrow">Group Reporting integration</p>
+        <h2>Four questions the design has to answer.</h2>
+        <p class="lede mt-s">
+          The handover from consolidation to disclosure is the part that is usually left to
+          whoever is holding the deadline. It should be designed.
+        </p>
+      </div>
+      <div class="grid mt-l" style="grid-template-columns:repeat(auto-fit,minmax(420px,1fr))">
+        {
+          integration.map((i) => (
+            <article
+              class="card"
+              style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.16)"
+            >
+              <h3 style="color:#fff">{i.q}</h3>
+              <p style="color:rgba(255,255,255,0.76)">{i.a}</p>
+            </article>
+          ))
+        }
+      </div>
+      <p class="mt-m" style="font-size:0.9375rem;opacity:0.75;max-width:72ch">
+        We have worked across both SAP Disclosure Management and Workiva integrated with
+        S/4HANA Group Reporting — which means the integration design comes from having built it,
+        not from a product datasheet.
+      </p>
+    </div>
+  </section>
+
+  <!-- Platform independence -->
+  <section>
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">The platform decision</p>
+        <h2>SAP Disclosure Management or Workiva is the wrong first question.</h2>
+        <div class="prose mt-m">
+          <p>
+            Organisations reviewing their last-mile platform tend to start with a shortlist and work
+            backwards to requirements. That produces a decision shaped by whoever presented first,
+            and a business case built on features rather than on what your reporting calendar
+            actually demands.
+          </p>
+          <p>
+            It is the same pattern we see in consolidation platform decisions, and it has the same
+            cause: almost everyone advising on it has a preferred destination. We do not. The
+            factors that should decide it are yours, not the vendor's:
+          </p>
+        </div>
+        <ul class="checklist mt-m">
+          {platformFactors.map((f) => <li>{f}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Assessment -->
+  <section class="bg-alt" id="assessment">
+    <div class="wrap">
+      <p class="eyebrow">Disclosure &amp; Last Mile Platform Assessment</p>
+      <h2>An independent read on how you get from close to filing.</h2>
+      <div class="grid grid-3 steps mt-l">
+        {
+          workstreams.map((w) => (
+            <div class="step">
+              <h3>{w.n}</h3>
+              <p>{w.body}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="narrow mt-l">
+        <h3>What you get</h3>
+        <ul class="checklist mt-s">
+          {deliverables.map((d) => <li>{d}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engagements -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Engagement options</p>
+      <h2>Scoped to where you are.</h2>
+      <div class="grid grid-3 mt-l">
+        {
+          engagements.map((e) => (
+            <article class="card">
+              <h3>{e.name}</h3>
+              <p>{e.scope}</p>
+              <p style="margin-top:auto;padding-top:12px;color:var(--navy);font-weight:600;font-size:0.9rem">
+                Typical duration: {e.duration}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+      <p class="mt-m" style="font-size:0.875rem;color:var(--grey-500);max-width:70ch">
+        Durations are indicative and depend on the number of reporting entities, jurisdictions and
+        filing obligations in scope, and on how much of the current process is documented.
+      </p>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="bg-alt tight">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Related</p>
+        <h2>This work rarely stands alone.</h2>
+        <p class="lede mt-s">
+          The last mile is only as good as the consolidated result feeding it, and the same
+          independence principle applies one step upstream.
+        </p>
+        <ul class="checklist mt-m">
+          <li><a href="/services/sap-group-reporting/">SAP S/4HANA Group Reporting</a> — the consolidation that feeds the report</li>
+          <li><a href="/services/bpc-modernisation-assessment/">BPC Modernisation &amp; Platform Assessment</a> — the same independent approach, applied to consolidation and planning</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    eyebrow="Next step"
+    title="Discuss your reporting process."
+    body="Whether you are reviewing your disclosure platform, integrating Group Reporting with Workiva, or trying to get the annual report off spreadsheets, start with how the process runs today."
+    primaryLabel="Talk to Radixa"
+    primaryHref="/contact/"
+    secondaryLabel="See all capabilities"
+    secondaryHref="/services/"
+  />
+</Base>

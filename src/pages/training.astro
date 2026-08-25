@@ -1,0 +1,253 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import CTABand from '../components/CTABand.astro';
+
+/* ---------------------------------------------------------------------------
+   Who it's for
+--------------------------------------------------------------------------- */
+const audiences = [
+  {
+    title: 'Teams who have just gone live',
+    body: 'The implementation ended, the consultants left, and the people now running the close were trained on a system that has since been configured differently. This is the most common reason we are called.',
+  },
+  {
+    title: 'Teams about to go live',
+    body: 'Enablement ahead of cutover, run against your own configuration rather than a demo system — so the first close is not the first time anyone has seen it.',
+  },
+  {
+    title: 'Finance teams inheriting a solution',
+    body: 'New joiners, a restructured group function, or a team taking ownership back from an implementation partner and finding nobody can explain why it was built this way.',
+  },
+  {
+    title: 'IT and finance systems teams',
+    body: 'People supporting Group Reporting or SAC who understand the technology but need the accounting and process context behind the configuration.',
+  },
+];
+
+/* ---------------------------------------------------------------------------
+   Group Reporting curriculum
+--------------------------------------------------------------------------- */
+const grTopics = [
+  'Consolidation model: structures, versions, FS items and the data model behind them',
+  'The consolidation monitor and what each task actually does',
+  'Currency translation, including CTA and where differences come from',
+  'Intercompany matching and elimination, and reading a reconciliation difference',
+  'Ownership, non-controlling interests and consolidation of investments',
+  'Group structure changes: acquisitions, disposals and step changes mid-period',
+  'Validation, data collection and the controls around submission',
+  'Reporting on the consolidated result, and where each figure originates',
+  'Close-cycle operation: sequence, dependencies and what to do when it breaks',
+];
+
+/* ---------------------------------------------------------------------------
+   SAC curriculum
+--------------------------------------------------------------------------- */
+const sacTopics = [
+  'Planning model architecture: dimensions, measures, versions and categories',
+  'Data actions and multi-actions — reading, running and maintaining them',
+  'Allocation logic and how to trace a number back through it',
+  'Currency handling in planning models',
+  'The planning cycle: seeding, submission, workflow and locking',
+  'Story and reporting design, and building something maintainable',
+  'Live versus imported connections and what each constrains',
+  'Integration with S/4HANA and Group Reporting results',
+  'Performance, model hygiene and knowing when a model needs rework',
+];
+
+/* ---------------------------------------------------------------------------
+   How it runs
+--------------------------------------------------------------------------- */
+const approach = [
+  {
+    title: 'Built around your configuration',
+    body: 'We ask for access to your system, or a sanitised copy, and build the material around what you actually have. Generic product training is available from plenty of places and is not what this is.',
+  },
+  {
+    title: 'Delivered by practitioners',
+    body: 'The sessions are run by people who design and deliver these solutions, not by trainers working from a deck. That means questions about your specific design get answered in the room.',
+  },
+  {
+    title: 'Accounting alongside the clicks',
+    body: 'Knowing which button to press is the easy half. We teach why the consolidation behaves as it does, so the team can reason about an unexpected result rather than raise a ticket.',
+  },
+  {
+    title: 'Scoped to the group',
+    body: 'One to three days depending on scope and audience, on-site or remote, for a single team rather than a public cohort. Small enough that everyone can ask.',
+  },
+];
+
+const outcomes = [
+  'The close can be run and explained by the people who own it',
+  'Fewer escalations that turn out to be misunderstandings rather than defects',
+  'The team can trace an unexpected figure back to its source unaided',
+  'Design decisions in your solution are understood, not just inherited',
+  'A documented record of what was covered, for onboarding the next joiner',
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'SAP Group Reporting and SAP Analytics Cloud corporate training',
+  provider: { '@type': 'Organization', name: 'Radixa Technologies' },
+  description:
+    'In-house team workshops on SAP S/4HANA Group Reporting and SAP Analytics Cloud, built around your own configuration.',
+  areaServed: ['GB', 'EU', 'Middle East'],
+};
+---
+
+<Base
+  title="SAP Group Reporting & SAC Training | Radixa"
+  description="In-house team workshops on SAP S/4HANA Group Reporting and SAP Analytics Cloud, built around your own configuration and delivered by practitioners."
+  schema={[serviceSchema]}
+>
+  <Hero
+    eyebrow="Corporate training"
+    title="Training Built Around Your System, Not a Demo."
+    lede="In-house workshops on SAP S/4HANA Group Reporting and SAP Analytics Cloud for finance and finance systems teams — delivered by the people who design these solutions, using your configuration rather than a standard sandbox."
+  >
+    <div class="btn-group">
+      <a class="btn btn-primary" href="/contact/">Discuss a workshop</a>
+      <a class="btn btn-secondary" href="#curriculum">See what we cover</a>
+    </div>
+  </Hero>
+
+  <!-- Problem -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Why this exists</p>
+        <h2>Most teams were trained on a system that no longer looks like theirs.</h2>
+        <div class="prose mt-m">
+          <p>
+            Implementation training usually happens before the final round of design changes, on a
+            system configured for a demonstration, delivered to whoever was available that week.
+            By the second close, half the people running the process were not in the room, and the
+            configuration has moved.
+          </p>
+          <p>
+            What is left is a team that can follow a runbook but cannot explain a result. That is
+            fine until something is unexpected — and in group consolidation, something is always
+            unexpected.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Who it is for</p>
+      <h2>Four situations where this helps most.</h2>
+      <div class="grid grid-2 mt-l">
+        {
+          audiences.map((a) => (
+            <article class="card">
+              <h3>{a.title}</h3>
+              <p>{a.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Curriculum -->
+  <section class="bg-navy on-navy" id="curriculum">
+    <div class="wrap">
+      <div style="max-width:820px">
+        <p class="eyebrow">Curriculum</p>
+        <h2>Two programmes, shaped to your scope.</h2>
+        <p class="lede mt-s">
+          These are the areas we cover. Which of them matter, and in what depth, depends on your
+          solution and who is in the room — we agree the scope before we build the material.
+        </p>
+      </div>
+
+      <div class="grid mt-l" style="grid-template-columns:repeat(auto-fit,minmax(420px,1fr))">
+        <article class="card" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.16)">
+          <span class="tag">Consolidation</span>
+          <h3 style="color:#fff">SAP S/4HANA Group Reporting</h3>
+          <ul class="checklist" style="margin-top:8px">
+            {grTopics.map((t) => <li>{t}</li>)}
+          </ul>
+        </article>
+
+        <article class="card" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.16)">
+          <span class="tag">Planning &amp; analytics</span>
+          <h3 style="color:#fff">SAP Analytics Cloud</h3>
+          <ul class="checklist" style="margin-top:8px">
+            {sacTopics.map((t) => <li>{t}</li>)}
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it runs -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">How it runs</p>
+      <h2>What makes this different from product training.</h2>
+      <div class="rows mt-l">
+        {
+          approach.map((a) => (
+            <div class="row-item">
+              <h3>{a.title}</h3>
+              <p>{a.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Outcomes -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">What changes afterwards</p>
+        <h2>What a good workshop leaves behind.</h2>
+        <ul class="checklist mt-m">
+          {outcomes.map((o) => <li>{o}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Practicalities -->
+  <section>
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Practicalities</p>
+        <h2>How to scope one.</h2>
+        <div class="prose mt-m">
+          <p>
+            Tell us which platform, roughly how many people, what they do day to day, and what
+            triggered the request — a go-live, a handover, a team change, or simply a close that
+            was harder than it should have been.
+          </p>
+          <p>
+            From there we propose a scope and duration. Workshops run on-site or remotely, and are
+            delivered for a single organisation rather than as a public course, so the material and
+            the examples can be entirely yours.
+          </p>
+        </div>
+        <div class="btn-group mt-m">
+          <a class="btn btn-primary" href="/contact/">Discuss a workshop</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    eyebrow="Next step"
+    title="Tell us what your team needs to be able to do."
+    body="Start with the capability gap rather than a course outline, and we will tell you honestly whether a workshop is the right answer or whether the problem is in the solution design."
+    primaryLabel="Talk to Radixa"
+    primaryHref="/contact/"
+    secondaryLabel="See what we do"
+    secondaryHref="/services/"
+  />
+</Base>
