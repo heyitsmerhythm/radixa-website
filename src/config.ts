@@ -67,6 +67,11 @@ export const nav = [
         blurb: 'Independent assessment across SAP and non-SAP options.',
       },
       {
+        label: 'SAP Analytics Cloud',
+        href: '/services/sap-analytics-cloud/',
+        blurb: 'Planning and reporting design, integration and optimisation.',
+      },
+      {
         label: 'All capabilities',
         href: '/services/',
         blurb: 'Consolidation, planning, analytics, data and advisory.',
@@ -85,6 +90,7 @@ export const footerNav = [
       { label: 'All capabilities', href: '/services/' },
       { label: 'SAP Group Reporting', href: '/services/sap-group-reporting/' },
       { label: 'BPC Modernisation', href: '/services/bpc-modernisation-assessment/' },
+      { label: 'SAP Analytics Cloud', href: '/services/sap-analytics-cloud/' },
     ],
   },
   {
