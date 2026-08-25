@@ -12,6 +12,8 @@ const capabilities = [
   {
     title: 'Planning & Analytics',
     body: 'Build planning, forecasting and management reporting solutions that support better decisions across finance.',
+    href: '/services/sap-analytics-cloud/',
+    linkLabel: 'SAP Analytics Cloud',
   },
   {
     title: 'Finance Data & Reporting',
@@ -124,6 +126,7 @@ const websiteSchema = {
             <article class="card">
               <h3>{c.title}</h3>
               <p>{c.body}</p>
+              {c.href && <a class="link-arrow" href={c.href}>{c.linkLabel}</a>}
             </article>
           ))
         }
@@ -135,11 +138,11 @@ const websiteSchema = {
   <!-- 3. Flagship specialist services -->
   <section>
     <div class="wrap">
-      <p class="eyebrow">Specialist focus</p>
+      <p class="eyebrow">Flagship services</p>
       <h2>Where organisations bring us in first.</h2>
-      <div class="grid grid-2 mt-l">
+      <div class="grid grid-3 mt-l">
         <article class="card card-feature">
-          <span class="tag">Flagship service</span>
+          <span class="tag">Consolidation</span>
           <h3>SAP S/4HANA Group Reporting</h3>
           <p>
             Specialist support across strategy, architecture, solution design, implementation,
@@ -158,6 +161,16 @@ const websiteSchema = {
             across SAP and non-SAP platforms.
           </p>
           <a class="link-arrow" href="/services/bpc-modernisation-assessment/">Explore BPC Modernisation</a>
+        </article>
+
+        <article class="card card-feature">
+          <span class="tag">Planning &amp; analytics</span>
+          <h3>SAP Analytics Cloud</h3>
+          <p>
+            Modernise budgeting, forecasting and management reporting with integrated planning and
+            analytics designed around the needs of finance.
+          </p>
+          <a class="link-arrow" href="/services/sap-analytics-cloud/">Explore SAP Analytics Cloud</a>
         </article>
       </div>
     </div>

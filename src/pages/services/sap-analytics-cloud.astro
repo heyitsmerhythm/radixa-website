@@ -1,0 +1,715 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+/* ---------------------------------------------------------------------------
+   Outcomes
+--------------------------------------------------------------------------- */
+const outcomes = [
+  'Modernise budgeting and forecasting',
+  'Replace or simplify legacy planning applications',
+  'Create integrated financial and operational planning models',
+  'Connect actuals, plans and forecasts in one analytical framework',
+  'Build driver-based planning that explains how the business works',
+  'Enable scenario and sensitivity analysis',
+  'Automate repetitive planning activities',
+  'Improve management, executive and board reporting',
+  'Integrate planning with SAP S/4HANA and other enterprise data sources',
+  'Establish a scalable planning and reporting architecture',
+  'Improve governance, controls and ownership of planning processes',
+];
+
+/* ---------------------------------------------------------------------------
+   Planning
+--------------------------------------------------------------------------- */
+const planningScope = [
+  {
+    name: 'Enterprise planning',
+    scope:
+      'Annual budgeting, rolling forecasts, long-range and strategic planning, top-down target setting and bottom-up submission, management adjustments and version comparison — designed around a continuous cycle rather than a single annual event.',
+  },
+  {
+    name: 'Financial planning',
+    scope:
+      'Integrated P&L, balance sheet and cash flow models, connected so that a change in business assumptions flows through all three rather than each being planned in isolation.',
+  },
+  {
+    name: 'Workforce planning',
+    scope:
+      'Headcount, new hires, leavers, transfers, promotions, salary and bonus assumptions, employer taxes, vacancy factors and contractors — feeding directly into the financial plan.',
+  },
+  {
+    name: 'CAPEX planning',
+    scope:
+      'Capital requests, project expenditure, asset classes, approval routing, capitalisation timing, depreciation and cash-flow impact, connected to the forecast rather than run as a separate spreadsheet.',
+  },
+  {
+    name: 'Scenario planning',
+    scope:
+      'Base, upside, downside and management cases, plus pricing, FX, cost-reduction, headcount and market-volume scenarios, compared on revenue, profitability and cash.',
+  },
+  {
+    name: 'Allocations',
+    scope:
+      'Shared services, corporate, IT, HR and facilities cost allocation across entities, business units, products and customers — designed to stay transparent and maintainable.',
+  },
+];
+
+const statements = [
+  {
+    title: 'Profit & loss',
+    items: [
+      'Revenue',
+      'Cost of sales',
+      'Operating expenditure',
+      'Headcount-related costs',
+      'Depreciation',
+      'Finance costs',
+      'Tax',
+    ],
+  },
+  {
+    title: 'Balance sheet',
+    items: [
+      'Receivables and payables',
+      'Inventory',
+      'Fixed assets',
+      'Provisions and accruals',
+      'Debt and equity',
+      'Working capital',
+    ],
+  },
+  {
+    title: 'Cash flow',
+    items: [
+      'Operating cash flow',
+      'Investing activities',
+      'Financing activities',
+      'Working-capital movements',
+      'Capital expenditure',
+      'Liquidity forecasting',
+    ],
+  },
+];
+
+const drivers = [
+  { area: 'Revenue', logic: 'Volume × price' },
+  { area: 'Personnel costs', logic: 'Headcount × salary × employment assumptions' },
+  { area: 'Travel', logic: 'Headcount × travel frequency × average cost' },
+  { area: 'Depreciation', logic: 'Asset additions × useful-life assumptions' },
+  { area: 'Receivables', logic: 'Revenue × debtor days' },
+  { area: 'Payables', logic: 'Purchases × creditor days' },
+  { area: 'Inventory', logic: 'Cost of sales × inventory days' },
+  { area: 'Facilities', logic: 'Floor area × occupancy × unit cost' },
+];
+
+/* ---------------------------------------------------------------------------
+   Reporting
+--------------------------------------------------------------------------- */
+const reportingScope = [
+  {
+    name: 'Management reporting',
+    scope:
+      'Monthly management packs, CFO and executive dashboards, board reporting, profitability, business-unit, regional and cost-centre reporting, KPI frameworks and variance analytics.',
+  },
+  {
+    name: 'Financial reporting',
+    scope:
+      'Income statement, balance sheet, cash flow and financial KPIs across legal entities, segments, regions, functional areas, products and customers — with hierarchy navigation, commentary and drill-down.',
+  },
+  {
+    name: 'Group Reporting analytics',
+    scope:
+      'Consolidated statements, group management reporting, entity and segment analysis and consolidation variance analysis, exposed from S/4HANA Group Reporting without duplicating consolidation logic.',
+  },
+  {
+    name: 'Self-service analysis',
+    scope:
+      'Governed flexibility — certified models, agreed measures and hierarchies, clear ownership and naming standards, so exploration does not fragment into competing versions of the same number.',
+  },
+];
+
+const designPrinciples = [
+  'Executive summary first, detail on demand',
+  'Presentation weighted by financial materiality, not by chart availability',
+  'One agreed definition per KPI across every story',
+  'Variance shown so the size and direction read at a glance',
+  'Colour used to carry meaning, not decoration',
+  'Navigation by business context rather than by data structure',
+  'Drill-down only where it answers a real follow-up question',
+  'Consistent templates so each new report is familiar',
+];
+
+/* ---------------------------------------------------------------------------
+   Architecture
+--------------------------------------------------------------------------- */
+const architecture = [
+  {
+    q: 'Live connection or imported data?',
+    a: 'Live keeps a single source of truth but constrains modelling and planning; imported models are flexible but introduce a copy to reconcile. The answer should follow from latency, security, transformation and planning requirements — not from a blanket preference.',
+  },
+  {
+    q: 'Where should finance logic live?',
+    a: 'Calculations split across S/4HANA, Datasphere, BW and SAC stories are how definitions drift apart. We decide which layer owns which logic, and hold that line through delivery.',
+  },
+  {
+    q: 'How do actuals, budget and forecast meet?',
+    a: 'Integration between ACDOCA, ACDOCP, Group Reporting results and planning models, so actual-versus-budget-versus-forecast is structural rather than assembled by hand each month.',
+  },
+  {
+    q: 'Which platforms are actually required?',
+    a: 'SAC, Datasphere, BW/4HANA and Business Data Cloud overlap. Not every organisation needs all of them, and deciding deliberately is cheaper than discovering the answer during build.',
+  },
+];
+
+const modelDesign = [
+  'Model granularity and data volumes',
+  'Dimensions, measures, accounts and time',
+  'Version and category strategy',
+  'Currency and organisational structures',
+  'Planning levels and disaggregation',
+  'Calculation, data action and multi-action design',
+  'Master data and hierarchy ownership',
+  'Security and workflow, designed in rather than bolted on',
+];
+
+const automation = [
+  'Copy actuals into forecast and seed planning versions',
+  'Carry forward assumptions between cycles',
+  'Calculate drivers and spread values across periods',
+  'Allocate costs through structured allocation logic',
+  'Translate currencies',
+  'Prepare scenario versions',
+  'Run sequential planning activities as one step',
+];
+
+/* ---------------------------------------------------------------------------
+   BPC → SAC
+--------------------------------------------------------------------------- */
+const bpcMapping = [
+  ['Budgeting', 'SAC Planning'],
+  ['Rolling forecast', 'SAC Planning'],
+  ['Driver-based planning', 'SAC Planning'],
+  ['Management reporting', 'SAC'],
+  ['Legal consolidation', 'SAP Group Reporting or an alternative platform'],
+  ['Management consolidation', 'Group Reporting, SAC or an alternative, depending on requirements'],
+  ['Allocations', 'SAC, Group Reporting or the source system, depending on use case'],
+  ['Data collection', 'SAC, Group Reporting Data Collection or the integration layer'],
+  ['Excel input', 'SAC Microsoft Office integration where appropriate'],
+  ['Executive dashboards', 'SAC'],
+  ['Workflow', 'SAC planning process design'],
+];
+
+/* ---------------------------------------------------------------------------
+   Engagements
+--------------------------------------------------------------------------- */
+const engagements = [
+  {
+    name: 'SAC Planning Assessment',
+    body: 'Review existing planning processes and determine how SAC could support the future state.',
+    scope:
+      'Current-state assessment, planning requirements, pain-point analysis, SAC fit assessment, target process, target architecture and a high-level roadmap.',
+  },
+  {
+    name: 'SAC Planning Solution Design',
+    body: 'The functional and architectural blueprint for an implementation, before build begins.',
+    scope:
+      'Planning process design, model architecture, driver and version design, currency approach, integration, workflow, data actions, security, reporting and test strategy.',
+  },
+  {
+    name: 'SAC Reporting Design',
+    body: 'A structured management reporting and analytics solution rather than a growing library of stories.',
+    scope:
+      'Reporting requirements, KPI definition, information architecture, data sourcing, dashboard templates, story design, navigation, security and governance.',
+  },
+  {
+    name: 'SAC Health Check',
+    body: 'Independent review of an SAC solution already in production that is not delivering what was expected.',
+    scope:
+      'Architecture, models, performance, integration, planning logic, allocations, security, story design, user experience, governance, technical debt and adoption — output is a prioritised set of recommendations.',
+  },
+];
+
+const challenges = [
+  'Our planning process is still heavily spreadsheet-driven.',
+  'We have SAC, but finance adoption is low.',
+  'Our SAC models have become slow and difficult to maintain.',
+  'We want to move planning out of BPC but do not know whether SAC supports our requirements.',
+  'We have Group Reporting but do not know how SAC should fit into the reporting architecture.',
+  'Budgeting and forecasting operate as disconnected processes.',
+  'Management reporting takes too much manual effort every month.',
+  'Different teams have different versions of the same KPI.',
+  'Our SAC implementation reproduced our old processes rather than improving them.',
+  'We are not sure whether SAC, Datasphere and BW are all required.',
+];
+
+const approach = [
+  {
+    title: 'Finance first',
+    body: 'We start with the decisions, processes and reporting finance needs to support — not with the platform.',
+  },
+  {
+    title: 'Architecture before build',
+    body: 'Where data, calculations, planning logic and reporting live is settled before models and dashboards are built.',
+  },
+  {
+    title: 'Simplify before migrating',
+    body: 'Legacy processes get challenged before they are reproduced. Not everything in the old system deserves to survive.',
+  },
+  {
+    title: 'Design for ownership',
+    body: 'Your team should be able to understand and operate the solution after we leave. That constrains how clever the design is allowed to be.',
+  },
+  {
+    title: 'Reporting with purpose',
+    body: 'Every dashboard, table and visual should answer a business question someone is actually asking.',
+  },
+  {
+    title: 'Integrate where it adds value',
+    body: 'Planning, consolidation and reporting connect where the process requires it — and stay separate where integration would only add dependency.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'SAP Analytics Cloud planning and reporting consulting',
+  provider: { '@type': 'Organization', name: 'Radixa Technologies' },
+  description:
+    'SAC planning, forecasting, financial planning, management reporting, architecture, implementation and optimisation.',
+  areaServed: ['GB', 'EU', 'Middle East'],
+};
+---
+
+<Base
+  title="SAP Analytics Cloud Planning & Reporting | Radixa"
+  description="SAC planning, forecasting, financial planning, management reporting, architecture, implementation and optimisation for finance teams."
+  schema={[serviceSchema]}
+>
+  <Hero
+    eyebrow="Flagship service"
+    title="SAP Analytics Cloud for Finance Planning and Reporting."
+    lede="We help finance organisations design, implement and optimise SAP Analytics Cloud for budgeting, forecasting, financial planning, management reporting and enterprise analytics. The work starts with the finance process, not the technology."
+  >
+    <div class="btn-group">
+      <a class="btn btn-primary" href="/contact/">Discuss your SAC requirements</a>
+      <a class="btn btn-secondary" href="#capabilities">Explore our SAC capabilities</a>
+    </div>
+  </Hero>
+
+  <!-- Positioning -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Our position</p>
+        <h2>Plan smarter. Report clearly. Decide faster.</h2>
+        <div class="prose mt-m">
+          <p>
+            SAP Analytics Cloud combines business intelligence, planning and predictive capability
+            on one platform. Its planning side supports budgeting, forecasting, scenario modelling,
+            version management, data entry, allocations, workflow and collaboration alongside
+            analytics and reporting.
+          </p>
+          <p>
+            Capability is rarely the constraint. What separates an SAC solution finance relies on
+            from one it works around is model design, architecture and process — decisions taken
+            early, usually before anyone opens the tool. We work with finance teams to understand
+            how they plan, forecast, report and analyse performance, then translate that into
+            models, applications and reporting experiences that hold up under real use.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Outcomes -->
+  <section id="capabilities">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">What we help you achieve</p>
+        <h2>The outcomes this work is bought for.</h2>
+        <ul class="checklist mt-m">
+          {outcomes.map((o) => <li>{o}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PLANNING ===================== -->
+  <section class="bg-navy on-navy tight">
+    <div class="wrap">
+      <p class="eyebrow">SAP Analytics Cloud Planning</p>
+      <h2>Planning built around how the business actually works.</h2>
+      <p class="lede mt-s">
+        Finance planning should do more than collect numbers once a year. The objective is a model
+        that explains the business — not a spreadsheet reproduced at enterprise scale.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Planning scope</p>
+      <h2>Where SAC planning work usually starts.</h2>
+      <div class="rows mt-l">
+        {
+          planningScope.map((p) => (
+            <div class="row-item">
+              <h3>{p.name}</h3>
+              <p>{p.scope}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Integrated financial statements -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <p class="eyebrow">Integrated financial planning</p>
+      <h2>Three statements, one model.</h2>
+      <p class="lede mt-s">
+        Planned independently, the statements disagree. Connected properly, a change in assumptions
+        flows through all three.
+      </p>
+      <div class="grid grid-3 mt-l">
+        {
+          statements.map((s) => (
+            <article class="card">
+              <h3>{s.title}</h3>
+              <ul class="checklist" style="margin-top:6px">
+                {s.items.map((i) => <li>{i}</li>)}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Driver-based planning -->
+  <section>
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Driver-based planning</p>
+        <h2>Not every account should be typed in by hand.</h2>
+        <p class="lede mt-s">
+          We identify the operational drivers behind financial performance and build them into the
+          model, so the plan explains itself.
+        </p>
+      </div>
+      <div class="table-scroll mt-l">
+        <table>
+          <caption class="visually-hidden">Example driver logic by financial area</caption>
+          <thead>
+            <tr><th scope="col">Area</th><th scope="col">Driver logic</th></tr>
+          </thead>
+          <tbody>
+            {drivers.map((d) => (
+              <tr><td>{d.area}</td><td>{d.logic}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-m" style="font-size:0.9rem;color:var(--grey-500);max-width:70ch">
+        Driver design has a natural limit. Past a certain point the model becomes harder to explain
+        than the thing it models, and we will say so.
+      </p>
+    </div>
+  </section>
+
+  <!-- Forecasting -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Forecasting</p>
+        <h2>From an annual budget to a responsive forecast.</h2>
+        <ul class="checklist mt-m">
+          <li>Monthly rolling forecasts, quarterly forecasts and latest-estimate processes</li>
+          <li>Forecast horizon management and actual-to-forecast seeding</li>
+          <li>Driver-based forecasting and scenario comparison</li>
+          <li>Forecast version management and management overlays</li>
+          <li>Predictive forecasting where it genuinely improves on finance judgement — and not where it does not</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workflow & governance -->
+  <section>
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Workflow &amp; governance</p>
+        <h2>Technology alone does not create a planning process.</h2>
+        <p class="lede mt-s">
+          We design the operating model around the solution as well as the solution itself.
+        </p>
+        <ul class="checklist mt-m">
+          <li>Planning calendars, submission processes and review cycles</li>
+          <li>Ownership, responsibilities and approvals</li>
+          <li>Version governance and data locking</li>
+          <li>Assumption governance and audit requirements</li>
+          <li>Process monitoring, so a stalled submission is visible before the deadline</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== REPORTING ===================== -->
+  <section class="bg-navy on-navy tight">
+    <div class="wrap">
+      <p class="eyebrow">SAP Analytics Cloud Reporting</p>
+      <h2>From assembling reports to analysing performance.</h2>
+      <p class="lede mt-s">
+        Good reporting is not about fitting the largest number of charts onto a screen. It is about
+        making information easier to interpret.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Reporting scope</p>
+      <h2>What we design.</h2>
+      <div class="rows mt-l">
+        {
+          reportingScope.map((r) => (
+            <div class="row-item">
+              <h3>{r.name}</h3>
+              <p>{r.scope}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Actual / budget / forecast -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Actual, budget &amp; forecast</p>
+        <h2>One analytical framework, not three exports.</h2>
+        <p class="lede mt-s">
+          Actuals from S/4HANA, budget and forecast from SAC Planning, brought together so the
+          comparison is structural.
+        </p>
+      </div>
+      <div class="grid grid-3 mt-l">
+        <article class="card">
+          <h3>Against plan</h3>
+          <ul class="checklist" style="margin-top:6px">
+            <li>Actual vs budget</li>
+            <li>Actual vs forecast</li>
+            <li>Budget vs forecast</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Over time</h3>
+          <ul class="checklist" style="margin-top:6px">
+            <li>Forecast vs previous forecast</li>
+            <li>Year on year</li>
+            <li>Month on month</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Outlook</h3>
+          <ul class="checklist" style="margin-top:6px">
+            <li>Year to date</li>
+            <li>Full-year outlook</li>
+            <li>Trend and run-rate analysis</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story design -->
+  <section>
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Dashboard &amp; story design</p>
+        <h2>Design principles we apply to finance reporting.</h2>
+        <ul class="checklist mt-m">
+          {designPrinciples.map((d) => <li>{d}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ARCHITECTURE ===================== -->
+  <section class="bg-navy on-navy">
+    <div class="wrap">
+      <div style="max-width:900px">
+        <p class="eyebrow">Architecture</p>
+        <h2>Four questions that decide how well SAC ages.</h2>
+      </div>
+      <div class="grid mt-l" style="grid-template-columns:repeat(auto-fit,minmax(420px,1fr))">
+        {
+          architecture.map((a) => (
+            <article
+              class="card"
+              style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.16)"
+            >
+              <h3 style="color:#fff">{a.q}</h3>
+              <p style="color:rgba(255,255,255,0.76)">{a.a}</p>
+            </article>
+          ))
+        }
+      </div>
+      <p class="mt-m" style="font-size:0.9375rem;opacity:0.75;max-width:72ch">
+        Components typically in scope: SAP S/4HANA, S/4HANA Group Reporting, SAP Analytics Cloud,
+        SAP Datasphere, SAP BW/4HANA, SAP Business Data Cloud and relevant non-SAP enterprise data
+        sources.
+      </p>
+    </div>
+  </section>
+
+  <!-- Model design -->
+  <section>
+    <div class="wrap">
+      <div class="grid grid-2" style="gap:48px">
+        <div>
+          <p class="eyebrow">Planning model design</p>
+          <h2>The decisions that determine performance and maintainability.</h2>
+          <ul class="checklist mt-m">
+            {modelDesign.map((m) => <li>{m}</li>)}
+          </ul>
+          <p class="mt-m" style="font-size:0.9rem;color:var(--grey-500)">
+            The aim is to avoid a model that works but that only its author can maintain.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow">Data actions &amp; automation</p>
+          <h2>Repetitive planning activity, automated.</h2>
+          <ul class="checklist mt-m">
+            {automation.map((a) => <li>{a}</li>)}
+          </ul>
+          <p class="mt-m" style="font-size:0.9rem;color:var(--grey-500)">
+            Automation should simplify the process while keeping the calculation auditable. Where
+            finance still works best in Excel, SAC's Microsoft Office integration can carry planning
+            input and write-back rather than forcing everything into the browser.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BPC → SAC ===================== -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">BPC to SAC</p>
+        <h2>Rebuilding your BPC model in SAC is usually the wrong starting point.</h2>
+        <div class="prose mt-m">
+          <p>
+            Organisations leaving BPC often assume the existing planning models should simply be
+            recreated in SAC. That reproduces years of accumulated complexity inside a new platform
+            and inherits every workaround built around limitations that no longer exist.
+          </p>
+          <p>
+            We start instead by establishing what BPC is actually doing today, which of those
+            processes remain relevant, which customisations should be retired, whether the planning
+            process itself should be redesigned, and which capabilities belong in SAC at all —
+            including the possibility that SAC is not the right destination.
+          </p>
+        </div>
+      </div>
+
+      <div class="table-scroll mt-l">
+        <table>
+          <caption class="visually-hidden">Indicative BPC capability mapping</caption>
+          <thead>
+            <tr>
+              <th scope="col">Existing BPC capability</th>
+              <th scope="col">Potential future approach</th>
+            </tr>
+          </thead>
+          <tbody>
+            {bpcMapping.map(([from, to]) => (
+              <tr><td>{from}</td><td>{to}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="narrow mt-m">
+        <p style="font-size:0.9rem;color:var(--grey-500)">
+          Indicative only. Where BPC replacement is the actual question, this work belongs inside our
+          <a href="/services/bpc-modernisation-assessment/">BPC Modernisation &amp; Platform Assessment</a>,
+          which evaluates SAP and non-SAP successor architectures rather than assuming SAC is the
+          destination.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ENGAGEMENTS ===================== -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Typical engagements</p>
+      <h2>Scoped to the decision in front of you.</h2>
+      <div class="grid mt-l" style="grid-template-columns:repeat(auto-fit,minmax(420px,1fr))">
+        {
+          engagements.map((e) => (
+            <article class="card">
+              <h3>{e.name}</h3>
+              <p style="color:var(--navy);font-weight:500">{e.body}</p>
+              <p>{e.scope}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CHALLENGES ===================== -->
+  <section class="bg-navy on-navy">
+    <div class="wrap">
+      <div style="max-width:820px">
+        <p class="eyebrow">Sound familiar?</p>
+        <h2>What we usually hear first.</h2>
+      </div>
+      <div class="grid mt-l" style="grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:18px 40px">
+        {
+          challenges.map((c) => (
+            <p
+              class="pullquote"
+              style="font-size:1.0625rem;font-weight:500;border-left-width:3px;padding-left:20px"
+            >{c}</p>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== APPROACH ===================== -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">How we approach SAC</p>
+      <h2>Six things you can hold us to.</h2>
+      <div class="rows mt-l">
+        {
+          approach.map((a) => (
+            <div class="row-item">
+              <h3>{a.title}</h3>
+              <p>{a.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    eyebrow="Next step"
+    title="Rethinking planning or reporting?"
+    body="Whether you are replacing BPC, designing a new SAC planning solution, connecting SAC with Group Reporting or improving an implementation already in production, start with the problem you need to solve."
+    primaryLabel="Talk to Radixa"
+    primaryHref="/contact/"
+    secondaryLabel="Replacing BPC?"
+    secondaryHref="/services/bpc-modernisation-assessment/"
+  />
+</Base>

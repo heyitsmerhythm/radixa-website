@@ -2,90 +2,308 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTABand from '../components/CTABand.astro';
-import { site } from '../config';
 
-const principles = [
+/* ---------------------------------------------------------------------------
+   Who we are — capability coverage
+--------------------------------------------------------------------------- */
+const coverage = [
+  'Financial consolidation and group reporting',
+  'SAP S/4HANA Group Reporting',
+  'SAP Analytics Cloud planning and reporting',
+  'SAP BPC',
+  'Budgeting, forecasting and enterprise performance management',
+  'Management reporting',
+  'Finance data architecture',
+  'SAP S/4HANA finance environments',
+  'Solution architecture and finance process design',
+  'Data migration and reconciliation',
+  'Testing, deployment and cutover',
+  'Programme assurance and design authority',
+  'Finance technology strategy',
+];
+
+/* ---------------------------------------------------------------------------
+   Experience domains
+--------------------------------------------------------------------------- */
+const domains = [
   {
-    title: 'Start with the accounting answer',
-    body: 'Consolidation and reporting problems are rarely solved by configuration alone. We work out what the group accounting and reporting requirement actually is, then design a system that meets it.',
+    title: 'Financial consolidation',
+    items: [
+      'Legal and management consolidation',
+      'Group reporting',
+      'Currency translation',
+      'Intercompany elimination',
+      'Ownership and investment consolidation',
+      'Non-controlling interests',
+      'Equity accounting',
+      'Cash-flow reporting',
+      'Segment reporting',
+      'Group financial statements',
+    ],
   },
   {
-    title: 'Make trade-offs explicit',
-    body: 'Every architecture decision closes some doors and opens others. Our job is to make those consequences visible while there is still time to choose differently.',
+    title: 'Planning & performance',
+    items: [
+      'Annual budgeting',
+      'Rolling forecasting',
+      'Long-range planning',
+      'Driver-based planning',
+      'Financial planning',
+      'Workforce planning',
+      'CAPEX planning',
+      'Scenario analysis',
+      'Management reporting',
+      'Performance analytics',
+    ],
   },
   {
-    title: 'Say when we are not the right fit',
-    body: 'We are a specialist business with a defined scope. Where a requirement sits outside it, we will tell you rather than stretch to cover it.',
-  },
-  {
-    title: 'Leave something behind',
-    body: 'Documented design decisions, a test and reconciliation approach, and a team that understands why the solution works the way it does.',
+    title: 'Finance technology',
+    items: [
+      'SAP S/4HANA Group Reporting',
+      'SAP Analytics Cloud',
+      'SAP BPC',
+      'SAP BW and BW/4HANA',
+      'SAP Datasphere',
+      'SAP finance integration',
+      'Enterprise reporting platforms',
+      'EPM architecture',
+    ],
   },
 ];
 
-const personSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Rupank Pal',
-  jobTitle: 'Founder — Enterprise Finance Transformation & SAP EPM',
-  worksFor: { '@type': 'Organization', name: site.legalName },
-  knowsAbout: [
-    'Financial consolidation',
-    'SAP S/4HANA Group Reporting',
-    'SAP Analytics Cloud',
-    'SAP BPC',
-    'Enterprise performance management',
-    'Finance transformation',
-  ],
-};
+/* ---------------------------------------------------------------------------
+   Perspective — what we establish before technology
+--------------------------------------------------------------------------- */
+const beforeTech = [
+  'What finance needs to achieve',
+  'How the current process actually operates',
+  'Where complexity genuinely exists, and where it has simply accumulated',
+  'Which capabilities are required, and which are inherited habit',
+  'How information should flow across the organisation',
+  'What finance teams need to own and maintain themselves',
+  'How the solution fits the wider enterprise architecture',
+];
+
+/* ---------------------------------------------------------------------------
+   Differentiators
+--------------------------------------------------------------------------- */
+const different = [
+  {
+    title: 'Finance-led thinking',
+    body: 'We understand the accounting, consolidation, planning and reporting requirements behind the technology — which means we can engage finance stakeholders directly and translate what they say into a practical solution design.',
+  },
+  {
+    title: 'Deep EPM experience',
+    body: 'Our experience spans consolidation, planning, forecasting, reporting and enterprise performance management rather than a single application. That perspective matters most when deciding how several finance platforms should work together.',
+  },
+  {
+    title: 'SAP expertise without an SAP-only mindset',
+    body: 'We bring strong experience across SAP finance technologies, and still hold that architecture decisions should follow business requirements. Where appropriate we help organisations evaluate SAP alongside alternative EPM approaches.',
+  },
+  {
+    title: 'Experience across the full lifecycle',
+    body: 'Strategy, requirements, architecture, functional design, configuration, integration, data migration, testing, reconciliation, cutover, assurance and post-implementation optimisation — so design decisions are made with an understanding of what they cost later.',
+  },
+  {
+    title: 'Senior-led engagement',
+    body: 'Complex finance transformation benefits from people who can understand the business requirement, challenge a design decision and work credibly across finance, technology and programme teams. That is who you work with.',
+  },
+];
+
+/* ---------------------------------------------------------------------------
+   How we work
+--------------------------------------------------------------------------- */
+const howWeWork = [
+  {
+    title: 'Understand before designing',
+    body: 'The organisation, the finance process, the pain points and the objectives come first.',
+  },
+  {
+    title: 'Challenge before replacing',
+    body: 'Legacy processes are not automatically recreated in a new platform. We separate genuine business requirements from complexity accumulated over years.',
+  },
+  {
+    title: 'Design the whole architecture',
+    body: 'Consolidation, planning, reporting and data are part of one finance ecosystem and should not be designed independently.',
+  },
+  {
+    title: 'Keep solutions understandable',
+    body: 'Complexity needs a clear business reason. Where a simpler design achieves the same outcome, we prefer the simpler design.',
+  },
+  {
+    title: 'Build for finance ownership',
+    body: 'The solution has to remain understandable, maintainable and operable once the programme ends.',
+  },
+  {
+    title: 'Stay independent in the decision',
+    body: 'The objective is the architecture that best supports the organisation — not the largest amount of technology deployed.',
+  },
+];
+
+/* ---------------------------------------------------------------------------
+   Practitioner capability areas
+--------------------------------------------------------------------------- */
+const people = [
+  {
+    title: 'Consolidation & group reporting',
+    body: 'Designing and delivering complex financial consolidation and group reporting solutions.',
+  },
+  {
+    title: 'Planning & analytics',
+    body: 'Enterprise budgeting, forecasting, financial planning and management reporting.',
+  },
+  {
+    title: 'SAP finance technology',
+    body: 'SAP S/4HANA Group Reporting, SAP Analytics Cloud, SAP BPC and the surrounding SAP finance landscape.',
+  },
+  {
+    title: 'Finance transformation',
+    body: 'Translating finance requirements into processes, architecture and implementation programmes.',
+  },
+  {
+    title: 'Architecture & assurance',
+    body: 'Solution architecture, design authority and independent programme assurance across complex initiatives.',
+  },
+];
+
+const industries = [
+  'Energy & resources',
+  'Consumer & retail',
+  'Life sciences & medical devices',
+  'Technology',
+  'Manufacturing',
+  'Transportation & infrastructure',
+  'Public sector',
+];
+
+const foundations = [
+  'Reliable financial data',
+  'Well-designed processes',
+  'Clear ownership',
+  'Appropriate controls',
+  'Consistent reporting',
+  'Scalable architecture',
+  'Technology that supports finance rather than complicating it',
+];
 ---
 
 <Base
   title="About Radixa Technologies | Enterprise Finance Transformation"
-  description="Radixa is a specialist enterprise finance transformation consultancy focused on consolidation, planning, analytics and finance technology."
-  schema={[personSchema]}
+  description="A specialist enterprise finance technology consultancy focused on consolidation, planning, reporting and finance transformation."
 >
   <Hero
     eyebrow="About Radixa"
-    title="Rooted in Better Decisions."
-    lede="Radixa was created around a simple idea: better finance decisions depend on strong foundations — clear processes, trusted data, coherent architecture and technology that works for the organisation."
+    title="Built on Experience. Focused on Better Finance Decisions."
+    lede="Radixa Technologies brings together experienced finance transformation, enterprise performance management and SAP professionals who have worked on complex finance programmes across large organisations and multinational environments."
   >
     <div class="btn-group">
       <a class="btn btn-primary" href="/contact/">Talk to Radixa</a>
+      <a class="btn btn-secondary" href="/services/">See what we do</a>
     </div>
   </Hero>
 
+  <!-- Who we are -->
   <section class="bg-alt">
     <div class="wrap">
       <div class="narrow">
-        <p class="eyebrow">The name</p>
-        <h2>Radix: root, or foundation.</h2>
+        <p class="eyebrow">Who we are</p>
+        <h2>A specialist enterprise finance technology consultancy.</h2>
         <div class="prose mt-m">
           <p>
-            The strongest finance solutions are the ones built on foundations that were thought
-            through: an accounting design that reflects how the group actually works, data that
-            people trust, an architecture where each platform has a clear job, and reporting that
-            answers the question being asked rather than the one that was easy to build.
+            We help organisations modernise the systems and processes that support consolidation,
+            planning, reporting and financial decision-making. Our experience spans financial
+            consolidation, planning, forecasting, management reporting, enterprise data and finance
+            technology transformation, with particular depth across SAP S/4HANA Group Reporting,
+            SAP Analytics Cloud and SAP BPC.
           </p>
           <p>
-            Most of the difficulty in finance transformation traces back to one of those foundations
-            being weaker than it looked. That is where we choose to work.
+            Successful finance transformation takes more than implementing technology. It takes a
+            clear understanding of accounting, finance processes, data, reporting requirements,
+            operating models and the decisions the organisation actually needs to make. That
+            combination of finance and technology experience shapes how we work.
           </p>
+        </div>
+      </div>
+
+      <div class="mt-l">
+        <p class="eyebrow">Where that experience sits</p>
+        <div class="chips mt-s">
+          {coverage.map((c) => <span class="chip">{c}</span>)}
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Experience domains -->
   <section>
     <div class="wrap">
-      <p class="eyebrow">How we work</p>
-      <h2>Four things you can hold us to.</h2>
+      <p class="eyebrow">Our experience</p>
+      <h2>Experience across complex finance transformation.</h2>
+      <p class="lede mt-s">
+        The people behind Radixa have worked with organisations where consolidation, planning and
+        financial reporting operate across multiple entities, currencies, business units, regions and
+        reporting requirements.
+      </p>
+      <div class="grid grid-3 mt-l">
+        {
+          domains.map((d) => (
+            <article class="card">
+              <h3>{d.title}</h3>
+              <ul class="checklist" style="margin-top:6px">
+                {d.items.map((i) => <li>{i}</li>)}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Perspective -->
+  <section class="bg-navy on-navy">
+    <div class="wrap">
+      <div style="max-width:820px">
+        <p class="eyebrow">Our perspective</p>
+        <h2>Technology should follow the finance requirement.</h2>
+        <p class="lede mt-s">
+          We do not start from the assumption that a particular platform is automatically the right
+          answer. First we establish:
+        </p>
+        <ul class="checklist mt-m">
+          {beforeTech.map((b) => <li>{b}</li>)}
+        </ul>
+        <div class="prose mt-l">
+          <p style="color:rgba(255,255,255,0.82)">
+            Only then should technology decisions be made. That matters most when an organisation is
+            replacing a legacy platform such as SAP BPC. Moving away from BPC should not
+            automatically mean rebuilding everything in SAP Group Reporting and SAP Analytics Cloud.
+            For some organisations an SAP-centred architecture is the strongest option; for others a
+            specialist EPM platform or a hybrid architecture fits better.
+          </p>
+          <p style="color:rgba(255,255,255,0.82)">
+            We help organisations make that decision on requirements rather than assumptions.
+          </p>
+        </div>
+        <div class="btn-group mt-m">
+          <a class="btn btn-primary" href="/services/bpc-modernisation-assessment/">
+            BPC Modernisation &amp; Platform Assessment
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Differentiators -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">What makes us different</p>
+      <h2>Where our perspective comes from.</h2>
       <div class="rows mt-l">
         {
-          principles.map((p) => (
+          different.map((d) => (
             <div class="row-item">
-              <h3>{p.title}</h3>
-              <p>{p.body}</p>
+              <h3>{d.title}</h3>
+              <p>{d.body}</p>
             </div>
           ))
         }
@@ -93,56 +311,113 @@ const personSchema = {
     </div>
   </section>
 
-  <!-- Founder (§7.14) -->
-  <section class="bg-navy on-navy">
+  <!-- How we work -->
+  <section class="bg-alt">
     <div class="wrap">
-      <div style="max-width:820px">
-        <p class="eyebrow">Founder</p>
-        <h2>Rupank Pal — Enterprise Finance Transformation &amp; SAP EPM</h2>
+      <p class="eyebrow">How we work</p>
+      <h2>Six things you can hold us to.</h2>
+      <div class="grid grid-3 mt-l">
+        {
+          howWeWork.map((h) => (
+            <article class="card">
+              <h3>{h.title}</h3>
+              <p>{h.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- People -->
+  <section>
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">The people behind Radixa</p>
+        <h2>Experienced practitioners rather than a layered consulting model.</h2>
+        <p class="lede mt-s">
+          Our specialists bring different perspectives across the areas that decide whether a finance
+          programme succeeds.
+        </p>
+      </div>
+      <div class="rows mt-l">
+        {
+          people.map((p) => (
+            <div class="row-item">
+              <h3>{p.title}</h3>
+              <p>{p.body}</p>
+            </div>
+          ))
+        }
+      </div>
+      <p class="mt-m" style="color:var(--grey-500);max-width:70ch">
+        Together these capabilities let us support clients from early platform decisions through
+        design, implementation and optimisation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Industries -->
+  <section class="bg-alt tight">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Industries</p>
+        <h2>Complex finance environments, across sectors.</h2>
+        <p class="lede mt-s">
+          Our focus is not a single industry. We specialise in the finance transformation challenges
+          that recur across complex organisations — consolidation, planning, reporting, data and
+          enterprise performance management.
+        </p>
+      </div>
+      <div class="chips mt-m">
+        {industries.map((i) => <span class="chip">{i}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section>
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Our philosophy</p>
+        <h2>Rooted in Better Decisions.</h2>
         <div class="prose mt-m">
-          <p style="color:rgba(255,255,255,0.82)">
-            Rupank is a finance transformation and SAP EPM specialist with more than a decade of
-            experience across financial consolidation, planning, analytics and enterprise performance
-            management. His work focuses on translating complex finance and accounting requirements
-            into practical solution architecture and delivery outcomes, with particular depth in
-            SAP S/4HANA Group Reporting, SAP Analytics Cloud and SAP BPC.
-          </p>
-          <p style="color:rgba(255,255,255,0.82)">
-            That work spans functional solution architecture, finance process and accounting design,
-            requirements definition, design authority, integration leadership, test and reconciliation
-            strategy, and delivery leadership on complex group finance programmes.
+          <p>
+            Every finance transformation ultimately exists to help an organisation understand
+            performance and make better decisions. Better decisions depend on strong foundations.
           </p>
         </div>
-        <div class="btn-group mt-m">
-          <a class="btn btn-primary" href="/contact/">Connect with Radixa</a>
+        <ul class="checklist mt-m">
+          {foundations.map((f) => <li>{f}</li>)}
+        </ul>
+        <div class="prose mt-l">
+          <p>
+            That thinking sits behind the name. <strong>Radix</strong> means root, or foundation.
+            Radixa exists to help organisations build stronger foundations for financial
+            decision-making.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <section>
+  <!-- Trust statement (§16.1) -->
+  <section class="bg-alt tight">
     <div class="wrap">
-      <div class="narrow">
-        <p class="eyebrow">Structure</p>
-        <h2>Two divisions, one set of foundations.</h2>
-        <div class="grid grid-2 mt-l">
-          <article class="card">
-            <h3>Radixa Consulting</h3>
-            <p>
-              Enterprise finance transformation, EPM, consolidation, planning, analytics and advisory.
-              This is where our client work sits today.
-            </p>
-            <p style="color:var(--navy);font-weight:600">Better Thinking. Better Outcomes.</p>
-          </article>
-          <article class="card">
-            <h3>Radixa Labs</h3>
-            <p>
-              Reserved for product, SaaS and experimental technology activity. Not a current
-              commercial offering.
-            </p>
-            <p style="color:var(--navy);font-weight:600">Ideas into Intelligence.</p>
-          </article>
-        </div>
+      <div
+        class="narrow"
+        style="border-left:4px solid var(--cyan);padding-left:28px"
+      >
+        <h2 style="font-size:1.15rem;font-weight:600">About the experience described on this site</h2>
+        <p class="mt-s" style="color:var(--grey-500)">
+          The experience described on this website includes experience gained by Radixa
+          professionals during their careers, including work undertaken before joining or
+          establishing Radixa Technologies.
+        </p>
+        <p class="mt-s" style="color:var(--grey-500)">
+          Where client names or programme details are confidential, we do not attribute or disclose
+          them without appropriate permission.
+        </p>
       </div>
     </div>
   </section>
@@ -152,5 +427,7 @@ const personSchema = {
     body="The most useful first conversations start with a problem, not a product."
     primaryLabel="Talk to Radixa"
     primaryHref="/contact/"
+    secondaryLabel="See what we do"
+    secondaryHref="/services/"
   />
 </Base>
