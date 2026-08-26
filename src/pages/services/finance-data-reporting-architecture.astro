@@ -1,0 +1,169 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const CAP = '/contact/?capability=Finance%20Data%20%26%20Reporting%20Architecture';
+
+/* ---------------------------------------------------------------------------
+   The questions this service answers (§8.1)
+--------------------------------------------------------------------------- */
+const questions = [
+  { q: 'Which system is the source of truth for each finance data domain?', a: 'Not in principle — in practice, per domain, with a named owner. Most landscapes have two answers for at least one domain and nobody has noticed.' },
+  { q: 'Where should transformations and finance calculations live?', a: 'The same calculation implemented in three layers will eventually disagree with itself. The question is which layer owns it, and what the others are allowed to assume.' },
+  { q: 'How should actuals, plan and consolidated data be aligned?', a: 'Three datasets, three grains, three calendars and one variance report. The alignment has to be designed, not reconciled afterwards.' },
+  { q: 'When is Datasphere or BW actually required?', a: 'Sometimes the honest answer is that it is not, and the landscape is carrying a layer it does not need. Sometimes it is the only sensible place for the logic.' },
+  { q: 'Which reports belong in S/4HANA, Group Reporting, SAC or a disclosure tool?', a: 'Reporting placement drives half the integration effort in a finance landscape and is usually decided by whoever built the report.' },
+  { q: 'How should hierarchies and master data be governed?', a: 'Who can add a cost centre, who can restructure a hierarchy mid-year, and what happens to comparatives when they do.' },
+  { q: 'How should latency, performance and auditability shape the design?', a: 'Live, replicated and modelled approaches each buy something and cost something. The trade-off should be deliberate.' },
+  { q: 'Where are point-to-point interfaces creating avoidable complexity?', a: 'Interfaces accumulate quietly. The cost shows up as reconciliation effort long before anyone counts them.' },
+];
+
+const deliverables = [
+  'Current-state landscape and data-flow map',
+  'Reporting inventory and ownership map',
+  'Target architecture and system responsibilities',
+  'Data-flow and integration principles',
+  'Calculation and semantic-layer placement decisions',
+  'Reporting-channel strategy',
+  'Risks, dependencies and a transition roadmap',
+];
+
+const symptoms = [
+  'Two systems produce the same number and finance trusts one of them for reasons nobody can articulate',
+  'A new report means a new interface',
+  'Nobody can say where a figure came from without asking a specific person',
+  'Plan and actual will not reconcile because they were never designed to the same grain',
+  'A platform was bought for one requirement and has quietly become load-bearing for several',
+  'The landscape has grown by addition and never by decision',
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Finance data and reporting architecture consulting',
+  provider: { '@type': 'Organization', name: 'Radixa Technologies' },
+  description:
+    'Deciding where finance data, calculations, planning logic, consolidation logic and reporting belong across S/4HANA, Group Reporting, SAC, Datasphere/BW and disclosure platforms.',
+  areaServed: ['GB', 'EU', 'Middle East'],
+};
+---
+
+<Base
+  title="Finance Data & Reporting Architecture | Radixa"
+  description="Decide where finance data, calculations, planning logic and reporting belong across S/4HANA, Group Reporting, SAC, Datasphere/BW and disclosure tools."
+  schema={[serviceSchema]}
+>
+  <Hero
+    eyebrow="Architecture & assurance"
+    title="Make the Finance Landscape Work as One Architecture."
+    lede="Most finance landscapes were assembled a decision at a time, each one defensible on its own. This engagement decides where data, calculations, planning logic, consolidation logic and reporting actually belong — and what that means for what you already have."
+  >
+    <div class="btn-group">
+      <a class="btn btn-primary" href={CAP}>Discuss your landscape</a>
+      <a class="btn btn-secondary" href="#deliverables">See what you get</a>
+    </div>
+  </Hero>
+
+  <!-- Symptoms -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">When this is worth doing</p>
+        <h2>Nobody sets out to build an incoherent landscape.</h2>
+        <div class="prose mt-m">
+          <p>
+            It happens by accumulation. A reporting requirement is met where it is easiest to meet.
+            A platform arrives for one purpose and is reused for three more. A calculation is added
+            in the layer whoever needed it had access to. Every individual decision was reasonable
+            and the result is a landscape nobody would have designed.
+          </p>
+        </div>
+        <ul class="checklist mt-m">
+          {symptoms.map((s) => <li>{s}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Questions -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">What the engagement answers</p>
+      <h2>Eight questions, answered specifically for your landscape.</h2>
+      <div class="rows mt-l">
+        {
+          questions.map((q) => (
+            <div class="row-item">
+              <h3>{q.q}</h3>
+              <p>{q.a}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverables -->
+  <section class="bg-alt" id="deliverables">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">What you get</p>
+        <h2>A target architecture with the transition attached.</h2>
+        <ul class="checklist mt-m">
+          {deliverables.map((d) => <li>{d}</li>)}
+        </ul>
+        <dl class="duration">
+          <dt>Typical duration</dt>
+          <dd>2–6 weeks</dd>
+          <dd class="note">
+            Depending on the number of platforms, reporting products and source systems in scope,
+            and how much of the current landscape is already documented.
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Position -->
+  <section class="bg-navy on-navy">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Our bias, stated</p>
+        <h2>Integrate where the process requires it. Stay separate where it does not.</h2>
+        <p class="lede mt-s">
+          Architecture work has a natural pull towards more integration, because integration looks
+          like progress. It also creates dependency, and dependency is what makes a landscape
+          fragile. Where two things genuinely need to connect, we connect them properly. Where they
+          do not, leaving them alone is the better answer and we will argue for it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="tight">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Related</p>
+        <h2>Where this sits.</h2>
+        <ul class="checklist mt-m">
+          <li><a href="/services/sap-group-reporting/">SAP S/4HANA Group Reporting</a> — where consolidated results originate</li>
+          <li><a href="/services/sap-analytics-cloud/">SAP Analytics Cloud</a> — where plan data and much management reporting lives</li>
+          <li><a href="/services/last-mile-reporting/">Last Mile Reporting</a> — where disclosure platforms form part of the target reporting architecture</li>
+          <li><a href="/services/solution-architecture-design-authority/">Solution Architecture &amp; Design Authority</a> — carrying the architecture through a programme rather than handing it over</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    eyebrow="Next step"
+    title="Describe the landscape and the argument you keep having."
+    body="Which platforms are in play, which reports matter most, and the disagreement that never quite resolves. That last one usually points straight at the decision that needs taking."
+    primaryLabel="Discuss your landscape"
+    primaryHref={CAP}
+    secondaryLabel="See all capabilities"
+    secondaryHref="/services/"
+  />
+</Base>

@@ -1,0 +1,196 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const CAP = '/contact/?capability=Solution%20Architecture%20%26%20Design%20Authority';
+
+/* ---------------------------------------------------------------------------
+   Engagement modes (§8.2)
+--------------------------------------------------------------------------- */
+const modes = [
+  {
+    name: 'Architecture Definition',
+    cadence: '2–8 weeks',
+    use: 'Define the target solution before build, or during mobilisation',
+  },
+  {
+    name: 'Design Authority',
+    cadence: '1–3 days a week across the programme',
+    use: 'Review and approve design decisions, manage cross-workstream dependencies and protect the target architecture',
+  },
+  {
+    name: 'Independent Design Review',
+    cadence: '5–15 working days',
+    use: 'Challenge an integrator or vendor design before build, before go-live, or at a major decision gate',
+  },
+];
+
+const deliverables = [
+  'Architecture principles and target-state views',
+  'Decision log and design standards',
+  'Design-review packs with recommendations',
+  'Cross-workstream dependency management',
+  'Exception and deviation assessment — what was allowed, and what it cost',
+  'Risk escalation and decision support',
+  'Executive and steering-committee architecture input where it is needed',
+];
+
+const why = [
+  {
+    t: 'Everyone else in the room has an incentive',
+    b: 'Your integrator is paid to deliver the scope it agreed. Your vendor is paid when you buy more. Neither is dishonest, and neither is neutral. Radixa is not an SAP partner or reseller, and does not resell any platform it reviews.',
+  },
+  {
+    t: 'Design decisions outlive the programme',
+    b: 'The choices made in the first eight weeks determine what the solution can do in year three. They are usually made under time pressure, by people who will not be there to live with them.',
+  },
+  {
+    t: 'Workstreams optimise locally',
+    b: 'Consolidation, planning, data and reporting each make sensible decisions for themselves. The cost of those decisions lands on whichever workstream integrates last.',
+  },
+  {
+    t: 'Somebody has to be able to say no',
+    b: 'A design authority with no standing is a reviewer. The role only works if the deviations it refuses actually stay refused, which is a governance question as much as a technical one.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Solution architecture and design authority for finance programmes',
+  provider: { '@type': 'Organization', name: 'Radixa Technologies' },
+  description:
+    'Senior architecture ownership and independent design challenge across consolidation, planning, finance data and reporting workstreams.',
+  areaServed: ['GB', 'EU', 'Middle East'],
+};
+---
+
+<Base
+  title="Solution Architecture & Design Authority | Radixa"
+  description="Senior architecture ownership and independent design challenge across consolidation, planning, finance data and reporting on finance programmes."
+  schema={[serviceSchema]}
+>
+  <Hero
+    eyebrow="Architecture & assurance"
+    title="An Experienced Second Pair of Eyes, With Standing."
+    lede="Senior architecture ownership across finance, consolidation, planning, data and reporting — defining the target solution, holding it through delivery, or challenging somebody else's design before you commit to building it."
+  >
+    <div class="btn-group">
+      <a class="btn btn-primary" href={CAP}>Discuss the role</a>
+      <a class="btn btn-secondary" href="#modes">See the engagement modes</a>
+    </div>
+  </Hero>
+
+  <!-- Why -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <p class="eyebrow">Why programmes buy this</p>
+      <h2>Four reasons an independent architecture voice earns its place.</h2>
+      <div class="grid grid-2 mt-l">
+        {
+          why.map((w) => (
+            <article class="card">
+              <h3>{w.t}</h3>
+              <p>{w.b}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Modes -->
+  <section id="modes">
+    <div class="wrap">
+      <p class="eyebrow">Engagement modes</p>
+      <h2>Three shapes, depending on where you are.</h2>
+      <div class="table-scroll mt-l">
+        <table>
+          <thead>
+            <tr><th>Mode</th><th>Typical cadence</th><th>Use case</th></tr>
+          </thead>
+          <tbody>
+            {
+              modes.map((m) => (
+                <tr>
+                  <th scope="row">{m.name}</th>
+                  <td>{m.cadence}</td>
+                  <td>{m.use}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-m" style="font-size:0.9375rem;color:var(--grey-500);max-width:70ch">
+        The Design Authority mode is a continuing commitment, so it is agreed with a defined cadence,
+        a named decision scope and an agreed escalation route. A design authority appointment that
+        is vague about all three tends to become a meeting attendee.
+      </p>
+    </div>
+  </section>
+
+  <!-- Deliverables -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">What you get</p>
+        <h2>Artefacts a steering committee can act on.</h2>
+        <ul class="checklist mt-m">
+          {deliverables.map((d) => <li>{d}</li>)}
+        </ul>
+        <p class="mt-m" style="font-size:0.9375rem;color:var(--grey-500);max-width:70ch">
+          The decision log is the one that matters most and is most often missing. A programme that
+          cannot say why it chose something is a programme that will re-litigate the choice every
+          time a new person joins.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Working with an SI -->
+  <section class="bg-navy on-navy">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Working alongside your integrator</p>
+        <h2>This is not a review of your delivery partner.</h2>
+        <p class="lede mt-s">
+          Design authority works when it is scoped as protecting the target architecture, not as
+          grading somebody's homework. In practice a good integrator welcomes it — decisions get
+          made faster when there is someone empowered to make them, and the deviations that do get
+          approved are approved knowingly rather than by silence.
+        </p>
+        <p class="mt-m" style="font-size:0.9375rem;opacity:.78;max-width:72ch">
+          Where a design genuinely needs challenging, we will challenge it, in writing, with the
+          reasoning shown. That is what the role is for.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="tight">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Related</p>
+        <h2>Where this sits.</h2>
+        <ul class="checklist mt-m">
+          <li><a href="/services/finance-data-reporting-architecture/">Finance Data &amp; Reporting Architecture</a> — defining the target before there is a programme to protect it</li>
+          <li><a href="/services/programme-assurance-optimisation/">Programme Assurance &amp; Optimisation</a> — assurance at gates, rather than continuous architecture ownership</li>
+          <li><a href="/services/consolidation-design-architecture/">Consolidation Design &amp; Architecture</a> — the same discipline applied specifically to the consolidation model</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    eyebrow="Next step"
+    title="Tell us what stage the programme is at."
+    body="Mobilising, mid-build, or approaching a gate — and who else is in the room. That determines whether you need architecture definition, a continuing design authority, or a single independent review."
+    primaryLabel="Discuss the role"
+    primaryHref={CAP}
+    secondaryLabel="See all capabilities"
+    secondaryHref="/services/"
+  />
+</Base>

@@ -15,7 +15,7 @@ const isCurrent = (href: string) => path === href || (href !== '/' && path.start
     <nav class="nav-desktop" aria-label="Main">
       {
         nav.map((item) =>
-          item.children ? (
+          item.groups ? (
             <div class="nav-item" data-dropdown>
               <button
                 type="button"
@@ -28,13 +28,23 @@ const isCurrent = (href: string) => path === href || (href !== '/' && path.start
                 {item.label}
                 <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
               </button>
-              <div class="dropdown" data-dropdown-panel>
-                {item.children.map((child) => (
-                  <a href={child.href}>
-                    {child.label}
-                    {child.blurb && <small>{child.blurb}</small>}
-                  </a>
-                ))}
+              <div class="dropdown mega" data-dropdown-panel>
+                <div class="mega-grid">
+                  {item.groups.map((group) => (
+                    <div class="mega-col">
+                      <p class="mega-title">{group.title}</p>
+                      {group.links.map((child) => (
+                        <a href={child.href}>
+                          {child.label}
+                          {child.blurb && <small>{child.blurb}</small>}
+                        </a>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+                {item.overview && (
+                  <a class="mega-all" href={item.overview.href}>{item.overview.label}</a>
+                )}
               </div>
             </div>
           ) : (
@@ -63,11 +73,16 @@ const isCurrent = (href: string) => path === href || (href !== '/' && path.start
   <nav class="nav-mobile" id="mobile-nav" aria-label="Main (mobile)">
     {
       nav.map((item) =>
-        item.children ? (
+        item.groups ? (
           <>
             <a href={item.href}>{item.label}</a>
-            {item.children.map((child) => (
-              <a class="sub" href={child.href}>{child.label}</a>
+            {item.groups.map((group) => (
+              <>
+                <p class="drawer-group">{group.title}</p>
+                {group.links.map((child) => (
+                  <a class="sub" href={child.href}>{child.label}</a>
+                ))}
+              </>
             ))}
           </>
         ) : (

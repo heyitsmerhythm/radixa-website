@@ -1,0 +1,167 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const CAP = '/contact/?capability=SAC%20Planning%20Assessment';
+
+/* ---------------------------------------------------------------------------
+   Scope (§6.2)
+--------------------------------------------------------------------------- */
+const scope = [
+  { t: 'Current planning process and pain points', b: 'How the budget and forecast are actually produced today, including the spreadsheets that sit either side of the system.' },
+  { t: 'Budget, forecast and long-range requirements', b: 'What each cycle needs to do, who contributes, and where the current process fails the people using it.' },
+  { t: 'Granularity and dimensionality', b: 'The level at which each planning area needs to operate, and where a single grain would force everyone to the lowest common denominator.' },
+  { t: 'Drivers, calculations and allocations', b: 'Which relationships genuinely drive the plan, which are habit, and where calculation logic belongs.' },
+  { t: 'Actuals integration and data architecture', b: 'Where actuals come from, how they are seeded, and what happens when they restate after the forecast is locked.' },
+  { t: 'Versions, scenarios, workflow and ownership', b: 'How many versions are live at once, who owns each, and how a submission is locked and reopened.' },
+  { t: 'Currency and calendar', b: 'Local, transaction and group currency, planning rates and their ownership, and fiscal-calendar edge cases.' },
+  { t: 'Reporting and management information', b: 'What the plan has to produce once it exists, and whether that reporting belongs in SAC at all.' },
+  { t: 'SAC fit and gap', b: 'An honest read on where SAC fits the requirement, where it fits with effort, and where it does not fit.' },
+  { t: 'Implementation complexity and roadmap', b: 'What a realistic delivery looks like, in what order, and what has to be decided before it starts.' },
+];
+
+const deliverables = [
+  'Current-state and pain-point summary',
+  'Future-state planning requirements, agreed with finance',
+  'SAC fit assessment — including where the fit is poor',
+  'Target planning process',
+  'High-level model and integration architecture',
+  'Key design decisions and the risks attached to each',
+  'Implementation roadmap and recommended next steps',
+];
+
+const audience = [
+  'Finance teams deciding whether SAC should carry their planning process',
+  'Organisations leaving BPC Planning who have not yet committed to a destination',
+  'FP&A functions redesigning a planning process before automating it',
+  'Programmes where SAC has been chosen but the target solution has not been defined',
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'SAP Analytics Cloud planning assessment',
+  provider: { '@type': 'Organization', name: 'Radixa Technologies' },
+  description:
+    'A pre-implementation or re-design assessment for finance teams deciding whether SAP Analytics Cloud can support their future planning process, and what the target solution should look like.',
+  areaServed: ['GB', 'EU', 'Middle East'],
+};
+---
+
+<Base
+  title="SAC Planning Assessment | Radixa"
+  description="A pre-implementation assessment for finance teams deciding whether SAP Analytics Cloud fits their planning process — fit, target architecture and roadmap."
+  schema={[serviceSchema]}
+>
+  <Hero
+    eyebrow="Planning & reporting"
+    title="Decide What the Planning Solution Should Be, Before Building One."
+    lede="A structured assessment for finance teams deciding whether SAP Analytics Cloud can carry their planning process — and, if so, what the target solution should actually look like."
+  >
+    <div class="btn-group">
+      <a class="btn btn-primary" href={CAP}>Request an assessment</a>
+      <a class="btn btn-secondary" href="#deliverables">See what you get</a>
+    </div>
+  </Hero>
+
+  <!-- Why -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Why this comes first</p>
+        <h2>Most planning implementations automate the process they should have replaced.</h2>
+        <div class="prose mt-m">
+          <p>
+            A planning process that has grown over a decade contains real requirements and a great
+            deal of accumulated habit. Automating both produces a faster version of the same
+            frustration, at considerably greater cost.
+          </p>
+          <p>
+            The purpose of this assessment is to separate the two before anyone opens the tool — and
+            to say honestly where SAC fits, where it fits with effort, and where it does not. That
+            last answer is a legitimate outcome. We would rather give it at the start than have you
+            discover it in month five.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scope -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">What the assessment covers</p>
+      <h2>Ten areas, in this order.</h2>
+      <div class="rows mt-l">
+        {
+          scope.map((s) => (
+            <div class="row-item">
+              <h3>{s.t}</h3>
+              <p>{s.b}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverables -->
+  <section class="bg-alt" id="deliverables">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">What you get</p>
+        <h2>A decision, with the reasoning attached.</h2>
+        <ul class="checklist mt-m">
+          {deliverables.map((d) => <li>{d}</li>)}
+        </ul>
+        <dl class="duration">
+          <dt>Typical duration</dt>
+          <dd>2–4 weeks</dd>
+          <dd class="note">
+            A narrower single-process assessment may be shorter. Multi-process enterprise planning
+            assessments need a longer discovery phase — we will say which yours is before we start.
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who -->
+  <section>
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Who it is for</p>
+        <h2>Anyone who has to justify the choice afterwards.</h2>
+        <ul class="checklist mt-m">
+          {audience.map((a) => <li>{a}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="bg-alt tight">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Related</p>
+        <h2>Where this sits.</h2>
+        <ul class="checklist mt-m">
+          <li><a href="/services/sap-analytics-cloud/">SAP Analytics Cloud</a> — design and delivery once the target is agreed</li>
+          <li><a href="/services/sac-health-check/">SAC Health Check</a> — if SAC is already live and the question is what to fix</li>
+          <li><a href="/services/bpc-modernisation-assessment/">BPC Modernisation &amp; Platform Assessment</a> — if the platform decision covers consolidation as well as planning</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    eyebrow="Next step"
+    title="Describe the planning process, not the tool."
+    body="How many contributors, how many cycles a year, where the spreadsheets sit, and what makes the current process painful. That is enough for us to scope an assessment."
+    primaryLabel="Request an assessment"
+    primaryHref={CAP}
+    secondaryLabel="See all capabilities"
+    secondaryHref="/services/"
+  />
+</Base>

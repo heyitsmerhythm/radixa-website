@@ -1,0 +1,234 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const CAP = '/contact/?capability=Group%20Reporting%20Health%20Check';
+
+/* ---------------------------------------------------------------------------
+   Packages (§5.3)
+--------------------------------------------------------------------------- */
+const packages = [
+  {
+    name: 'Rapid Health Check',
+    duration: '5 working days',
+    best: 'A focused concern, or an executive checkpoint before a decision',
+    output: 'Priority findings, red flags and immediate actions',
+  },
+  {
+    name: 'Standard Health Check',
+    duration: '2 weeks',
+    best: 'An end-to-end review of a solution that is live and operating',
+    output: 'Scored review, findings register and remediation roadmap',
+  },
+  {
+    name: 'Deep-Dive Health Check',
+    duration: '3–4 weeks',
+    best: 'Complex live environments, or pre-go-live assurance',
+    output: 'Detailed design assessment, walkthroughs, evidence review and prioritised remediation plan',
+  },
+];
+
+/* ---------------------------------------------------------------------------
+   Assessment dimensions (§5.3)
+--------------------------------------------------------------------------- */
+const dimensions = [
+  { t: 'Accounting and consolidation design', b: 'Methods, treatment and whether the configuration matches the policy it is supposed to implement.' },
+  { t: 'Master data and FS item architecture', b: 'FS items, subitems, hierarchies, consolidation units and groups, and whether they support the reporting asked of them.' },
+  { t: 'ACDOCU and data flow', b: 'How data reaches the consolidation journal, what is posted where, and whether the lineage from source to reported figure can be followed.' },
+  { t: 'Currency translation', b: 'Rate types and ownership, average versus closing versus historical treatment, and where CTA is actually coming from.' },
+  { t: 'Intercompany and eliminations', b: 'Partner data quality, matching, tolerance, the differences that survive, and who clears them.' },
+  { t: 'Ownership and investment consolidation', b: 'Multi-level and indirect NCI, method changes, acquisitions and disposals part-way through a period.' },
+  { t: 'Data Monitor and Consolidation Monitor', b: 'Task sequence, dependencies, what is genuinely automated and what is a person remembering to do something.' },
+  { t: 'Controls and reconciliation', b: 'Validation design, blocking versus warning, and whether the reconciliation evidence would satisfy an auditor asking six months later.' },
+  { t: 'Performance and close-cycle friction', b: 'Runtime, rerun cost, and the points where the close waits on something it should not.' },
+  { t: 'Reporting architecture', b: 'What is reported from where, duplicated logic, and whether the numbers in two places agree by design or by luck.' },
+  { t: 'Security and governance', b: 'Access model, segregation, change control and who is allowed to alter what.' },
+  { t: 'Maintainability and debt', b: 'Custom logic, undocumented decisions, workarounds, and how much of the solution only one person understands.' },
+];
+
+/* ---------------------------------------------------------------------------
+   Deliverables (§5.3)
+--------------------------------------------------------------------------- */
+const deliverables = [
+  'Executive summary with a Red / Amber / Green assessment by area',
+  'Finding register with severity, evidence, impact and recommendation',
+  'Design risks and control gaps, stated plainly',
+  'Quick wins separated from structural remediation',
+  'Prioritised 30/60/90-day action plan, or a pre-go-live remediation plan',
+  'Playback session with finance and programme stakeholders',
+];
+
+const triggers = [
+  'The close works, but nobody can explain why a particular figure moved',
+  'The consolidation takes longer to run than the calendar allows for a rerun',
+  'Reconciliation differences are cleared manually every period by the same person',
+  'An auditor has asked a question the team could not answer from the system',
+  'The implementation partner has left and the team has inherited decisions it cannot trace',
+  'A go-live is approaching and you want an independent read before committing',
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'SAP S/4HANA Group Reporting health check and independent review',
+  provider: { '@type': 'Organization', name: 'Radixa Technologies' },
+  description:
+    'A time-boxed independent review of a live or materially built SAP Group Reporting solution: design quality, close performance, controls, reporting and maintainability.',
+  areaServed: ['GB', 'EU', 'Middle East'],
+};
+---
+
+<Base
+  title="Group Reporting Health Check | Radixa"
+  description="A time-boxed independent review of a live SAP S/4HANA Group Reporting solution — design quality, close performance, controls, reporting and maintainability."
+  schema={[serviceSchema]}
+>
+  <Hero
+    eyebrow="Financial consolidation"
+    title="An Independent Read on the Consolidation You Already Have."
+    lede="A time-boxed review for organisations whose Group Reporting solution is live or materially built, and who want to know — from someone with no stake in the answer — whether the design, the close and the controls are where they should be."
+  >
+    <div class="btn-group">
+      <a class="btn btn-primary" href={CAP}>Request a health check</a>
+      <a class="btn btn-secondary" href="#packages">See the packages</a>
+    </div>
+  </Hero>
+
+  <!-- Why -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Why organisations ask</p>
+        <h2>A solution can pass every test and still be the wrong shape.</h2>
+        <div class="prose mt-m">
+          <p>
+            Implementation testing proves that the system does what the specification said. It does
+            not tell you whether the specification was right, whether the design will survive the
+            next acquisition, or whether the close depends on one person being available in week one.
+          </p>
+          <p>
+            Those questions are usually asked for the first time when something has already gone
+            wrong. This engagement asks them deliberately, on a fixed timescale, and gives you the
+            answer in a form you can act on or take to a steering committee.
+          </p>
+        </div>
+        <ul class="checklist mt-m">
+          {triggers.map((t) => <li>{t}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packages -->
+  <section id="packages">
+    <div class="wrap">
+      <p class="eyebrow">Packaged engagements</p>
+      <h2>Three sizes, all time-boxed.</h2>
+      <p class="lede mt-s">
+        Every one is fixed-scope and fixed-duration. You know what you are buying before it starts,
+        and it finishes when it says it will.
+      </p>
+      <div class="table-scroll mt-l">
+        <table>
+          <thead>
+            <tr><th>Package</th><th>Typical duration</th><th>Best for</th><th>Core output</th></tr>
+          </thead>
+          <tbody>
+            {
+              packages.map((p) => (
+                <tr>
+                  <th scope="row">{p.name}</th>
+                  <td>{p.duration}</td>
+                  <td>{p.best}</td>
+                  <td>{p.output}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dimensions -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <p class="eyebrow">What gets reviewed</p>
+      <h2>Twelve dimensions, scored.</h2>
+      <p class="lede mt-s">
+        Not all twelve matter equally to every organisation. We agree the weighting with you at the
+        start, and the ones that do not apply are marked as such rather than quietly skipped.
+      </p>
+      <div class="grid grid-3 mt-l">
+        {
+          dimensions.map((d) => (
+            <article class="card">
+              <h3 style="font-size:1.05rem">{d.t}</h3>
+              <p>{d.b}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverables -->
+  <section>
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">What you get</p>
+        <h2>Findings you can act on, not a list of observations.</h2>
+        <ul class="checklist mt-m">
+          {deliverables.map((d) => <li>{d}</li>)}
+        </ul>
+        <p class="mt-m" style="font-size:0.9375rem;color:var(--grey-500);max-width:70ch">
+          Every finding carries a severity, the evidence behind it and a recommendation. Where we
+          cannot substantiate something within the time box, we say so rather than grading it on
+          impression — a health check that inflates its own findings is worse than none.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Independence -->
+  <section class="bg-navy on-navy">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Why independent matters here</p>
+        <h2>We are not reviewing our own work, and not bidding to rebuild it.</h2>
+        <p class="lede mt-s">
+          A review carried out by the firm that built the solution, or by one hoping to replace it,
+          has a predictable shape. Radixa is not an SAP partner or reseller, and a health check is
+          sold as a health check — if the answer is that the solution is basically sound and needs
+          three specific fixes, that is the answer you get.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="tight">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Related</p>
+        <h2>Where this sits.</h2>
+        <ul class="checklist mt-m">
+          <li><a href="/services/sap-group-reporting/">SAP S/4HANA Group Reporting</a> — the full lifecycle service, where remediation goes beyond a fix list</li>
+          <li><a href="/services/consolidation-design-architecture/">Consolidation Design &amp; Architecture</a> — if the review concludes the design itself needs rework</li>
+          <li><a href="/services/programme-assurance-optimisation/">Programme Assurance &amp; Optimisation</a> — the same discipline applied across a whole programme rather than one solution</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    eyebrow="Next step"
+    title="Tell us what prompted the question."
+    body="A specific concern, an approaching go-live, a close that was harder than it should have been, or simply the wish for a second opinion. That tells us which of the three packages fits."
+    primaryLabel="Request a health check"
+    primaryHref={CAP}
+    secondaryLabel="See all capabilities"
+    secondaryHref="/services/"
+  />
+</Base>

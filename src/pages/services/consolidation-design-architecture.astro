@@ -1,0 +1,231 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const CAP = '/contact/?capability=Consolidation%20Design%20%26%20Architecture';
+
+/* ---------------------------------------------------------------------------
+   Problems this service addresses (§5.2)
+--------------------------------------------------------------------------- */
+const problems = [
+  {
+    t: 'Consolidation methods and ownership were never agreed in accounting terms',
+    b: 'The build starts, and three months later somebody asks how a joint venture acquired mid-year should be treated. By then the data model has already assumed an answer.',
+  },
+  {
+    t: 'FS item and subitem structures cannot support the reporting that was promised',
+    b: 'Movement detail, cash flow and segment analysis all depend on decisions taken at the very start. Retrofitting them after the first close is expensive and rarely clean.',
+  },
+  {
+    t: 'Intercompany and partner design creates reconciliation work rather than removing it',
+    b: 'Partner assignment, matching tolerance, currency treatment and the point at which differences are cleared are design decisions, not configuration details.',
+  },
+  {
+    t: 'Segment or management reporting arrives late',
+    b: 'A second reporting view introduced after the legal consolidation is designed usually means either a parallel structure or a rebuild. Both are avoidable if it is known up front.',
+  },
+  {
+    t: 'Legacy BPC logic is being copied forward without challenge',
+    b: 'A decade of script logic contains genuine requirements and a great deal of work around limitations that no longer exist. The two have to be separated deliberately.',
+  },
+  {
+    t: 'Nobody owns the whole picture',
+    b: 'Accounting policy sits with Group, the data model with IT, reporting with FP&A and the configuration with an integrator. Each is reasonable on its own and the design falls between them.',
+  },
+];
+
+/* ---------------------------------------------------------------------------
+   Deliverables (§5.2)
+--------------------------------------------------------------------------- */
+const deliverables = [
+  'Consolidation design principles and a decision log that records what was chosen and why',
+  'Target consolidation model and master-data architecture',
+  'FS item, subitem and dimensional design recommendations',
+  'Ownership, consolidation methods and investment-consolidation design',
+  'Currency translation design, including CTA treatment and rate governance',
+  'Intercompany scope, matching and elimination design',
+  'Data flow and ACDOCU design view',
+  'Reporting and reconciliation architecture',
+  'Risks, open decisions and implementation guidance for the build team',
+];
+
+/* ---------------------------------------------------------------------------
+   Approach
+--------------------------------------------------------------------------- */
+const approach = [
+  {
+    t: 'Accounting first',
+    b: 'We start from the policy and the group structure, not from a configuration guide. If the accounting treatment is not agreed, no amount of configuration will settle it later.',
+  },
+  {
+    t: 'Design the edge cases explicitly',
+    b: 'Step acquisitions, disposals part-way through a period, indirect and multi-level NCI, method changes, restatements. These decide whether a design survives its second year.',
+  },
+  {
+    t: 'Write the decisions down',
+    b: 'A design decision that lives only in somebody’s memory is a design decision you will have to make again. The decision log is a deliverable, not a by-product.',
+  },
+  {
+    t: 'Constrain the cleverness',
+    b: 'Your team has to operate this after we leave, and explain it to an auditor. That is a real constraint on how elaborate the design is allowed to be.',
+  },
+];
+
+const audience = [
+  'Finance transformation leads scoping a consolidation programme',
+  'Group Accounting and Group Reporting teams who will own the result',
+  'Solution owners inheriting a design somebody else specified',
+  'System integrators who need design depth rather than extra configuration capacity',
+  'Organisations part-way through a build where the design is being questioned',
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Financial consolidation design and architecture consulting',
+  provider: { '@type': 'Organization', name: 'Radixa Technologies' },
+  description:
+    'Senior consolidation design: accounting policy, group structure, ownership, intercompany, currency, FS item architecture and the data model, agreed before configuration begins.',
+  areaServed: ['GB', 'EU', 'Middle East'],
+};
+---
+
+<Base
+  title="Consolidation Design & Architecture | Radixa"
+  description="Senior consolidation design expertise — accounting policy, group structure, ownership, currency, intercompany and data model agreed before the system is configured."
+  schema={[serviceSchema]}
+>
+  <Hero
+    eyebrow="Financial consolidation"
+    title="Design the Consolidation Model Before You Configure the System."
+    lede="Radixa helps organisations translate accounting policy, group structures, ownership, intercompany requirements, reporting and data into a coherent consolidation design that can be implemented — and then operated."
+  >
+    <div class="btn-group">
+      <a class="btn btn-primary" href={CAP}>Discuss a design engagement</a>
+      <a class="btn btn-secondary" href="#deliverables">See what you get</a>
+    </div>
+  </Hero>
+
+  <!-- When this matters -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">When this matters</p>
+        <h2>Most consolidation problems are design problems wearing a configuration costume.</h2>
+        <div class="prose mt-m">
+          <p>
+            When a consolidation solution is difficult to operate, the instinct is to look at the
+            build. Occasionally that is where the fault is. Far more often the build faithfully
+            implements a design decision that was never made deliberately — a method that was
+            assumed, a structure that was inherited, a reporting requirement that arrived after the
+            data model was fixed.
+          </p>
+          <p>
+            Those decisions are cheap to take at the start and expensive to revisit once there is a
+            closed period sitting on top of them. This engagement exists to take them properly,
+            in the right order, with the right people in the room.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problems -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">What we see</p>
+      <h2>Six things that put a consolidation design at risk.</h2>
+      <div class="rows mt-l">
+        {
+          problems.map((p) => (
+            <div class="row-item">
+              <h3>{p.t}</h3>
+              <p>{p.b}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- What we do -->
+  <section class="bg-navy on-navy">
+    <div class="wrap">
+      <div style="max-width:860px">
+        <p class="eyebrow">How we work</p>
+        <h2>Four principles that shape the design.</h2>
+      </div>
+      <div class="grid grid-2 mt-l">
+        {
+          approach.map((a) => (
+            <article class="card" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.16)">
+              <h3 style="color:#fff">{a.t}</h3>
+              <p style="color:rgba(255,255,255,0.76)">{a.b}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverables -->
+  <section id="deliverables">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">What you get</p>
+        <h2>A design somebody can build from, and an auditor can follow.</h2>
+        <ul class="checklist mt-m">
+          {deliverables.map((d) => <li>{d}</li>)}
+        </ul>
+        <dl class="duration">
+          <dt>Typical duration</dt>
+          <dd>2–6 weeks</dd>
+          <dd class="note">
+            Depending on whether the engagement is a focused design review or a full blueprint,
+            and on the number of entities, ownership levels and reporting views in scope.
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who it's for -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Who it is for</p>
+        <h2>Brought in before the build — or when the build is being questioned.</h2>
+        <ul class="checklist mt-m">
+          {audience.map((a) => <li>{a}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="tight">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Related</p>
+        <h2>Where this sits.</h2>
+        <ul class="checklist mt-m">
+          <li><a href="/services/sap-group-reporting/">SAP S/4HANA Group Reporting</a> — the platform this design is most often implemented on</li>
+          <li><a href="/services/group-reporting-health-check/">Group Reporting Health Check</a> — if the solution is already live and you want it reviewed rather than designed</li>
+          <li><a href="/services/bpc-modernisation-assessment/">BPC Modernisation &amp; Platform Assessment</a> — if the platform decision itself is still open</li>
+          <li><a href="/services/finance-data-reporting-architecture/">Finance Data &amp; Reporting Architecture</a> — where consolidation sits in the wider landscape</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    eyebrow="Next step"
+    title="Tell us what the design has to cope with."
+    body="Group structure, ownership complexity, reporting views, the platform if it is decided, and what has already been built. That is enough for us to say whether this is a two-week review or a full blueprint."
+    primaryLabel="Discuss a design engagement"
+    primaryHref={CAP}
+    secondaryLabel="See all capabilities"
+    secondaryHref="/services/"
+  />
+</Base>

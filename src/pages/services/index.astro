@@ -3,24 +3,54 @@ import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import CTABand from '../../components/CTABand.astro';
 
+/* ---------------------------------------------------------------------------
+   Service families (§3.2). Every page linked below exists.
+--------------------------------------------------------------------------- */
 const families = [
   {
     family: 'Financial Consolidation',
     promise:
-      'Modernise legal and management consolidation with stronger architecture, controls and reporting.',
+      'Design, build, review and operate group consolidation — with the accounting agreed before the configuration.',
     detail:
-      'Consolidation strategy and target architecture; legal and management consolidation design; currency translation, intercompany elimination, ownership and NCI, investment consolidation; joint ventures and equity method; cash flow, OCI and retained earnings; acquisitions and divestments; tax and segment reporting; close process, controls and reconciliation; legacy migration and post-go-live optimisation.',
+      'Consolidation strategy and target architecture; legal and management consolidation design; FS items and subitems, consolidation units and groups; currency translation including CTA; intercompany matching and elimination; ownership, non-controlling interests and investment consolidation; cash flow, OCI and equity roll-forward; acquisitions and disposals part-way through a period; close process, controls and reconciliation; migration from legacy consolidation and post-go-live optimisation.',
     links: [
       { label: 'SAP S/4HANA Group Reporting', href: '/services/sap-group-reporting/' },
+      { label: 'Consolidation Design & Architecture', href: '/services/consolidation-design-architecture/' },
+      { label: 'Group Reporting Health Check', href: '/services/group-reporting-health-check/' },
+    ],
+  },
+  {
+    family: 'Planning & Reporting',
+    promise:
+      'Improve budgeting, forecasting, planning and management reporting — and fix the models finance has started working around.',
+    detail:
+      'Enterprise planning including budgeting, forecasting, long-range and driver-based planning and scenario modelling; planning model design covering dimensions, versions, allocations, data actions and workflow; management reporting and variance analysis; reporting experience and performance; integration with S/4HANA, ACDOCP, Group Reporting and Datasphere/BW; and independent review of solutions already in production.',
+    links: [
+      { label: 'SAP Analytics Cloud', href: '/services/sap-analytics-cloud/' },
+      { label: 'SAC Planning Assessment', href: '/services/sac-planning-assessment/' },
+      { label: 'SAC Health Check', href: '/services/sac-health-check/' },
+    ],
+  },
+  {
+    family: 'Modernisation',
+    promise: 'Decide what should replace SAP BPC before committing to a technology.',
+    detail:
+      'A structured assessment of the current BPC estate, the finance requirements that must survive it, and the target options — across an SAP-centred architecture and selected specialist EPM platforms. Capability decomposition, option scoring, a total-cost view, migration roadmap and an executive decision pack. Radixa is not an SAP partner or reseller, and does not resell any platform it assesses.',
+    links: [
       { label: 'BPC Modernisation & Platform Assessment', href: '/services/bpc-modernisation-assessment/' },
     ],
   },
   {
-    family: 'Planning & Analytics',
-    promise: 'Improve budgeting, forecasting, planning and management reporting.',
+    family: 'Architecture & Assurance',
+    promise:
+      'Decide where things belong, hold that decision through delivery, and check it independently at the gates.',
     detail:
-      'Enterprise planning including budgeting, forecasting, long-range and driver-based planning and scenario modelling; management reporting and variance analysis; planning model design covering dimensions, versions, allocations, data actions and workflow; reporting experience and performance; integration with S/4HANA, ACDOCP, Group Reporting and Datasphere/BW; and optimisation of models already in production.',
-    links: [{ label: 'SAP Analytics Cloud', href: '/services/sap-analytics-cloud/' }],
+      'Which platform owns which financial data and at what level of detail; where reusable finance definitions, hierarchies and calculations should live; how consolidated results are exposed to planning, management reporting and disclosure tools; senior architecture ownership and design challenge across an in-flight programme; and independent assurance at design gates, before go-live and after implementation.',
+    links: [
+      { label: 'Finance Data & Reporting Architecture', href: '/services/finance-data-reporting-architecture/' },
+      { label: 'Solution Architecture & Design Authority', href: '/services/solution-architecture-design-authority/' },
+      { label: 'Programme Assurance & Optimisation', href: '/services/programme-assurance-optimisation/' },
+    ],
   },
   {
     family: 'Last Mile & Disclosure Reporting',
@@ -29,37 +59,37 @@ const families = [
       'Statutory and annual report production; disclosure and narrative management with controlled review and sign-off; XBRL and iXBRL tagging and regulatory filing; sustainability and non-financial reporting brought into the same controlled process; board and management packs built on the same trusted source; and the integration between S/4HANA Group Reporting and the disclosure platform — SAP Disclosure Management, Workiva or an alternative — that carries the result.',
     links: [{ label: 'Last Mile Reporting', href: '/services/last-mile-reporting/' }],
   },
-  {
-    family: 'Finance Data & Reporting Architecture',
-    promise: 'Create a coherent finance data and reporting architecture people can trust.',
-    detail:
-      'Which platform owns which financial data and at what level of detail; where reusable finance definitions, hierarchies and calculations should live; how consolidated results are exposed to SAC, disclosure tools and management reporting; how actuals, forecasts and plans connect without duplicated logic; how live, replicated and modelled approaches are balanced; and who owns finance data definitions and change control.',
-    links: [],
-  },
-  {
-    family: 'Finance Transformation & Assurance',
-    promise: 'Bridge requirements, design, programme delivery and assurance.',
-    detail:
-      'Finance process design; requirements and fit-to-standard analysis that separates essential requirements from legacy complexity; target architecture across consolidation, planning, reporting and data; delivery leadership through design, build, test, migration and cutover; independent solution architecture and design authority; and programme assurance covering design review, test strategy, reconciliation, parallel run, cutover readiness and post-go-live optimisation.',
-    links: [],
-  },
+];
+
+/* ---------------------------------------------------------------------------
+   Packaged diagnostics — the shortest way in
+--------------------------------------------------------------------------- */
+const packaged = [
+  { name: 'BPC Rapid Assessment', d: '1–2 weeks', href: '/services/bpc-modernisation-assessment/' },
+  { name: 'Group Reporting Health Check', d: 'from 5 working days', href: '/services/group-reporting-health-check/' },
+  { name: 'SAC Health Check', d: 'from 5 working days', href: '/services/sac-health-check/' },
+  { name: 'SAC Planning Assessment', d: '2–4 weeks', href: '/services/sac-planning-assessment/' },
+  { name: 'Independent Design Review', d: '5–15 working days', href: '/services/solution-architecture-design-authority/' },
+  { name: 'Last Mile Rapid Review', d: '1–2 weeks', href: '/services/last-mile-reporting/' },
 ];
 ---
 
 <Base
   title="Finance Transformation & SAP EPM Consulting Services | Radixa"
-  description="Specialist consulting across financial consolidation, SAP Group Reporting, planning and analytics, finance data architecture and programme assurance."
+  description="Specialist consulting across financial consolidation, SAP Group Reporting, planning, finance data architecture, design authority and assurance."
 >
   <Hero
     eyebrow="What we do"
     title="Finance Transformation, Built Around the Decisions That Matter."
-    lede="Radixa provides specialist consulting across financial consolidation, planning, analytics, finance data and solution architecture. Our work starts with finance requirements and ends with solutions that are practical to operate."
+    lede="Radixa provides specialist consulting across financial consolidation, planning, analytics, finance data, solution architecture and assurance. Our work starts with the finance requirement and ends with solutions that are practical to operate."
   >
     <div class="btn-group">
       <a class="btn btn-primary" href="/contact/">Discuss your priorities</a>
+      <a class="btn btn-secondary" href="#packaged">See the packaged assessments</a>
     </div>
   </Hero>
 
+  <!-- Flagship -->
   <section class="bg-alt tight">
     <div class="wrap">
       <h2 class="visually-hidden">Flagship specialist services</h2>
@@ -82,9 +112,8 @@ const families = [
           </p>
           <a class="link-arrow" href="/services/bpc-modernisation-assessment/">Explore BPC Modernisation</a>
         </article>
-
         <article class="card card-feature">
-          <span class="tag">Planning &amp; analytics</span>
+          <span class="tag">Planning &amp; reporting</span>
           <h3>SAP Analytics Cloud</h3>
           <p>
             Planning model design, financial and management reporting, integration with S/4HANA and
@@ -96,13 +125,14 @@ const families = [
     </div>
   </section>
 
+  <!-- Families -->
   <section>
     <div class="wrap">
       <p class="eyebrow">Service families</p>
-      <h2>Four areas of specialist capability.</h2>
+      <h2>Five areas of specialist capability.</h2>
       <p class="lede mt-s">
-        Engagements are scoped around the decision in front of you. That might be a two-week
-        assessment, a design authority role across a programme, or end-to-end functional delivery.
+        Engagements are scoped around the decision in front of you. That might be a five-day health
+        check, a design authority role across a programme, or end-to-end functional delivery.
       </p>
 
       <div class="mt-l" style="display:grid;gap:24px">
@@ -112,13 +142,11 @@ const families = [
               <h3>{f.family}</h3>
               <p style="color:var(--navy);font-weight:500;font-size:1.05rem">{f.promise}</p>
               <p>{f.detail}</p>
-              {f.links.length > 0 && (
-                <div class="btn-group" style="margin-top:8px;gap:20px">
-                  {f.links.map((l) => (
-                    <a class="link-arrow" href={l.href}>{l.label}</a>
-                  ))}
-                </div>
-              )}
+              <div class="btn-group" style="margin-top:8px;gap:20px">
+                {f.links.map((l) => (
+                  <a class="link-arrow" href={l.href}>{l.label}</a>
+                ))}
+              </div>
             </article>
           ))
         }
@@ -126,7 +154,31 @@ const families = [
     </div>
   </section>
 
-  <section class="bg-alt">
+  <!-- Packaged -->
+  <section class="bg-alt" id="packaged">
+    <div class="wrap">
+      <p class="eyebrow">Packaged diagnostics</p>
+      <h2>The shortest way to find out whether we are useful.</h2>
+      <p class="lede mt-s">
+        Each of these is fixed-scope and time-boxed, with a defined deliverable. Most relationships
+        start with one.
+      </p>
+      <div class="routes mt-l">
+        {
+          packaged.map((p) => (
+            <a class="route" href={p.href}>
+              <h3 style="font-size:1.0625rem">{p.name}</h3>
+              <p>Typical duration: {p.d}</p>
+              <span class="go">See the detail</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Engagement models -->
+  <section>
     <div class="wrap">
       <div class="narrow">
         <p class="eyebrow">Engagement models</p>
@@ -137,7 +189,7 @@ const families = [
         </p>
         <ul class="checklist mt-m">
           <li><strong>Assessment and advisory</strong> — a defined-scope review with a written recommendation, typically one to six weeks.</li>
-          <li><strong>Design authority</strong> — a senior functional architecture and assurance role across an in-flight programme.</li>
+          <li><strong>Design authority</strong> — a senior functional architecture and assurance role across an in-flight programme, with an agreed cadence and decision scope.</li>
           <li><strong>Solution design and delivery support</strong> — functional design, specification, test design, reconciliation and cutover support.</li>
           <li><strong>Optimisation</strong> — targeted improvement of a solution already in production.</li>
           <li>
@@ -152,22 +204,23 @@ const families = [
   </section>
 
   <!-- Separate offering — deliberately outside the capability families above -->
-  <section>
+  <section class="bg-alt">
     <div class="wrap">
       <div
-        style="border:1px solid var(--border);border-top:4px solid var(--cyan);border-radius:var(--radius);padding:clamp(28px,4vw,48px)"
+        style="background:var(--white);border:1px solid var(--border);border-top:4px solid var(--cyan);border-radius:var(--radius);padding:clamp(28px,4vw,48px)"
       >
         <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;align-items:start">
           <div>
             <p class="eyebrow">Also available</p>
-            <h2>Corporate training</h2>
+            <h2>Training</h2>
             <p class="lede mt-s">
               Separate from our consulting work: in-house workshops on SAP S/4HANA Group Reporting
-              and SAP Analytics Cloud, built around your own configuration rather than a demo
-              system.
+              and SAP Analytics Cloud, plus tailored programmes built around your own configuration
+              rather than a demo system.
             </p>
             <div class="btn-group mt-m">
               <a class="btn btn-primary" href="/training/">Explore training</a>
+              <a class="btn btn-secondary" href="/training/tailored-client-training/">Tailored programmes</a>
             </div>
           </div>
 
@@ -180,7 +233,7 @@ const families = [
             <ul class="checklist mt-s">
               <li>SAP S/4HANA Group Reporting — consolidation model, close cycle, currency, intercompany, ownership and NCI</li>
               <li>SAP Analytics Cloud — planning models, data actions, allocations, planning cycle and reporting design</li>
-              <li>One to three days, on-site or remote, for a single team rather than a public course</li>
+              <li>Tailored client training — built around your configured process and operating model</li>
             </ul>
           </div>
         </div>

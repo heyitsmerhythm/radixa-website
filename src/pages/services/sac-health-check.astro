@@ -1,0 +1,196 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const CAP = '/contact/?capability=SAC%20Health%20Check';
+
+/* ---------------------------------------------------------------------------
+   Packages (§6.3)
+--------------------------------------------------------------------------- */
+const packages = [
+  {
+    name: 'Focused Review',
+    duration: '5 working days',
+    reviews: 'One model, one process, one performance problem or one reporting area',
+  },
+  {
+    name: 'Standard SAC Health Check',
+    duration: '2 weeks',
+    reviews: 'Planning process, models, data, performance, reporting, security, governance and user experience',
+  },
+  {
+    name: 'Deep-Dive SAC Health Check',
+    duration: '3 weeks',
+    reviews: 'Multiple planning models and processes, architecture, integration, performance testing and remediation design',
+  },
+];
+
+/* ---------------------------------------------------------------------------
+   Symptoms
+--------------------------------------------------------------------------- */
+const symptoms = [
+  'A forecast copy or data action takes long enough that people plan their day around it',
+  'Finance has quietly rebuilt part of the submission in Excel',
+  'Only one person can safely change an allocation, and they did not write it',
+  'Adoption outside the core finance team never happened',
+  'Reporting is slow, or the same figure differs between two stories',
+  'Every cycle needs manual intervention that was supposed to be temporary',
+  'The model works, but nobody can explain how a number was arrived at',
+];
+
+/* ---------------------------------------------------------------------------
+   Deliverables (§6.3)
+--------------------------------------------------------------------------- */
+const deliverables = [
+  'Executive assessment with priority issues',
+  'Model and architecture findings',
+  'Performance bottlenecks and their likely causes',
+  'Planning-process friction and workaround analysis',
+  'Data action, calculation and allocation review',
+  'Reporting and user-experience findings',
+  'Governance and maintainability assessment',
+  'A quick-win list — things worth doing this month',
+  'Prioritised remediation backlog',
+  'Optional target-state design where the issues are structural rather than local',
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'SAP Analytics Cloud health check and planning optimisation review',
+  provider: { '@type': 'Organization', name: 'Radixa Technologies' },
+  description:
+    'An independent review of a live SAP Analytics Cloud planning solution: model architecture, performance, data actions, reporting, governance and the workarounds finance has built around it.',
+  areaServed: ['GB', 'EU', 'Middle East'],
+};
+---
+
+<Base
+  title="SAC Health Check | Radixa"
+  description="An independent review of a live SAP Analytics Cloud planning solution — model architecture, performance, data actions, reporting and adoption."
+  schema={[serviceSchema]}
+>
+  <Hero
+    eyebrow="Planning & reporting"
+    title="For a Model Finance Has Started Working Around."
+    lede="You have SAP Analytics Cloud. It runs. But the models are slow, the allocations are fragile, adoption stalled, and a surprising amount of the forecast still happens in Excel. This is a time-boxed review that says what is actually wrong and what to do first."
+  >
+    <div class="btn-group">
+      <a class="btn btn-primary" href={CAP}>Request a health check</a>
+      <a class="btn btn-secondary" href="#packages">See the packages</a>
+    </div>
+  </Hero>
+
+  <!-- Symptoms -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Sound familiar?</p>
+        <h2>The symptoms are usually easier to list than the cause.</h2>
+        <ul class="checklist mt-m">
+          {symptoms.map((s) => <li>{s}</li>)}
+        </ul>
+        <div class="prose mt-m">
+          <p>
+            Each of these is a symptom rather than a diagnosis, and they rarely have the cause
+            people assume. Slow models are more often a grain problem than a volume problem.
+            Fragile allocations are usually logic in the wrong layer. Poor adoption is more often
+            a process mismatch than a training gap.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packages -->
+  <section id="packages">
+    <div class="wrap">
+      <p class="eyebrow">Packaged engagements</p>
+      <h2>Three sizes, all fixed-scope.</h2>
+      <div class="table-scroll mt-l">
+        <table>
+          <thead>
+            <tr><th>Package</th><th>Typical duration</th><th>What is reviewed</th></tr>
+          </thead>
+          <tbody>
+            {
+              packages.map((p) => (
+                <tr>
+                  <th scope="row">{p.name}</th>
+                  <td>{p.duration}</td>
+                  <td>{p.reviews}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-m" style="font-size:0.9375rem;color:var(--grey-500);max-width:70ch">
+        We ask for access to the tenant, or a representative copy, plus a walkthrough of one full
+        planning cycle with the people who run it. Most of what matters is visible in how the
+        process is operated rather than in the model definition alone.
+      </p>
+    </div>
+  </section>
+
+  <!-- Deliverables -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">What you get</p>
+        <h2>A backlog, in priority order.</h2>
+        <ul class="checklist mt-m">
+          {deliverables.map((d) => <li>{d}</li>)}
+        </ul>
+        <p class="mt-m" style="font-size:0.9375rem;color:var(--grey-500);max-width:70ch">
+          The distinction that usually matters most is the last one: whether your problems are a
+          list of fixable defects or a model that has outgrown its own design. Those need very
+          different responses, and conflating them is how remediation projects run twice as long
+          as they should.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Position -->
+  <section class="bg-navy on-navy">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">What we will not do</p>
+        <h2>Recommend a rebuild by default.</h2>
+        <p class="lede mt-s">
+          A rebuild is the most profitable recommendation available to whoever writes the report,
+          which is precisely why it deserves scrutiny. In many cases the honest answer is that the
+          architecture is sound and four specific things are wrong with it. Where a rebuild genuinely
+          is the answer, we will say so and show the reasoning.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="tight">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Related</p>
+        <h2>Where this sits.</h2>
+        <ul class="checklist mt-m">
+          <li><a href="/services/sap-analytics-cloud/">SAP Analytics Cloud</a> — design and delivery, including remediation beyond a fix list</li>
+          <li><a href="/services/sac-planning-assessment/">SAC Planning Assessment</a> — if the question is what the target should be rather than what is broken</li>
+          <li><a href="/training/">Training</a> — where the finding is that the team was never enabled on the configuration they inherited</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    eyebrow="Next step"
+    title="Tell us which symptom is costing you most."
+    body="Slow models, fragile logic, low adoption, or a forecast that still lives in Excel. That, plus roughly how many models and contributors are involved, is enough to scope the right package."
+    primaryLabel="Request a health check"
+    primaryHref={CAP}
+    secondaryLabel="See all capabilities"
+    secondaryHref="/services/"
+  />
+</Base>

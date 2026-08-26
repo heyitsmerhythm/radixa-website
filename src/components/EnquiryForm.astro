@@ -1,18 +1,26 @@
 ---
-import { site, serviceInterests } from '../config';
+import { site, serviceInterests, trainingAreas } from '../config';
 
 interface Props {
-  /** 'general' = contact page; 'bpc' = BPC assessment enquiry (§7.5). */
-  variant?: 'general' | 'bpc';
+  /** 'general' = contact page; 'bpc' = BPC assessment (§12.3); 'training' = training enquiry (§12.4). */
+  variant?: 'general' | 'bpc' | 'training';
   formName?: string;
 }
-const { variant = 'general', formName = variant === 'bpc' ? 'bpc_assessment' : 'general_enquiry' } =
-  Astro.props;
+const {
+  variant = 'general',
+  formName = variant === 'bpc'
+    ? 'bpc_assessment'
+    : variant === 'training'
+      ? 'training_enquiry'
+      : 'general_enquiry',
+} = Astro.props;
 
 const subject =
   variant === 'bpc'
     ? 'New BPC Modernisation Assessment enquiry — radixa.co.uk'
-    : 'New enquiry — radixa.co.uk';
+    : variant === 'training'
+      ? 'New training enquiry — radixa.co.uk'
+      : 'New enquiry — radixa.co.uk';
 ---
 
 <div class="form-success" data-form-success role="status" tabindex="-1">
@@ -31,6 +39,7 @@ const subject =
   <input type="hidden" name="subject" value={subject} />
   <input type="hidden" name="from_name" value="Radixa website" />
   <input type="hidden" name="form_name" value={formName} />
+  <input type="hidden" name="source_page" value="" />
   <!-- Honeypot: hidden from people and assistive tech; bots fill it in and are rejected. -->
   <input
     type="text"
@@ -130,6 +139,67 @@ const subject =
           <p class="field-error" data-error-for="message">Please tell us what you are trying to decide.</p>
         </div>
       </>
+    ) : variant === 'training' ? (
+      <>
+        <div class="field">
+          <label for={`${formName}-area`}>Training area <span class="req" aria-hidden="true">*</span></label>
+          <select id={`${formName}-area`} name="training_area" required>
+            <option value="">Select…</option>
+            {trainingAreas.map((t) => <option>{t}</option>)}
+          </select>
+          <p class="field-error" data-error-for="training_area">Please choose the closest match.</p>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for={`${formName}-audience`}>Audience</label>
+            <select id={`${formName}-audience`} name="training_audience">
+              <option value="">Select…</option>
+              <option>Finance users</option>
+              <option>Super users</option>
+              <option>Administrators / finance systems</option>
+              <option>Mixed</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for={`${formName}-attendees`}>Approximate attendees</label>
+            <input type="text" id={`${formName}-attendees`} name="training_attendees" inputmode="numeric" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for={`${formName}-format`}>Preferred format</label>
+            <select id={`${formName}-format`} name="training_format">
+              <option value="">Select…</option>
+              <option>Remote</option>
+              <option>On-site</option>
+              <option>Hybrid</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for={`${formName}-status`}>Current system status</label>
+            <select id={`${formName}-status`} name="training_status">
+              <option value="">Select…</option>
+              <option>Pre-go-live</option>
+              <option>Newly live</option>
+              <option>Established</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for={`${formName}-message`}>What should the team be able to do afterwards? <span class="req" aria-hidden="true">*</span></label>
+          <textarea id={`${formName}-message`} name="message" required></textarea>
+          <p class="hint">Start from the capability gap rather than a course outline — that is what shapes the agenda.</p>
+          <p class="field-error" data-error-for="message">Please tell us what the team needs to be able to do.</p>
+        </div>
+
+        <div class="field">
+          <label for={`${formName}-timing`}>Preferred timing</label>
+          <input type="text" id={`${formName}-timing`} name="training_timing" placeholder="e.g. before the Q1 close" />
+        </div>
+      </>
     ) : (
       <>
         <div class="field">
@@ -179,7 +249,7 @@ const subject =
 
   <div>
     <button type="submit" class="btn btn-primary" data-submit>
-      {variant === 'bpc' ? 'Request an assessment' : 'Send enquiry'}
+      {variant === 'bpc' ? 'Request an assessment' : variant === 'training' ? 'Send training enquiry' : 'Send enquiry'}
     </button>
   </div>
 </form>
@@ -192,6 +262,24 @@ const subject =
     const success = form.parentElement?.querySelector<HTMLElement>('[data-form-success]');
     const submitBtn = form.querySelector<HTMLButtonElement>('[data-submit]');
     const formName = form.dataset.formName || 'enquiry';
+
+    // --- Pre-select the capability the visitor came from (§12.2) -----------
+    // Service pages link to /contact/?capability=<option text>, so nobody has
+    // to re-choose the service they were reading about thirty seconds ago.
+    const interest = form.querySelector<HTMLSelectElement>('[name="service_interest"]');
+    if (interest) {
+      const wanted = new URLSearchParams(location.search).get('capability');
+      if (wanted) {
+        const match = [...interest.options].find(
+          (o) => o.value.toLowerCase() === wanted.toLowerCase()
+        );
+        if (match) interest.value = match.value;
+      }
+    }
+
+    // --- Record where the enquiry came from --------------------------------
+    const source = form.querySelector<HTMLInputElement>('[name="source_page"]');
+    if (source) source.value = document.referrer || location.pathname;
 
     // --- Conditional phone field ------------------------------------------
     const pref = form.querySelector<HTMLSelectElement>('[data-contact-pref]');
@@ -235,6 +323,7 @@ const subject =
       checkText('company');
       checkText('message');
       checkText('service_interest');
+      checkText('training_area');
 
       const uses = form.querySelectorAll<HTMLInputElement>('[name="bpc_use"]');
       if (uses.length) {

@@ -18,10 +18,62 @@ const capabilities = [
   {
     title: 'Finance Data & Reporting',
     body: 'Connect finance systems, data and reporting layers into a coherent architecture that users can trust.',
+    href: '/services/finance-data-reporting-architecture/',
+    linkLabel: 'Finance Data & Reporting Architecture',
   },
   {
-    title: 'Finance Transformation',
-    body: 'Translate finance requirements into practical solution architecture, delivery roadmaps and controlled implementation.',
+    title: 'Architecture & Assurance',
+    body: 'Senior architecture ownership, independent design challenge and assurance at the points that are hard to reverse.',
+    href: '/services/solution-architecture-design-authority/',
+    linkLabel: 'Design authority & assurance',
+  },
+];
+
+/* ---------------------------------------------------------------------------
+   Problem-led routes (§4.2) — the buyer's problem first, the service second.
+--------------------------------------------------------------------------- */
+const routes = [
+  {
+    q: 'Rethinking BPC?',
+    b: 'You are still running SAP BPC and need to decide what comes next, before the licence conversation decides it for you.',
+    cta: 'Explore the assessment',
+    href: '/services/bpc-modernisation-assessment/',
+  },
+  {
+    q: 'Working on Group Reporting?',
+    b: 'You are designing, implementing or migrating to S/4HANA Group Reporting and want the accounting settled before the configuration.',
+    cta: 'See how we help',
+    href: '/services/sap-group-reporting/',
+  },
+  {
+    q: 'Concerned about your consolidation design or close performance?',
+    b: 'It is live and it works — and you would like an independent read on whether it will still work after the next acquisition.',
+    cta: 'Explore the health check',
+    href: '/services/group-reporting-health-check/',
+  },
+  {
+    q: 'Rethinking planning and reporting?',
+    b: 'Budgeting, forecasting and management reporting need to improve, and you are deciding what the target should be.',
+    cta: 'See how we help',
+    href: '/services/sap-analytics-cloud/',
+  },
+  {
+    q: 'Is SAC delivering what finance expected?',
+    b: 'You have SAP Analytics Cloud, but models are slow, logic is fragile, and a lot of the forecast still happens in Excel.',
+    cta: 'Explore the health check',
+    href: '/services/sac-health-check/',
+  },
+  {
+    q: 'Too many platforms, unclear ownership?',
+    b: 'Nobody can say which system owns which number, and every new report seems to need a new interface.',
+    cta: 'See how we help',
+    href: '/services/finance-data-reporting-architecture/',
+  },
+  {
+    q: 'Need an experienced second pair of eyes?',
+    b: 'A design gate is approaching, and everyone else in the room is paid by the outcome.',
+    cta: 'Explore design authority',
+    href: '/services/solution-architecture-design-authority/',
   },
 ];
 
@@ -109,11 +161,38 @@ const websiteSchema = {
     lede="Radixa helps organisations modernise financial consolidation, planning, reporting and finance technology. We combine deep finance process knowledge with specialist SAP expertise to turn complex requirements into practical, scalable solutions."
     visual
   >
+    <p class="cred">
+      Specialist experience across complex financial consolidation, planning, reporting and SAP EPM
+      programmes in multinational environments.
+    </p>
     <div class="btn-group">
       <a class="btn btn-primary" href="/services/">Explore our capabilities</a>
       <a class="btn btn-secondary" href="/contact/">Talk to Radixa</a>
     </div>
   </Hero>
+
+  <!-- 1b. How we can help — problem-led routes (§4.2) -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">How we can help</p>
+      <h2>Start with the problem, not the service list.</h2>
+      <p class="lede mt-s">
+        Most people arrive here with a decision in front of them rather than a shopping list. These
+        are the ones we are asked about most.
+      </p>
+      <div class="routes mt-l">
+        {
+          routes.map((r) => (
+            <a class="route" href={r.href}>
+              <h3>{r.q}</h3>
+              <p>{r.b}</p>
+              <span class="go">{r.cta}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 
   <!-- 2. Capability strip -->
   <section class="bg-alt">
@@ -177,7 +256,7 @@ const websiteSchema = {
   </section>
 
   <!-- 4. Why Radixa -->
-  <section class="bg-alt">
+  <section class="bg-alt" id="why-radixa">
     <div class="wrap">
       <p class="eyebrow">Why Radixa</p>
       <h2>Specialist depth, applied to decisions that are hard to reverse.</h2>

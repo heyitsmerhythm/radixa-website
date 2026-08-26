@@ -18,7 +18,7 @@ const workstreams = [
   },
   {
     n: 'Non-SAP target fit',
-    body: 'Requirement-led evaluation of suitable specialist EPM, consolidation and planning platforms — assessed on fit, not on partnership.',
+    body: 'Requirement-led evaluation of specialist EPM, consolidation and planning platforms — OneStream, CCH Tagetik, Oracle Cloud EPM, Anaplan, Board or Workday Adaptive Planning — assessed on fit, not on partnership.',
   },
   {
     n: 'Options & decision framework',
@@ -54,18 +54,18 @@ const deliverables = [
 const packages = [
   {
     name: 'BPC Rapid Assessment',
-    scope: 'Current state, key pain points, high-level successor options and recommendation direction.',
+    scope: 'High-level current state, main use cases, major constraints and two or three target options.',
     duration: '1–2 weeks',
   },
   {
     name: 'BPC Modernisation Assessment',
-    scope: 'Full functional, architecture, platform and option assessment.',
-    duration: '3–6 weeks',
+    scope: 'Detailed current state, future requirements, SAP and selected non-SAP options, and a decision framework with scored options.',
+    duration: '3–5 weeks',
   },
   {
     name: 'BPC Transformation Blueprint',
-    scope: 'Full assessment plus target architecture, migration roadmap, work packages and mobilisation plan.',
-    duration: '4–8 weeks',
+    scope: 'The assessment plus detailed future-state architecture, capability mapping, migration waves and a delivery blueprint.',
+    duration: '6–10 weeks',
   },
 ];
 
@@ -174,16 +174,59 @@ const serviceSchema = {
           </tbody>
         </table>
       </div>
-      <p class="mt-m" style="font-size:0.875rem;color:var(--grey-500);max-width:70ch">
-        Non-SAP platforms are assessed as candidates within an independent evaluation. Radixa does
-        not claim to be an implementation partner for every platform it assesses, and says so
-        explicitly in the recommendation where relevant.
-      </p>
+      <div class="narrow mt-l">
+        <h3>Which alternatives, specifically</h3>
+        <div class="prose mt-s">
+          <p>
+            Depending on your requirements, the assessment can compare an SAP-centred target
+            architecture with selected specialist EPM platforms such as <strong>OneStream</strong>,
+            <strong>CCH Tagetik</strong>, <strong>Oracle Cloud EPM</strong>,
+            <strong>Anaplan</strong>, <strong>Board</strong> or
+            <strong>Workday Adaptive Planning</strong>. The shortlist is tailored to the use case
+            and agreed with you during scoping rather than presented as a fixed menu.
+          </p>
+          <p>
+            Radixa does not claim to implement every platform it may assess, and says so explicitly
+            in the recommendation where it is relevant. We are not an SAP partner or reseller, and
+            hold no reseller or referral arrangement with any of the platforms above — which is the
+            only reason an independent evaluation is worth paying for.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Maintenance position (§7.1 guardrail) -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">On the 2027 question</p>
+        <h2>“BPC is end of life in 2027” is not quite true, and the detail matters.</h2>
+        <div class="prose mt-m">
+          <p>
+            SAP's published maintenance position varies by BPC release and deployment model. A
+            single blanket date is the version that circulates in sales conversations; it is not
+            the version that should inform an architecture decision.
+          </p>
+          <p>
+            Some variants have already passed mainstream maintenance. Others run to 2027 with an
+            optional extended period beyond that. BPC embedded in S/4HANA sits on a materially
+            longer horizon again. Which of those describes your estate changes both the urgency and
+            the shape of the answer — and it is the first thing the assessment establishes.
+          </p>
+          <p>
+            We verify the current position for your specific releases against SAP's Product
+            Availability Matrix and current strategy material at the time of the engagement, rather
+            than quoting a date from a slide. Where the honest answer is that you have more time
+            than you were told, we will say so.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Deliverables -->
-  <section class="bg-alt">
+  <section>
     <div class="wrap">
       <div class="narrow">
         <p class="eyebrow">Deliverables</p>

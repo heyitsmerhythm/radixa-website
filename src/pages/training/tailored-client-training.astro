@@ -1,0 +1,182 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const CAP = '/contact/?capability=Training';
+
+/* ---------------------------------------------------------------------------
+   Use cases (§10.4)
+--------------------------------------------------------------------------- */
+const useCases = [
+  { t: 'Post-implementation enablement', b: 'The consultants have gone, the configuration moved after training was delivered, and the people running the process were not all in the room.' },
+  { t: 'New joiners and team refresh', b: 'A restructured group function, or one person who held the knowledge and has left. This is the cheapest possible insurance against that.' },
+  { t: 'Close-cycle readiness', b: 'Walking the team through a full cycle on your own configuration before the cycle that counts.' },
+  { t: 'Super-user and administrator capability', b: 'Building the internal capability that means most questions never leave the building.' },
+  { t: 'Process changes after optimisation', b: 'When a remediation or optimisation has changed how something works, and the runbook no longer matches.' },
+  { t: 'Training material and runbook refresh', b: 'Documentation that reflects the system as it is now, not as it was specified two years ago.' },
+  { t: 'Targeted workshops on specific pain points', b: 'One half-day on the thing that goes wrong every period, rather than a week on everything.' },
+];
+
+const deliverables = [
+  'Training-needs assessment before anything is designed',
+  'A client-specific agenda, agreed in advance',
+  'Configuration-aware training material built on your system',
+  'Live workshops, on-site or remote',
+  'Process walkthroughs and hands-on exercises',
+  'Reference guides and job aids where scoped',
+  'Recorded sessions where appropriate and permitted',
+];
+
+const principles = [
+  {
+    t: 'Built on your configuration, not a demo',
+    b: 'We ask for access to your system, or a sanitised copy, and build the material around what you actually have. Generic product training is available from plenty of places and is not what this is.',
+  },
+  {
+    t: 'Product-agnostic by design',
+    b: 'This is not a course catalogue. It is centred on your configured process, your operating model and what your team needs to be able to do afterwards — whichever platforms that spans.',
+  },
+  {
+    t: 'Delivered by practitioners',
+    b: 'Sessions are run by people who design and deliver these solutions rather than by trainers working from a deck, which means questions about your specific design get answered in the room.',
+  },
+  {
+    t: 'Scoped to outcomes',
+    b: 'We start from what the team should be able to do unaided afterwards, and work backwards to the agenda. That is a different starting point from a topic list, and it produces a different day.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Tailored client training for finance systems and processes',
+  provider: { '@type': 'Organization', name: 'Radixa Technologies' },
+  description:
+    'Product-agnostic training built around a client’s own configured process, operating model and handover needs rather than a standard course catalogue.',
+  areaServed: ['GB', 'EU', 'Middle East'],
+};
+---
+
+<Base
+  title="Tailored Client Training | Radixa"
+  description="Training built around your configured process and operating model rather than a standard course catalogue — scoped to what your team should be able to do afterwards."
+  schema={[serviceSchema]}
+>
+  <Hero
+    eyebrow="Training"
+    title="Training Built Around the Way Your Finance Team Actually Works."
+    lede="Not a course catalogue. A programme designed around your configuration, your process and the specific things your team needs to be able to do without help afterwards."
+  >
+    <div class="btn-group">
+      <a class="btn btn-primary" href={CAP}>Discuss a programme</a>
+      <a class="btn btn-secondary" href="/training/">See the standard curricula</a>
+    </div>
+  </Hero>
+
+  <!-- Why -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Why this exists</p>
+        <h2>Standard training answers a question your team is not asking.</h2>
+        <div class="prose mt-m">
+          <p>
+            Product training teaches what the software can do. That is useful once. What a finance
+            team actually needs, six months after go-live, is why <em>their</em> consolidation
+            behaves the way it does, why <em>their</em> allocation produces that number, and what to
+            do when the thing that always works does not.
+          </p>
+          <p>
+            Those questions can only be answered on your configuration. That is the whole
+            proposition here — and it is why this sits separately from the two standard curricula.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use cases -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">When it is used</p>
+      <h2>Seven situations, in rough order of how often we are asked.</h2>
+      <div class="grid grid-2 mt-l">
+        {
+          useCases.map((u) => (
+            <article class="card">
+              <h3 style="font-size:1.05rem">{u.t}</h3>
+              <p>{u.b}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="bg-navy on-navy">
+    <div class="wrap">
+      <div style="max-width:860px">
+        <p class="eyebrow">How it works</p>
+        <h2>Four things that make it different.</h2>
+      </div>
+      <div class="grid grid-2 mt-l">
+        {
+          principles.map((p) => (
+            <article class="card" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.16)">
+              <h3 style="color:#fff;font-size:1.05rem">{p.t}</h3>
+              <p style="color:rgba(255,255,255,0.76)">{p.b}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverables -->
+  <section>
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">What you get</p>
+        <h2>Material that stays useful after the session.</h2>
+        <ul class="checklist mt-m">
+          {deliverables.map((d) => <li>{d}</li>)}
+        </ul>
+        <dl class="duration">
+          <dt>Typical duration</dt>
+          <dd>Half-day workshops through multi-day programmes</dd>
+          <dd class="note">
+            Scoped on audience, process breadth and how much tailoring the material needs. We agree
+            this after the training-needs assessment rather than before it.
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="bg-alt tight">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Related</p>
+        <h2>Where this sits.</h2>
+        <ul class="checklist mt-m">
+          <li><a href="/training/">Training overview</a> — the standard Group Reporting and SAC curricula</li>
+          <li><a href="/services/group-reporting-health-check/">Group Reporting Health Check</a> — where the real problem turns out to be the solution rather than the enablement</li>
+          <li><a href="/services/sac-health-check/">SAC Health Check</a> — the same, for a planning model</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    eyebrow="Next step"
+    title="Tell us what the team should be able to do afterwards."
+    body="Start with the capability gap rather than a course outline. We will tell you honestly whether a workshop is the right answer, or whether the problem is in the solution design."
+    primaryLabel="Discuss a programme"
+    primaryHref={CAP}
+    secondaryLabel="See the curricula"
+    secondaryHref="/training/"
+  />
+</Base>

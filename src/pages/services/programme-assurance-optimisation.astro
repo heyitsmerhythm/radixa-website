@@ -1,0 +1,176 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const CAP = '/contact/?capability=Programme%20Assurance%20%26%20Optimisation';
+
+/* ---------------------------------------------------------------------------
+   Services (§8.3)
+--------------------------------------------------------------------------- */
+const services = [
+  { t: 'Pre-go-live readiness review', b: 'An independent read on whether the solution, the data and the people are ready — and what the conditions should be if the answer is "not quite".' },
+  { t: 'Design and build assurance', b: 'Whether what is being built still matches what was designed, and whether the design still matches the requirement.' },
+  { t: 'Testing and reconciliation assurance', b: 'Test coverage against risk rather than against scope, and whether the reconciliation approach would convince an auditor.' },
+  { t: 'Close-process readiness', b: 'The first close is the real test. Sequence, dependencies, ownership, and what happens when a task fails at 6pm on day three.' },
+  { t: 'Cutover and migration review', b: 'Opening balances, historical comparatives, parallel run design and the decision criteria for going or not going.' },
+  { t: 'Post-go-live stabilisation', b: 'What is genuinely defective, what is a process gap, and what is simply unfamiliar — three problems that need three different responses.' },
+  { t: 'Performance and process optimisation', b: 'Runtime, close duration, manual intervention and the specific points where the calendar is being lost.' },
+  { t: 'Controls and governance review', b: 'Validation design, segregation, change control and the evidence trail behind a reported figure.' },
+  { t: 'Backlog rationalisation', b: 'Separating functional debt from technical debt from wish list, and putting the three in an order somebody can defend.' },
+];
+
+const deliverables = [
+  'Independent assurance report',
+  'Red / Amber / Green assessment by workstream or risk area',
+  'Critical go-live blockers, and the conditions attached to any conditional go',
+  'Findings register with evidence and recommendations',
+  'Prioritised remediation plan',
+  'Executive playback and a steering-committee pack',
+];
+
+const moments = [
+  'A design gate where the decision is hard to reverse',
+  'Six to eight weeks before a planned go-live',
+  'After a first close that did not go the way it was supposed to',
+  'When a programme is being asked for more time and the sponsor wants an independent view',
+  'When a solution has been live for two cycles and the promised benefits have not appeared',
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Finance programme assurance and post-go-live optimisation',
+  provider: { '@type': 'Organization', name: 'Radixa Technologies' },
+  description:
+    'Independent assurance for finance technology programmes before go-live, at design gates, or after implementation when a solution needs stabilisation and optimisation.',
+  areaServed: ['GB', 'EU', 'Middle East'],
+};
+---
+
+<Base
+  title="Programme Assurance & Optimisation | Radixa"
+  description="Independent assurance for finance technology programmes — before go-live, at design gates, or after implementation when a solution needs stabilising."
+  schema={[serviceSchema]}
+>
+  <Hero
+    eyebrow="Architecture & assurance"
+    title="An Independent View at the Points That Are Hard to Reverse."
+    lede="Assurance for finance technology programmes: before go-live, at a design gate, or afterwards when a solution is live and not yet delivering what it was bought for."
+  >
+    <div class="btn-group">
+      <a class="btn btn-primary" href={CAP}>Discuss an assurance review</a>
+      <a class="btn btn-secondary" href="#scope">See what it covers</a>
+    </div>
+  </Hero>
+
+  <!-- Why -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Why independent</p>
+        <h2>A programme cannot easily assure itself.</h2>
+        <div class="prose mt-m">
+          <p>
+            Not through dishonesty — through proximity. Everyone close to a programme has been
+            living with its compromises long enough for them to look normal. The risks that get
+            escalated are the ones somebody noticed recently; the ones that have been there since
+            month two have quietly become part of the furniture.
+          </p>
+          <p>
+            An assurance review is worth buying at the moments where being wrong is expensive and
+            slow to undo. Those moments are usually known in advance.
+          </p>
+        </div>
+        <ul class="checklist mt-m">
+          {moments.map((m) => <li>{m}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scope -->
+  <section id="scope">
+    <div class="wrap">
+      <p class="eyebrow">What we assure</p>
+      <h2>Nine areas, scoped to where the risk actually is.</h2>
+      <p class="lede mt-s">
+        A review that covers everything equally covers nothing well. We agree at the start which of
+        these matter for your gate and go deep on those.
+      </p>
+      <div class="grid grid-3 mt-l">
+        {
+          services.map((s) => (
+            <article class="card">
+              <h3 style="font-size:1.05rem">{s.t}</h3>
+              <p>{s.b}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverables -->
+  <section class="bg-alt">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">What you get</p>
+        <h2>A report a sponsor can act on the same week.</h2>
+        <ul class="checklist mt-m">
+          {deliverables.map((d) => <li>{d}</li>)}
+        </ul>
+        <dl class="duration">
+          <dt>Typical duration</dt>
+          <dd>1–2 weeks for a focused gate · 2–4 weeks for a broader review</dd>
+          <dd class="note">
+            Ongoing assurance can be structured as recurring senior support across the programme's
+            major milestones rather than as a single engagement.
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- How we report -->
+  <section class="bg-navy on-navy">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">How we report</p>
+        <h2>Amber has to mean something.</h2>
+        <p class="lede mt-s">
+          A status that is amber for four consecutive gates is not a status, it is a habit. Every
+          rating we give carries the evidence behind it, the specific condition that would move it
+          to green, and a named owner. Where we cannot substantiate a concern within the time box,
+          we say that too — an assurance report that inflates its own findings costs you credibility
+          the next time somebody raises a real one.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="tight">
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Related</p>
+        <h2>Where this sits.</h2>
+        <ul class="checklist mt-m">
+          <li><a href="/services/solution-architecture-design-authority/">Solution Architecture &amp; Design Authority</a> — continuous architecture ownership rather than assurance at gates</li>
+          <li><a href="/services/group-reporting-health-check/">Group Reporting Health Check</a> — the same discipline applied to one live consolidation solution</li>
+          <li><a href="/services/sac-health-check/">SAC Health Check</a> — the equivalent for a live planning solution</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    eyebrow="Next step"
+    title="Tell us which gate you are approaching."
+    body="The date, what is being decided, and what is worrying you about it. If an assurance review is not the right instrument, we will say so — sometimes what a programme needs is a decision, not a report."
+    primaryLabel="Discuss an assurance review"
+    primaryHref={CAP}
+    secondaryLabel="See all capabilities"
+    secondaryHref="/services/"
+  />
+</Base>

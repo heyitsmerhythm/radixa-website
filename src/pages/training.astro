@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import CTABand from '../components/CTABand.astro';
+import EnquiryForm from '../components/EnquiryForm.astro';
 
 /* ---------------------------------------------------------------------------
    Who it's for
@@ -216,26 +217,63 @@ const serviceSchema = {
     </div>
   </section>
 
-  <!-- Practicalities -->
+  <!-- Tailored programmes -->
   <section>
     <div class="wrap">
       <div class="narrow">
-        <p class="eyebrow">Practicalities</p>
-        <h2>How to scope one.</h2>
+        <p class="eyebrow">Beyond the two curricula</p>
+        <h2>Tailored client training.</h2>
         <div class="prose mt-m">
           <p>
-            Tell us which platform, roughly how many people, what they do day to day, and what
-            triggered the request — a go-live, a handover, a team change, or simply a close that
-            was harder than it should have been.
-          </p>
-          <p>
-            From there we propose a scope and duration. Workshops run on-site or remotely, and are
-            delivered for a single organisation rather than as a public course, so the material and
-            the examples can be entirely yours.
+            The two programmes above are our standard curricula. Where the need is broader — a
+            handover, a close-cycle rehearsal, a super-user capability build, or a refresh after an
+            optimisation changed how something works — we build the programme around your process
+            and operating model rather than around a product.
           </p>
         </div>
         <div class="btn-group mt-m">
-          <a class="btn btn-primary" href="/contact/">Discuss a workshop</a>
+          <a class="btn btn-secondary" href="/training/tailored-client-training/">Explore tailored training</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Practicalities & enquiry (§12.4) -->
+  <section class="bg-alt" id="enquiry">
+    <div class="wrap">
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:48px;align-items:start">
+        <div>
+          <p class="eyebrow">Practicalities</p>
+          <h2>How to scope one.</h2>
+          <div class="prose mt-m">
+            <p>
+              Tell us which platform, roughly how many people, what they do day to day, and what
+              triggered the request — a go-live, a handover, a team change, or simply a close that
+              was harder than it should have been.
+            </p>
+            <p>
+              From there we propose a scope and duration. Workshops run on-site or remotely, and are
+              delivered for a single organisation rather than as a public course, so the material and
+              the examples can be entirely yours.
+            </p>
+          </div>
+          <ul class="checklist mt-m">
+            <li>One to three days for the standard curricula, half a day upwards for tailored programmes</li>
+            <li>Built on your configuration, or a sanitised copy of it</li>
+            <li>Delivered by the people who design these solutions</li>
+            <li>A documented record of what was covered, for onboarding the next joiner</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 style="font-size:1.4rem">Training enquiry</h2>
+          <p class="mt-s" style="color:var(--grey-500);font-size:0.9375rem">
+            Start from what the team should be able to do afterwards. We reply by email, usually
+            within one working day.
+          </p>
+          <div class="mt-m">
+            <EnquiryForm variant="training" />
+          </div>
         </div>
       </div>
     </div>

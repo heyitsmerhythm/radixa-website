@@ -85,32 +85,6 @@ const beforeTech = [
 ];
 
 /* ---------------------------------------------------------------------------
-   Differentiators
---------------------------------------------------------------------------- */
-const different = [
-  {
-    title: 'Finance-led thinking',
-    body: 'We understand the accounting, consolidation, planning and reporting requirements behind the technology — which means we can engage finance stakeholders directly and translate what they say into a practical solution design.',
-  },
-  {
-    title: 'Deep EPM experience',
-    body: 'Our experience spans consolidation, planning, forecasting, reporting and enterprise performance management rather than a single application. That perspective matters most when deciding how several finance platforms should work together.',
-  },
-  {
-    title: 'SAP expertise without an SAP-only mindset',
-    body: 'We bring strong experience across SAP finance technologies, and still hold that architecture decisions should follow business requirements. Where appropriate we help organisations evaluate SAP alongside alternative EPM approaches.',
-  },
-  {
-    title: 'Experience across the full lifecycle',
-    body: 'Strategy, requirements, architecture, functional design, configuration, integration, data migration, testing, reconciliation, cutover, assurance and post-implementation optimisation — so design decisions are made with an understanding of what they cost later.',
-  },
-  {
-    title: 'Senior-led engagement',
-    body: 'Complex finance transformation benefits from people who can understand the business requirement, challenge a design decision and work credibly across finance, technology and programme teams. That is who you work with.',
-  },
-];
-
-/* ---------------------------------------------------------------------------
    How we work
 --------------------------------------------------------------------------- */
 const howWeWork = [
@@ -166,12 +140,13 @@ const people = [
   },
 ];
 
+/* Kept deliberately identical to the home-page list — two different sector
+   lists on one site is the kind of inconsistency a careful reader notices. */
 const industries = [
   'Energy & resources',
-  'Consumer & retail',
+  'Technology & semiconductors',
   'Life sciences & medical devices',
-  'Technology',
-  'Manufacturing',
+  'Consumer & retail',
   'Transportation & infrastructure',
   'Public sector',
 ];
@@ -293,20 +268,18 @@ const foundations = [
     </div>
   </section>
 
-  <!-- Differentiators -->
-  <section>
+  <!-- Why Radixa lives on the home page only (§11.5): a single link back,
+       rather than repeating the same blocks in different words here. -->
+  <section class="tight">
     <div class="wrap">
-      <p class="eyebrow">What makes us different</p>
-      <h2>Where our perspective comes from.</h2>
-      <div class="rows mt-l">
-        {
-          different.map((d) => (
-            <div class="row-item">
-              <h3>{d.title}</h3>
-              <p>{d.body}</p>
-            </div>
-          ))
-        }
+      <div class="narrow">
+        <p class="eyebrow">Why Radixa</p>
+        <h2>Finance first, specialist rather than general, independent in the decision.</h2>
+        <p class="lede mt-s">
+          Those principles, and what they mean in practice, are set out in full on the home page —
+          we would rather link to them once than repeat them here in slightly different words.
+        </p>
+        <p class="mt-m"><a class="link-arrow" href="/#why-radixa">Read why Radixa</a></p>
       </div>
     </div>
   </section>
@@ -375,7 +348,7 @@ const foundations = [
     </div>
   </section>
 
-  <!-- Philosophy -->
+  <!-- Philosophy (§11.6 — short version) -->
   <section>
     <div class="wrap">
       <div class="narrow">
@@ -383,20 +356,14 @@ const foundations = [
         <h2>Rooted in Better Decisions.</h2>
         <div class="prose mt-m">
           <p>
-            Every finance transformation ultimately exists to help an organisation understand
-            performance and make better decisions. Better decisions depend on strong foundations.
+            Radixa takes its name from <strong>radix</strong> — root, or foundation. Better finance
+            decisions depend on strong foundations: trusted data, clear processes, appropriate
+            controls, and technology designed around the way finance actually works.
           </p>
         </div>
         <ul class="checklist mt-m">
           {foundations.map((f) => <li>{f}</li>)}
         </ul>
-        <div class="prose mt-l">
-          <p>
-            That thinking sits behind the name. <strong>Radix</strong> means root, or foundation.
-            Radixa exists to help organisations build stronger foundations for financial
-            decision-making.
-          </p>
-        </div>
       </div>
     </div>
   </section>

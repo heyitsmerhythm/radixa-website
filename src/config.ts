@@ -39,7 +39,12 @@ export const site = {
    */
   gaMeasurementId: '',
 
-  /** Companies House number — publish once confirmed for public use. */
+  /**
+   * Companies House number and registered office.
+   * Leave both empty until the values have been copied from the current
+   * Companies House record. The footer and privacy notice print them
+   * automatically the moment they are filled in, and stay silent until then.
+   */
   companyNumber: '',
   registeredAddress: '',
 };
@@ -47,70 +52,146 @@ export const site = {
 export const defaultMeta = {
   title: 'Radixa Technologies | Enterprise Finance Transformation',
   description:
-    'Specialist consulting for financial consolidation, SAP S/4HANA Group Reporting, SAP Analytics Cloud, BPC modernisation and finance reporting architecture.',
+    'Specialist consulting for financial consolidation, SAP S/4HANA Group Reporting, SAP Analytics Cloud, BPC modernisation, finance reporting architecture and programme assurance.',
 };
 
-/** Primary navigation. */
+/**
+ * Primary navigation.
+ *
+ * "What We Do" opens a grouped panel — the groups are the service families.
+ * Adding a page means adding one entry to the right group here; the header,
+ * the mobile menu and the breadcrumbs all follow.
+ */
 export const nav = [
   {
     label: 'What We Do',
     href: '/services/',
-    children: [
+    groups: [
       {
-        label: 'SAP S/4HANA Group Reporting',
-        href: '/services/sap-group-reporting/',
-        blurb: 'Strategy, design, implementation, migration and assurance.',
+        title: 'Financial Consolidation',
+        links: [
+          {
+            label: 'SAP S/4HANA Group Reporting',
+            href: '/services/sap-group-reporting/',
+            blurb: 'Strategy, design, implementation, migration and assurance.',
+          },
+          {
+            label: 'Consolidation Design & Architecture',
+            href: '/services/consolidation-design-architecture/',
+            blurb: 'Design the model before configuring the system.',
+          },
+          {
+            label: 'Group Reporting Health Check',
+            href: '/services/group-reporting-health-check/',
+            blurb: 'Time-boxed independent review of a live solution.',
+          },
+        ],
       },
       {
-        label: 'BPC Modernisation & Platform Assessment',
-        href: '/services/bpc-modernisation-assessment/',
-        blurb: 'Independent assessment across SAP and non-SAP options.',
+        title: 'Planning & Reporting',
+        links: [
+          {
+            label: 'SAP Analytics Cloud',
+            href: '/services/sap-analytics-cloud/',
+            blurb: 'Planning and reporting design, integration and optimisation.',
+          },
+          {
+            label: 'SAC Planning Assessment',
+            href: '/services/sac-planning-assessment/',
+            blurb: 'Decide whether SAC fits, and what the target should be.',
+          },
+          {
+            label: 'SAC Health Check',
+            href: '/services/sac-health-check/',
+            blurb: 'For a model finance has started working around.',
+          },
+        ],
       },
       {
-        label: 'SAP Analytics Cloud',
-        href: '/services/sap-analytics-cloud/',
-        blurb: 'Planning and reporting design, integration and optimisation.',
+        title: 'Modernisation',
+        links: [
+          {
+            label: 'BPC Modernisation & Platform Assessment',
+            href: '/services/bpc-modernisation-assessment/',
+            blurb: 'Independent assessment across SAP and non-SAP options.',
+          },
+        ],
       },
       {
-        label: 'Last Mile Reporting',
-        href: '/services/last-mile-reporting/',
-        blurb: 'Disclosure management, Workiva and Group Reporting integration.',
+        title: 'Architecture & Assurance',
+        links: [
+          {
+            label: 'Finance Data & Reporting Architecture',
+            href: '/services/finance-data-reporting-architecture/',
+            blurb: 'Decide where data, logic and reporting belong.',
+          },
+          {
+            label: 'Solution Architecture & Design Authority',
+            href: '/services/solution-architecture-design-authority/',
+            blurb: 'Senior architecture ownership and challenge across a programme.',
+          },
+          {
+            label: 'Programme Assurance & Optimisation',
+            href: '/services/programme-assurance-optimisation/',
+            blurb: 'Independent assurance at the gates that matter.',
+          },
+        ],
       },
       {
-        label: 'All capabilities',
-        href: '/services/',
-        blurb: 'Consolidation, planning, analytics, data and advisory.',
+        title: 'Last Mile Reporting',
+        links: [
+          {
+            label: 'Last Mile Reporting',
+            href: '/services/last-mile-reporting/',
+            blurb: 'From consolidated result to filed, tagged, auditable report.',
+          },
+        ],
       },
     ],
+    /** Shown at the foot of the dropdown panel. */
+    overview: { label: 'See all capabilities', href: '/services/' },
   },
   { label: 'Training', href: '/training/' },
   { label: 'About', href: '/about/' },
   { label: 'Contact', href: '/contact/' },
 ];
 
-/** Footer link columns (§17). */
+/** Footer link columns (§13.1). */
 export const footerNav = [
   {
-    title: 'What We Do',
+    title: 'Consolidation & Planning',
     links: [
       { label: 'All capabilities', href: '/services/' },
       { label: 'SAP Group Reporting', href: '/services/sap-group-reporting/' },
-      { label: 'BPC Modernisation', href: '/services/bpc-modernisation-assessment/' },
+      { label: 'Consolidation Design & Architecture', href: '/services/consolidation-design-architecture/' },
+      { label: 'Group Reporting Health Check', href: '/services/group-reporting-health-check/' },
       { label: 'SAP Analytics Cloud', href: '/services/sap-analytics-cloud/' },
+      { label: 'SAC Planning Assessment', href: '/services/sac-planning-assessment/' },
+      { label: 'SAC Health Check', href: '/services/sac-health-check/' },
+    ],
+  },
+  {
+    title: 'Architecture & Modernisation',
+    links: [
+      { label: 'BPC Modernisation', href: '/services/bpc-modernisation-assessment/' },
+      { label: 'Finance Data & Reporting Architecture', href: '/services/finance-data-reporting-architecture/' },
+      { label: 'Solution Architecture & Design Authority', href: '/services/solution-architecture-design-authority/' },
+      { label: 'Programme Assurance & Optimisation', href: '/services/programme-assurance-optimisation/' },
       { label: 'Last Mile Reporting', href: '/services/last-mile-reporting/' },
+    ],
+  },
+  {
+    title: 'Training',
+    links: [
+      { label: 'Training overview', href: '/training/' },
+      { label: 'Tailored client training', href: '/training/tailored-client-training/' },
     ],
   },
   {
     title: 'Company',
     links: [
-      { label: 'Training', href: '/training/' },
       { label: 'About', href: '/about/' },
       { label: 'Contact', href: '/contact/' },
-    ],
-  },
-  {
-    title: 'Legal',
-    links: [
       { label: 'Privacy notice', href: '/privacy/' },
       { label: 'Cookie policy', href: '/cookies/' },
       { label: 'Terms of use', href: '/terms/' },
@@ -118,17 +199,33 @@ export const footerNav = [
   },
 ];
 
-/** Options shared between the contact form and the BPC assessment form. */
+/**
+ * Options in the "What do you need help with?" field on the contact form.
+ *
+ * Service pages link to /contact/?capability=<exact text below>, which
+ * pre-selects the right option so a visitor never has to re-choose the
+ * service they were just reading about (§12.2).
+ */
 export const serviceInterests = [
   'SAP Group Reporting',
-  'BPC Modernisation',
+  'Consolidation Design & Architecture',
+  'Group Reporting Health Check',
   'SAP Analytics Cloud',
-  'Planning & Analytics',
-  'Financial Consolidation',
+  'SAC Planning Assessment',
+  'SAC Health Check',
+  'BPC Modernisation',
+  'Finance Data & Reporting Architecture',
+  'Solution Architecture & Design Authority',
+  'Programme Assurance & Optimisation',
   'Last Mile & Disclosure Reporting',
-  'Finance Data & Reporting',
-  'Solution Architecture',
-  'Programme Assurance',
   'Training',
   'Other',
+];
+
+/** Options in the Training enquiry form (§12.4). */
+export const trainingAreas = [
+  'SAP S/4HANA Group Reporting',
+  'SAP Analytics Cloud',
+  'Tailored client training',
+  'Other / not sure yet',
 ];
