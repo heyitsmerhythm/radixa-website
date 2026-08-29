@@ -1,8 +1,8 @@
 User-agent: *
 Allow: /
 
-Disallow: /privacy/
-Disallow: /cookies/
-Disallow: /terms/
+# The legal pages carry a noindex tag rather than a Disallow. Blocking them here
+# would stop crawlers reading that tag, which is how blocked URLs end up listed
+# in search results anyway, without a title or description.
 
 Sitemap: https://radixa.co.uk/sitemap-index.xml

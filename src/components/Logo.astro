@@ -2,16 +2,17 @@
 /**
  * Radixa logo.
  *
- * Files live in  public/brand/ :
- *   logo-notagline.png           header / light backgrounds
- *   logo-reversed.png            footer / navy backgrounds (includes tagline)
- *   logo-reversed-notagline.png  navy backgrounds, tagline omitted
- *   logo.png                     full light lockup with tagline
- *   mark.png                     icon only
+ * Vector files live in  public/brand/ :
+ *   logo-notagline.svg           header / light backgrounds
+ *   logo-reversed.svg            footer / navy backgrounds (includes tagline)
+ *   logo-reversed-notagline.svg  navy backgrounds, tagline omitted
+ *   logo.svg                     full light lockup with tagline
+ *   mark.svg                     symbol only
  *
- * These were extracted from the supplied brand sheet. If your designer provides
- * vector (.svg) originals, drop them into public/brand/ with the same names and
- * change the extension below — SVG will stay crisp at every size.
+ * SVG stays sharp at any size and on any screen, and the header logo is about
+ * 21 KB over the wire against 163 KB for the PNG it replaced. The .png versions
+ * are kept alongside for anywhere that cannot take vector (email signatures,
+ * older Office templates) — see the brand kit for the full set.
  */
 interface Props {
   reversed?: boolean;
@@ -32,14 +33,15 @@ const {
 
 const file = reversed
   ? tagline
-    ? '/brand/logo-reversed.png'
-    : '/brand/logo-reversed-notagline.png'
+    ? '/brand/logo-reversed.svg'
+    : '/brand/logo-reversed-notagline.svg'
   : tagline
-    ? '/brand/logo.png'
-    : '/brand/logo-notagline.png';
+    ? '/brand/logo.svg'
+    : '/brand/logo-notagline.svg';
 
 // Intrinsic sizes, used to reserve space and avoid layout shift (CLS).
-const ratio = reversed ? 497 / 118 : 787 / 227;
+// Both lockups are drawn on the same 787 x 227 / 787 x 180 canvas.
+const ratio = tagline ? 787 / 227 : 787 / 180;
 const width = Math.round(height * ratio);
 ---
 

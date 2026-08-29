@@ -10,6 +10,9 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         !['/privacy/', '/cookies/', '/terms/'].some((p) => page.endsWith(p)),
+      // lastmod tells Google which pages are worth recrawling first. Set from
+      // build time, which for this site is the moment a change was published.
+      serialize: (item) => ({ ...item, lastmod: new Date().toISOString() }),
     }),
   ],
   compressHTML: true,
